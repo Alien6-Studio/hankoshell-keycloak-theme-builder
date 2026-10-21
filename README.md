@@ -1,8 +1,8 @@
-# Hankoshell Keycloak Theme Kit
+# Hankoshell Keycloak Theme Builder
 
-A shared React renderer and CLI for branded Keycloak authentication. Build a theme from JSON, preview every authentication step, and reuse the preview in your own dashboard.
+Build native Keycloak themes on demand from shared React pages and brand configuration. Use the Node API in a backend, the CLI in a worker, and the same components for dashboard previews.
 
-[![CI](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 ## Try it
@@ -42,12 +42,28 @@ Use `--assets ./brand` to bundle `logo.svg`, trusted `theme.css`, fonts referenc
 ## Dashboard preview
 
 ```tsx
-import { ThemePreview, authenticationPages } from "@alien6/hankoshell-keycloak-theme-kit/react";
+import { ThemePreview, authenticationPages } from "@alien6/hankoshell-keycloak-theme-builder/react";
 
 <ThemePreview config={draft} page="login-config-totp.ftl" locale="fr" />
 ```
 
 The preview uses the shared renderer inside a Shadow DOM, keeping host styles isolated. For Next.js, load it from a client component with `next/dynamic` and `ssr: false`. Credential previews use sample profile fields and local password visibility controls; WebAuthn previews show the layout without loading authenticator scripts. Validate real authentication against your realm as well.
+
+## Build and deliver on demand
+
+```ts
+import { buildTheme } from "@alien6/hankoshell-keycloak-theme-builder/builder";
+
+const artifact = await buildTheme(config, {
+  outputDir: "/output",
+  signal: AbortSignal.timeout(20 * 60_000),
+});
+// artifact: { theme, path, sha256, bytes }
+```
+
+The compiler calls Vite and Keycloakify, then publishes the JAR atomically. Run it on the server or in an isolated build Job with Node, Java and Maven. `hanko-theme build-env` accepts the operator's `THEME_SLUG`, `THEME_*_COLOR`, `THEME_FONT_FAMILY`, `THEME_LOGO_URL`, `THEME_HEADLINE`, `THEME_SUBLINE` and `THEME_JAR_NAME` variables and writes to `/output`.
+
+With Hankoshell, the platform authorizes publication and declares a `HankoTheme`. The operator runs the builder, installs the JAR and reconciles the Keycloak rollout. Realm/client assignment follows the installed revision's readiness. This package needs no Kubernetes or Keycloak administrator credentials.
 
 ## Live appearance
 

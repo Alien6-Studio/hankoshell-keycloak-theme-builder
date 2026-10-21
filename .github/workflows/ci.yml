@@ -57,7 +57,7 @@ jobs:
         run: |
           jar tf artifacts/aurora-theme.jar > /tmp/theme-files
           for page in login-config-totp login-otp login-recovery-authn-code-config login-recovery-authn-code-input logout-confirm frontchannel-logout; do
-            rg -q "theme/aurora/login/$page.ftl" /tmp/theme-files
+            grep -q "theme/aurora/login/$page.ftl" /tmp/theme-files
           done
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:

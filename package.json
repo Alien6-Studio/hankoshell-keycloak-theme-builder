@@ -1,6 +1,6 @@
 {
-  "name": "@alien6/hankoshell-keycloak-theme-kit",
-  "version": "0.1.0",
+  "name": "@alien6/hankoshell-keycloak-theme-builder",
+  "version": "0.1.1",
   "description": "Shared Keycloak login renderer, live branding preview and Keycloakify theme builder",
   "type": "module",
   "license": "Apache-2.0",
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Alien6-Studio/hankoshell-keycloak-theme-kit.git"
+    "url": "git+https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder.git"
   },
-  "homepage": "https://github.com/Alien6-Studio/hankoshell-keycloak-theme-kit",
+  "homepage": "https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder",
   "bugs": {
-    "url": "https://github.com/Alien6-Studio/hankoshell-keycloak-theme-kit/issues"
+    "url": "https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/issues"
   },
   "bin": {
     "hanko-theme": "dist/cli.js"
@@ -26,17 +26,25 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./react": {
       "types": "./dist/react.d.ts",
-      "import": "./dist/react.js"
+      "import": "./dist/react.js",
+      "default": "./dist/react.js"
     },
     "./keycloak": {
       "types": "./dist/keycloak.d.ts",
-      "import": "./dist/keycloak.js"
+      "import": "./dist/keycloak.js",
+      "default": "./dist/keycloak.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./builder": {
+      "types": "./dist/builder.d.ts",
+      "import": "./dist/builder.js",
+      "default": "./dist/builder.js"
+    }
   },
   "scripts": {
     "build": "node --input-type=module -e \"import {rmSync} from 'node:fs'; rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json",
