@@ -56,6 +56,7 @@ jobs:
       - name: Check authentication templates
         run: |
           jar tf artifacts/aurora-theme.jar > /tmp/theme-files
+          unzip -p artifacts/aurora-theme.jar theme/aurora/login/login.ftl | grep -q "<title>Aurora</title>"
           for page in login-config-totp login-otp login-recovery-authn-code-config login-recovery-authn-code-input logout-confirm frontchannel-logout; do
             grep -q "theme/aurora/login/$page.ftl" /tmp/theme-files
           done
