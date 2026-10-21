@@ -1,6 +1,6 @@
 {
   "name": "@alien6/hankoshell-keycloak-theme-builder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared Keycloak login renderer, live branding preview and Keycloakify theme builder",
   "type": "module",
   "license": "Apache-2.0",

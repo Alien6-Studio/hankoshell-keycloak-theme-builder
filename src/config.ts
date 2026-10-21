@@ -60,7 +60,7 @@ function length(value: unknown) {
 export function parseTheme(input: unknown): ThemeConfig {
   const value = object(input, "Theme"); only(value, keys, "theme");
   if (value.version !== 1 || typeof value.name !== "string" || !/^[a-z0-9][a-z0-9._-]{0,63}$/.test(value.name)) throw new Error("A version-1 theme with a valid name is required");
-  for (const key of ["headline", "subline"] as const) if (value[key] !== undefined) text(value[key], key);
+  for (const key of ["headline", "subline"] as const) if (value[key] !== undefined) text(value[key], key, key === "subline" ? 512 : 256);
   if (value.fontFamily !== undefined) {
     text(value.fontFamily, "font family");
     if (!/^[\w ,'".-]+$/.test(value.fontFamily as string)) throw new Error("Invalid font family");

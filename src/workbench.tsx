@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import { ThemePreview } from "./react.js";
 import { authenticationPages, type AuthenticationPage } from "./pages.js";
 import type { ThemeConfig, ColorMode } from "./config.js";
+import type { KeycloakPageProps } from "./keycloak.js";
 
 /** Local development gallery; never included in the production theme entry point. */
-export function ThemeWorkbench({ config, css }: Readonly<{ config: ThemeConfig; css?: string }>) {
+export function ThemeWorkbench({ config, css, renderer }: Readonly<{ config: ThemeConfig; css?: string; renderer?: ComponentType<KeycloakPageProps> }>) {
   const requested = new URL(location.href).searchParams.get("page");
   const [page, setPage] = useState<AuthenticationPage>(authenticationPages.find(page => page === requested) ?? "login-username.ftl");
   const [mode, setMode] = useState<ColorMode>("dark");
@@ -15,6 +16,6 @@ export function ThemeWorkbench({ config, css }: Readonly<{ config: ThemeConfig; 
       <label>Appearance <select aria-label="Appearance" value={mode} onChange={event => setMode(event.target.value as ColorMode)}><option>dark</option><option>light</option></select></label>
       <label>Language <select aria-label="Language" value={locale} onChange={event => setLocale(event.target.value as "en" | "fr")}><option>en</option><option>fr</option></select></label>
     </nav>
-    <ThemePreview config={config} css={css} page={page} mode={mode} onModeChange={setMode} locale={locale} height={800} providers={[{ alias: "example", displayName: "Example SSO" }]} />
+    <ThemePreview config={config} css={css} renderer={renderer} page={page} mode={mode} onModeChange={setMode} locale={locale} height={800} providers={[{ alias: "example", displayName: "Example SSO" }]} />
   </main>;
 }

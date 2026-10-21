@@ -1,12 +1,12 @@
 import { readFile, writeFile, mkdir, mkdtemp, symlink, rm, copyFile, rename, stat, realpath } from "node:fs/promises";
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { tmpdir, homedir } from "node:os";
 import { dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { parseTheme, type ThemeConfig } from "./config.js";
-import { sourceLiteral } from "./serialization.js";
+import { htmlText, sourceLiteral } from "./serialization.js";
 
 const require = createRequire(import.meta.url);
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -40,6 +40,7 @@ async function dependencies(): Promise<string> {
 export interface BuildOptions {
   assetsDir?: string;
   runtimeAdapter?: string;
+  renderer?: string;
   outputDir?: string;
   jarName?: string;
   signal?: AbortSignal;
@@ -77,18 +78,21 @@ async function compile(command: "build" | "dev", input: ThemeConfig, options: Bu
     await writeFile(join(work, "bin", "npx"), `#!/usr/bin/env node\nimport{spawnSync}from'node:child_process';const args=process.argv.slice(2);if(args.shift()!=='vite')process.exit(1);const p=spawnSync(process.execPath,[${sourceLiteral(viteBin)},...args],{stdio:'inherit'});process.exit(p.status??1);\n`, { mode: 0o755 });
     if (assets && await exists(join(assets, "OFL.txt"))) await copyFile(await asset(assets, "OFL.txt"), join(work, "public", "licenses", "OFL.txt"));
     const adapter = options.runtimeAdapter ? await realpath(resolve(options.runtimeAdapter)) : undefined;
-    const pageImport = fileURLToPath(new URL("./keycloak.js", import.meta.url));
+    const renderer = options.renderer ? await realpath(resolve(options.renderer)) : undefined;
+    const pageImport = renderer ?? fileURLToPath(new URL("./keycloak.js", import.meta.url));
+    const rendererImport = renderer ? `import KeycloakPage from ${sourceLiteral(pageImport)};` : `import {KeycloakPage} from ${sourceLiteral(pageImport)};`;
     const cssImport = stylesheet ? `import css from ${sourceLiteral(stylesheet + "?inline")};` : 'const css = undefined;';
     const loaderImport = adapter ? `import loader from ${sourceLiteral(adapter)};` : 'const loader = undefined;';
     const keycloakify = JSON.parse(await readFile(require.resolve("keycloakify/package.json"), "utf8")) as { version: string };
     await writeFile(join(work, "package.json"), JSON.stringify({ name: `${config.name}-login-theme`, private: true, type: "module", version: ownPackage.version, dependencies: { [ownPackage.name]: ownPackage.version, keycloakify: keycloakify.version } }, null, 2));
     await writeFile(join(source, "theme-config.ts"), `export default ${sourceLiteral(config)} as const;\n`);
-    await writeFile(join(source, "login", "KcPage.tsx"), `import {KeycloakPage} from ${sourceLiteral(pageImport)};import config from '../theme-config';${cssImport}${loaderImport}\nexport default function KcPage({kcContext}){return <KeycloakPage kcContext={kcContext} config={config} css={css} loader={loader} persistMode/>;}\n`);
+    await writeFile(join(source, "login", "KcPage.tsx"), `${rendererImport}import config from '../theme-config';${cssImport}${loaderImport}\nexport default function KcPage({kcContext}){return <KeycloakPage kcContext={kcContext} config={config} css={css} loader={loader} persistMode/>;}\n`);
     await writeFile(join(source, "login", "KcContext.ts"), `export type {KcContext} from 'keycloakify/login/KcContext';\n`);
     const previewImport = fileURLToPath(new URL("./workbench.js", import.meta.url));
-    await writeFile(join(source, "main.tsx"), `import {createRoot} from 'react-dom/client';import KcPage from './login/KcPage';const root=createRoot(document.getElementById('root')!);if(import.meta.env.DEV&&!window.kcContext){import(${sourceLiteral(previewImport)}).then(({ThemeWorkbench})=>root.render(<ThemeWorkbench config={config} css={css}/>));}else{root.render(<KcPage kcContext={window.kcContext}/>);}import config from './theme-config';${cssImport}\n`);
-    await writeFile(join(work, "index.html"), '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Theme preview</title><style>html,body{margin:0;min-height:100%}</style></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>');
-    await writeFile(join(work, "vite.config.ts"), `import{defineConfig}from'vite';import react from'@vitejs/plugin-react';import{keycloakify}from'keycloakify/vite-plugin';export default defineConfig({cacheDir:${sourceLiteral(join(work,'.vite'))},resolve:{dedupe:['react','react-dom']},build:{assetsInlineLimit:131072},server:{fs:{allow:${sourceLiteral([work, packageRoot, modules, ...(assets ? [assets] : []), ...(adapter ? [dirname(adapter)] : [])])}}},plugins:[react(),keycloakify({themeName:${sourceLiteral(config.name)},accountThemeImplementation:'none',keycloakVersionTargets:{'22-to-25':false,'all-other-versions':${sourceLiteral(jar)}}})]});\n`);
+    await writeFile(join(source, "main.tsx"), `import {createRoot} from 'react-dom/client';${rendererImport}import KcPage from './login/KcPage';const root=createRoot(document.getElementById('root')!);if(import.meta.env.DEV&&!window.kcContext){import(${sourceLiteral(previewImport)}).then(({ThemeWorkbench})=>root.render(<ThemeWorkbench config={config} css={css} renderer={KeycloakPage}/>));}else{root.render(<KcPage kcContext={window.kcContext}/>);}import config from './theme-config';${cssImport}\n`);
+    const documentTitle = command === "dev" ? "Theme preview" : config.headline || config.name;
+    await writeFile(join(work, "index.html"), `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>${htmlText(documentTitle)}</title><style>html,body{margin:0;min-height:100%}</style></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>`);
+    await writeFile(join(work, "vite.config.ts"), `import{defineConfig}from'vite';import react from'@vitejs/plugin-react';import{keycloakify}from'keycloakify/vite-plugin';export default defineConfig({cacheDir:${sourceLiteral(join(work,'.vite'))},resolve:{dedupe:['react','react-dom']},build:{assetsInlineLimit:131072},server:{fs:{allow:${sourceLiteral([work, packageRoot, modules, ...(assets ? [assets] : []), ...(adapter ? [dirname(adapter)] : []), ...(renderer ? [dirname(renderer)] : [])])}}},plugins:[react(),keycloakify({themeName:${sourceLiteral(config.name)},accountThemeImplementation:'none',keycloakVersionTargets:{'22-to-25':false,'all-other-versions':${sourceLiteral(jar)}}})]});\n`);
     const env = { ...process.env, XDG_CACHE_HOME: process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), PATH: `${join(work, "bin")}${sep === "/" ? ":" : ";"}${process.env.PATH ?? ""}` };
     if (command === "dev") {
       const port = String(options.port ?? 5173); if (!/^\d{1,5}$/.test(port) || Number(port) < 1 || Number(port) > 65535) throw new Error("Invalid preview port");
@@ -97,9 +101,10 @@ async function compile(command: "build" | "dev", input: ThemeConfig, options: Bu
       await run(process.execPath, [viteBin, "build"], work, env, options.signal);
       await run(process.execPath, [keycloakBin, "build"], work, env, options.signal);
       const output = resolve(options.outputDir ?? "dist_keycloak"); await mkdir(output, { recursive: true });
-      const temporary = join(output, `.${jar}.${process.pid}.tmp`);
+      const bytes = await readFile(join(work, "dist_keycloak", jar));
+      const temporary = join(output, `.${jar}.${randomUUID()}.tmp`);
       try { await copyFile(join(work, "dist_keycloak", jar), temporary); await rename(temporary, join(output, jar)); } finally { await rm(temporary, { force: true }); }
-      const path = join(output, jar); const bytes = await readFile(path);
+      const path = join(output, jar);
       return { theme: config.name, path, sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength };
     }
   } finally { await rm(work, { recursive: true, force: true }); }
