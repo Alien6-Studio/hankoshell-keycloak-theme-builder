@@ -39,6 +39,17 @@ This package is not yet published to npm. Tagged releases distribute a package t
 
 Use `--assets ./brand` to bundle `logo.svg`, trusted `theme.css`, fonts referenced by that CSS, and an optional `OFL.txt` license. Keep customer assets and deployment configuration in your own project. Remote logos must use HTTPS; embedded assets avoid external requests during authentication.
 
+## React themes
+
+Provide your own React renderer as a local module exporting a component with `KeycloakPageProps`. It can reuse `KeycloakPage` and customize selected pages or supply its own layout. See [`BrandPage.tsx`](examples/aurora/BrandPage.tsx).
+
+```sh
+node dist/cli.js dev theme.json --renderer ./BrandPage.tsx
+node dist/cli.js build theme.json --renderer ./BrandPage.tsx
+```
+
+The Node API accepts the same `renderer` path. Pass that component to `ThemePreview` to preview the same React code. Renderers and runtime adapters are trusted build inputs; appearance JSON cannot select executable modules.
+
 ## Dashboard preview
 
 ```tsx
