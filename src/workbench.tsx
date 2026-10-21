@@ -1,0 +1,20 @@
+import { useState } from "react";
+import { ThemePreview } from "./react.js";
+import { authenticationPages, type AuthenticationPage } from "./pages.js";
+import type { ThemeConfig, ColorMode } from "./config.js";
+
+/** Local development gallery; never included in the production theme entry point. */
+export function ThemeWorkbench({ config, css }: Readonly<{ config: ThemeConfig; css?: string }>) {
+  const requested = new URL(location.href).searchParams.get("page");
+  const [page, setPage] = useState<AuthenticationPage>(authenticationPages.find(page => page === requested) ?? "login-username.ftl");
+  const [mode, setMode] = useState<ColorMode>("dark");
+  const [locale, setLocale] = useState<"en" | "fr">("en");
+  return <main style={{ fontFamily: "system-ui", background: "#e2e8f0", minHeight: "100svh" }}>
+    <nav aria-label="Theme preview" style={{ display: "flex", gap: "1rem", flexWrap: "wrap", padding: "1rem" }}>
+      <label>Page <select aria-label="Page" value={page} onChange={event => { const value = event.target.value as AuthenticationPage; setPage(value); const url = new URL(location.href); url.searchParams.set("page", value); history.replaceState(null, "", url); }}>{authenticationPages.map(id => <option key={id}>{id}</option>)}</select></label>
+      <label>Appearance <select aria-label="Appearance" value={mode} onChange={event => setMode(event.target.value as ColorMode)}><option>dark</option><option>light</option></select></label>
+      <label>Language <select aria-label="Language" value={locale} onChange={event => setLocale(event.target.value as "en" | "fr")}><option>en</option><option>fr</option></select></label>
+    </nav>
+    <ThemePreview config={config} css={css} page={page} mode={mode} onModeChange={setMode} locale={locale} height={800} providers={[{ alias: "example", displayName: "Example SSO" }]} />
+  </main>;
+}
