@@ -17,7 +17,7 @@ jobs:
       attestations: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: '22'
           cache: npm
@@ -33,7 +33,7 @@ jobs:
           name: example-theme
           path: artifacts
       - run: cd artifacts && sha256sum *.tgz *.jar > SHA256SUMS
-      - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
         with:
           subject-path: artifacts/*
       - name: Publish GitHub release
