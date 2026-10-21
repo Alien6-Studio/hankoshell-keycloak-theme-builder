@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createServer } from "node:http";
 import { execFileSync } from "node:child_process";
 import { mkdtemp, writeFile, rm, chmod } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -12,6 +13,9 @@ const name = `theme-kit-${randomUUID().slice(0, 8)}`;
 const password = randomUUID();
 const docker = (...args) => execFileSync("docker", args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
 let browser;
+const callbackServer = createServer((_request, response) => { response.writeHead(200, { "Content-Type": "text/plain" }); response.end("OIDC callback"); });
+await new Promise(resolve => callbackServer.listen(0, "127.0.0.1", resolve));
+const callback = `http://127.0.0.1:${callbackServer.address().port}/callback`;
 
 function otp(secret) {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
@@ -27,7 +31,7 @@ try {
   await writeFile(join(work, "theme-test-realm.json"), JSON.stringify({
     realm: "theme-test", enabled: true, loginTheme: "aurora", registrationAllowed: true, resetPasswordAllowed: true,
     internationalizationEnabled: true, supportedLocales: ["en", "fr"], defaultLocale: "en",
-    clients: [{ clientId: "theme-browser", enabled: true, publicClient: true, standardFlowEnabled: true, redirectUris: ["http://127.0.0.1/*"], attributes: { "post.logout.redirect.uris": "+", "pkce.code.challenge.method": "S256" } }],
+    clients: [{ clientId: "theme-browser", enabled: true, publicClient: true, standardFlowEnabled: true, redirectUris: [callback], attributes: { "post.logout.redirect.uris": "+", "pkce.code.challenge.method": "S256" } }],
     users: [
       { username: "otp-user", enabled: true, email: "otp@example.test", firstName: "Test", lastName: "OTP", credentials: [{ type: "password", value: password, temporary: false }], requiredActions: ["CONFIGURE_TOTP"] },
       { username: "recovery-user", enabled: true, email: "recovery@example.test", firstName: "Test", lastName: "Recovery", credentials: [{ type: "password", value: password, temporary: false }], requiredActions: ["CONFIGURE_RECOVERY_AUTHN_CODES"] },
@@ -38,7 +42,7 @@ try {
   docker("cp", `${work}/.`, `${name}:/opt/keycloak/data/import`);
   docker("start", name);
   const address = docker("port", name, "8080/tcp"); const origin = `http://${address}`;
-  const issuer = `${origin}/realms/theme-test`; const callback = "http://127.0.0.1/callback";
+  const issuer = `${origin}/realms/theme-test`;
   for (let attempt = 0; ; attempt++) {
     try { if ((await fetch(`${issuer}/.well-known/openid-configuration`, { signal: AbortSignal.timeout(2000) })).ok) break; } catch {}
     if (docker("inspect", "--format", "{{.State.Running}}", name) !== "true") throw new Error(`Local Keycloak exited:\n${docker("logs", name, "--tail", "30")}`);
@@ -48,7 +52,6 @@ try {
   browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH, headless: true });
   const context = await browser.newContext(); const page = await context.newPage();
   const errors = []; page.on("pageerror", error => errors.push(error.message));
-  await page.route(`${callback}*`, route => route.fulfill({ contentType: "text/plain", body: "OIDC callback" }));
   async function login(username) {
     const verifier = randomUUID() + randomUUID();
     const auth = new URL(`${issuer}/protocol/openid-connect/auth`);
@@ -93,6 +96,7 @@ try {
   console.log("Recovery-code enrollment and native logout passed"); assert.deepEqual(errors, []);
 } finally {
   await browser?.close();
+  await new Promise(resolve => callbackServer.close(resolve));
   try { docker("rm", "-f", name); } catch {}
   await rm(work, { recursive: true, force: true });
 }
