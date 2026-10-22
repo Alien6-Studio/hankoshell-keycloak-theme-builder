@@ -1,3 +1,6 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { ExperienceShell } from "../dist/experience-react.js";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
@@ -52,4 +55,13 @@ test("release packaging binds exact compiled bytes and refuses mutable installer
     await writeFile(path, "tampered");
     await assert.rejects(prepareThemeArtifact(artifact, { ...options, outputDir: join(root, "forged") }));
   } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+
+test("embedded experiences fit the host application without a nested main landmark", () => {
+  const props = { theme: { version: 1, name: "example" }, manifest: { contract: "hanko.experience/v1", id: "account", version: "1.0.0", surfaces: [{ id: "profile", kind: "self-service", capabilities: [] }] }, modules: [{ id: "profile", title: { en: "Profile", fr: "Profil" }, Component: () => createElement("h1", {}, "Profile") }], context: { subject: "alice", locale: "en", capabilities: [] } };
+  const embedded = renderToStaticMarkup(createElement(ExperienceShell, { ...props, embedded: true }));
+  assert.doesNotMatch(embedded, /<main[ >]/);
+  assert.match(embedded, /--hk-page-height:0px/);
+  assert.match(renderToStaticMarkup(createElement(ExperienceShell, props)), /<main class="hk-card"/);
 });
