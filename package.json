@@ -1,6 +1,6 @@
 {
   "name": "@alien6/hankoshell-keycloak-theme-builder",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Shared Keycloak login renderer, live branding preview and Keycloakify theme builder",
   "type": "module",
   "license": "Apache-2.0",
@@ -44,6 +44,21 @@
       "types": "./dist/builder.d.ts",
       "import": "./dist/builder.js",
       "default": "./dist/builder.js"
+    },
+    "./experience": {
+      "types": "./dist/experience.d.ts",
+      "import": "./dist/experience.js",
+      "default": "./dist/experience.js"
+    },
+    "./experience/react": {
+      "types": "./dist/experience-react.d.ts",
+      "import": "./dist/experience-react.js",
+      "default": "./dist/experience-react.js"
+    },
+    "./artifact": {
+      "types": "./dist/artifact.d.ts",
+      "import": "./dist/artifact.js",
+      "default": "./dist/artifact.js"
     }
   },
   "scripts": {

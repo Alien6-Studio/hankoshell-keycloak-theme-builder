@@ -6,7 +6,7 @@ export const authenticationPages = [
   "login-otp.ftl", "login-config-totp.ftl", "login-reset-otp.ftl", "select-authenticator.ftl",
   "login-recovery-authn-code-config.ftl", "login-recovery-authn-code-input.ftl",
   "webauthn-authenticate.ftl", "webauthn-register.ftl", "webauthn-error.ftl",
-  "login-reset-password.ftl", "login-update-password.ftl", "login-verify-email.ftl",
+  "login-reset-password.ftl", "login-update-password.ftl", "login-update-profile.ftl", "login-verify-email.ftl",
   "logout-confirm.ftl", "frontchannel-logout.ftl", "info.ftl", "error.ftl", "login-page-expired.ftl",
 ] as const satisfies readonly KcContext["pageId"][];
 export type AuthenticationPage = (typeof authenticationPages)[number];

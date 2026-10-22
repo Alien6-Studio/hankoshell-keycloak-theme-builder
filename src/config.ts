@@ -1,4 +1,5 @@
 export type ColorMode = "dark" | "light";
+export type JsonValue = null | boolean | number | string | JsonValue[] | { [key: string]: JsonValue };
 
 export interface Palette {
   background: string;
@@ -22,9 +23,12 @@ export interface ThemeConfig {
   layout?: { cardRadius?: string; controlRadius?: string; contentWidth?: string };
   socialPosition?: "before" | "after";
   runtime?: { endpoint: string; refreshMs?: number };
+  /** Presentation data for compiled modules; never code, permissions or endpoints. */
+  modules?: Record<string, Record<string, JsonValue>>;
 }
 
 export type ThemePatch = Omit<Partial<ThemeConfig>, "version" | "name" | "runtime">;
+export interface AppearanceProfile { contract: "hanko.appearance/v1"; revision: string; appearance: ThemePatch }
 export interface ThemeRequest { realm: string; clientId?: string; signal: AbortSignal }
 export type ThemeLoader = (request: ThemeRequest) => Promise<ThemePatch>;
 
@@ -33,7 +37,7 @@ const palettes: Record<ColorMode, Palette> = {
   light: { background: "#fafafa", foreground: "#0f172a", primary: "#2563eb", primaryForeground: "#ffffff", card: "#ffffff", muted: "#475569", border: "#cbd5e1", input: "#ffffff" },
 };
 const paletteKeys = Object.keys(palettes.dark);
-const keys = ["version", "name", "headline", "subline", "logoUrl", "fontFamily", "colors", "layout", "socialPosition", "runtime"];
+const keys = ["version", "name", "headline", "subline", "logoUrl", "fontFamily", "colors", "layout", "socialPosition", "runtime", "modules"];
 
 function object(input: unknown, label: string): Record<string, unknown> {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error(`${label} must be an object`);
@@ -78,6 +82,14 @@ export function parseTheme(input: unknown): ThemeConfig {
   }
   if (value.layout !== undefined) { const layout = object(value.layout, "Layout"); only(layout, ["cardRadius", "controlRadius", "contentWidth"], "layout"); for (const item of Object.values(layout)) length(item); }
   if (value.socialPosition !== undefined && value.socialPosition !== "before" && value.socialPosition !== "after") throw new Error("Invalid social position");
+  if (value.modules !== undefined) {
+    const modules = object(value.modules, "Module settings");
+    for (const [id, settings] of Object.entries(modules)) {
+      if (!/^[a-z][a-z0-9._-]{0,127}$/.test(id)) throw new Error("Invalid module identifier");
+      moduleData(object(settings, "Module settings"), 0);
+    }
+    if (JSON.stringify(modules).length > 65536) throw new Error("Module settings are too large");
+  }
   if (value.runtime !== undefined) {
     const runtime = object(value.runtime, "Runtime"); only(runtime, ["endpoint", "refreshMs"], "runtime");
     text(runtime.endpoint, "runtime endpoint", 2048);
@@ -87,10 +99,27 @@ export function parseTheme(input: unknown): ThemeConfig {
   return structuredClone(value) as unknown as ThemeConfig;
 }
 
+function moduleData(value: unknown, depth: number): void {
+  if (depth > 8) throw new Error("Module settings are too deeply nested");
+  if (value === null || typeof value === "boolean" || typeof value === "string") return;
+  if (typeof value === "number" && Number.isFinite(value)) return;
+  const entries = Array.isArray(value) ? value : Object.values(object(value, "Module data"));
+  if (entries.length > 64 || (!Array.isArray(value) && Object.keys(value as object).some(key => ["__proto__", "prototype", "constructor"].includes(key)))) throw new Error("Invalid module data");
+  for (const item of entries) moduleData(item, depth + 1);
+}
+
 export function mergeTheme(base: ThemeConfig, patch: ThemePatch): ThemeConfig {
   const fields = object(patch, "Theme patch");
   only(fields, keys.filter(key => !["version", "name", "runtime"].includes(key)), "theme patch");
   return parseTheme({ ...base, ...fields, colors: { dark: { ...base.colors?.dark, ...patch.colors?.dark }, light: { ...base.colors?.light, ...patch.colors?.light } }, layout: { ...base.layout, ...patch.layout } });
+}
+
+export function parseAppearance(input: unknown): AppearanceProfile {
+  const value = object(input, "Appearance profile"); only(value, ["contract", "revision", "appearance"], "appearance profile");
+  if (value.contract !== "hanko.appearance/v1" || typeof value.revision !== "string" || !/^[A-Za-z0-9._:-]{1,128}$/.test(value.revision)) throw new Error("Unsupported appearance contract");
+  const validated = mergeTheme({ version: 1, name: "profile" }, object(value.appearance, "Appearance") as ThemePatch);
+  const { name: _name, version: _version, ...patch } = validated;
+  return { contract: "hanko.appearance/v1", revision: value.revision, appearance: patch };
 }
 
 export function themeVariables(config: ThemeConfig, mode: ColorMode): Record<string, string> {
@@ -120,7 +149,9 @@ export function createThemeLoader(runtime: NonNullable<ThemeConfig["runtime"]>, 
       try { while (true) { const chunk = await reader.read(); if (chunk.done) break; size += chunk.value.byteLength; if (size > 768 * 1024) throw new Error("Branding response is too large"); content += decoder.decode(chunk.value, { stream: true }); } content += decoder.decode(); }
       finally { await reader.cancel(); reader.releaseLock(); }
     }
-    const config = parseTheme(JSON.parse(content));
+    const payload = JSON.parse(content);
+    if (payload?.contract === "hanko.appearance/v1") return parseAppearance(payload).appearance;
+    const config = parseTheme(payload);
     const { version: _version, name: _name, runtime: _runtime, ...patch } = config;
     return patch;
   };

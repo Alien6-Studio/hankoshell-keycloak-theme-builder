@@ -35,6 +35,7 @@ try {
     users: [
       { username: "otp-user", enabled: true, email: "otp@example.test", firstName: "Test", lastName: "OTP", credentials: [{ type: "password", value: password, temporary: false }], requiredActions: ["CONFIGURE_TOTP"] },
       { username: "recovery-user", enabled: true, email: "recovery@example.test", firstName: "Test", lastName: "Recovery", credentials: [{ type: "password", value: password, temporary: false }], requiredActions: ["CONFIGURE_RECOVERY_AUTHN_CODES"] },
+      { username: "profile-user", enabled: true, email: "profile@example.test", firstName: "Alex", lastName: "Profile", credentials: [{ type: "password", value: password, temporary: false }] },
     ],
   }));
   docker("create", "--name", name, "-p", "127.0.0.1::8080", process.env.KEYCLOAK_IMAGE ?? "quay.io/keycloak/keycloak:26.7.3", "start-dev", "--import-realm", "--features=recovery-codes");
@@ -52,10 +53,11 @@ try {
   browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH, headless: true });
   const context = await browser.newContext(); const page = await context.newPage();
   const errors = []; page.on("pageerror", error => errors.push(error.message));
-  async function login(username) {
+  async function login(username, action) {
     const verifier = randomUUID() + randomUUID();
     const auth = new URL(`${issuer}/protocol/openid-connect/auth`);
     auth.search = new URLSearchParams({ client_id: "theme-browser", redirect_uri: callback, response_type: "code", scope: "openid", state: "auth-state", code_challenge: createHash("sha256").update(verifier).digest("base64url"), code_challenge_method: "S256" }).toString();
+    if (action) auth.searchParams.set("kc_action", action);
     await page.goto(auth.href); await page.locator("#username").fill(username); await page.locator("#password").fill(password); await page.locator("#kc-login").click();
     return verifier;
   }
@@ -93,7 +95,21 @@ try {
   verifier = await login("recovery-user"); await page.locator("#kc-recovery-codes-list").waitFor();
   assert.equal(await page.locator("#saveRecoveryAuthnCodesBtn").isDisabled(), true);
   await page.locator("#kcRecoveryCodesConfirmationCheck").check(); await page.locator("#saveRecoveryAuthnCodesBtn").click(); await complete(verifier); await logout();
-  console.log("Recovery-code enrollment and native logout passed"); assert.deepEqual(errors, []);
+  console.log("Recovery-code enrollment and native logout passed");
+
+  verifier = await login("profile-user", "UPDATE_PROFILE");
+  await page.locator('input[name="firstName"]').waitFor();
+  await page.locator('input[name="firstName"]').fill("Camille");
+  await page.locator('input[name="lastName"]').fill("Updated");
+  await page.locator('#kc-form-buttons input[type="submit"]').click();
+  await complete(verifier); await logout();
+  verifier = await login("profile-user", "UPDATE_PROFILE");
+  assert.equal(await page.locator('input[name="firstName"]').inputValue(), "Camille");
+  assert.equal(await page.locator('input[name="lastName"]').inputValue(), "Updated");
+  await page.locator('#kc-form-buttons input[type="submit"]').click();
+  await complete(verifier); await logout();
+  console.log("Native self-service profile updated and persisted without administrator credentials");
+  assert.deepEqual(errors, []);
 } finally {
   await browser?.close();
   await new Promise(resolve => callbackServer.close(resolve));

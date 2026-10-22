@@ -74,13 +74,25 @@ const artifact = await buildTheme(config, {
 
 The compiler calls Vite and Keycloakify, then publishes the JAR atomically. Run it on the server or in an isolated build Job with Node, Java and Maven. `hanko-theme build-env` accepts the operator's `THEME_SLUG`, `THEME_*_COLOR`, `THEME_FONT_FAMILY`, `THEME_LOGO_URL`, `THEME_HEADLINE`, `THEME_SUBLINE` and `THEME_JAR_NAME` variables and writes to `/output`.
 
-With Hankoshell, the platform authorizes publication and declares a `HankoTheme`. The operator runs the builder, installs the JAR and reconciles the Keycloak rollout. Realm/client assignment follows the installed revision's readiness. This package needs no Kubernetes or Keycloak administrator credentials.
+Compile code changes once in the platform's build environment. Use `prepareThemeArtifact` from `/artifact` to create a Docker build context containing the JAR, a versioned manifest and a small installer. Pass a reviewed, digest-pinned Alpine-compatible base image. Build, scan, sign and publish that image through your existing release pipeline.
+
+With Hankoshell, Hub distributes the desired artifact reference and the operator verifies and installs it. The precompiled image needs no Node, Java, Maven or network access at runtime. This package needs no Kubernetes or Keycloak administrator credentials. `build-env` remains available for explicit standalone build Jobs.
 
 ## Live appearance
 
 Set `runtime.endpoint` to a same-origin public appearance endpoint, for example `/appearance/{realm}/{clientId}.json`. Optional `refreshMs` enables polling. Responses may change appearance only; they cannot change the theme identity, endpoint or scripts. Invalid responses retain the last valid appearance.
 
 A trusted build-time `--runtime-adapter ./loader.ts` can export a `ThemeLoader` to adapt an existing API. Draft storage, permissions, review and publication belong to the host application.
+
+Color, logo and text changes should publish a profile instead of triggering a new native build. `/experience` exports `parseAppearance` and `applyAppearance` for the `hanko.appearance/v1` contract. Profiles cannot change installed identity, scripts or runtime endpoints. The embedded appearance remains usable when the profile service is unavailable.
+
+## Extensible application screens
+
+`/experience/react` exports `ExperienceShell` and `ProfilePage`. Supply compiled React modules and a `hanko.experience/v1` manifest declaring their IDs, surface types and required capabilities. New organization, resource, permission, agent or delegation screens do not add fields to the operator API. The host supplies authenticated context and Hanko ADK/API adapters; backend authorization remains authoritative.
+
+`ThemeConfig.modules` carries bounded presentation data for these modules. It cannot load remote JavaScript or grant backend permissions. Account/administration modules run in the authenticated application, separate from Keycloak login templates, and use the same branding.
+
+`ProfilePage` loads editable fields from a `ProfileController`, respects read-only metadata and saves only editable values. The controller binds the current user and delegates validation to its identity backend. For native Keycloak self-service, initiate the host OIDC client's normal authorization flow with `kc_action=UPDATE_PROFILE`; the shared `login-update-profile.ftl` page preserves native profile, federation and verification policies. Never use administrator credentials in a browser. The development gallery includes a local profile editor with sample data.
 
 ## Keycloak integration
 

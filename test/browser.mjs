@@ -58,6 +58,16 @@ try {
       console.log(`${locale}: ${id}`);
     }
   }
+  await page.getByLabel("Surface", { exact: true }).selectOption("self-service");
+  await page.getByRole("heading", { name: "Mon profil", exact: true }).waitFor();
+  assert.equal(await page.getByLabel("Username", { exact: true }).isEditable(), false);
+  assert.equal(await page.getByLabel("Email", { exact: true }).isEditable(), false);
+  await page.getByLabel(/^First name/).fill("Camille");
+  await page.getByRole("button", { name: "Enregistrer", exact: true }).click();
+  await page.getByRole("status").filter({ hasText: "Vos informations ont été enregistrées." }).waitFor();
+  await page.getByLabel(/^First name/).fill("Unsaved");
+  await page.getByRole("button", { name: "Annuler", exact: true }).click();
+  assert.equal(await page.getByLabel(/^First name/).inputValue(), "Camille");
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
   console.log(`${authenticationPages.length} pages × 2 languages × 2 appearances; no browser errors or external requests`);
 } finally {

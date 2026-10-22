@@ -32,7 +32,7 @@ jobs:
         with:
           name: example-theme
           path: artifacts
-      - run: cd artifacts && sha256sum *.tgz *.jar > SHA256SUMS
+      - run: cd artifacts && sha256sum *.tgz *.jar *.json > SHA256SUMS
       - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
         with:
           subject-path: artifacts/*
