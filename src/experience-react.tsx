@@ -24,6 +24,7 @@ export interface ExperienceShellProps<C extends ExperienceContext> {
   page?: string;
   onNavigate?: (page: string) => void;
   mode?: ColorMode;
+  embedded?: boolean;
 }
 
 /** Both manifest metadata and implementations are build inputs, never remote scripts. */
@@ -36,17 +37,18 @@ export function ExperienceShell<C extends ExperienceContext>(props: Readonly<Exp
   const visible = props.modules.filter(module => allowed.some(surface => surface.id === module.id));
   const current = visible.find(module => module.id === (props.page ?? selected)) ?? ((props.page ?? selected) === undefined ? visible[0] : undefined);
   const locale = props.context.locale;
-  return <ThemeProvider config={props.theme} mode={props.mode}><ExperienceFrame>
+  return <ThemeProvider config={props.theme} mode={props.mode}><ExperienceFrame embedded={props.embedded ?? false}>
     <nav aria-label={locale === "fr" ? "Mon espace" : "My account"} className="hk-row">{visible.map(module => <button key={module.id} type="button" className="hk-link" aria-current={module.id === current?.id ? "page" : undefined} onClick={() => { setSelected(module.id); props.onNavigate?.(module.id); }}>{module.title[locale]}</button>)}</nav>
     {current ? <section key={`${props.context.subject}:${current.id}`} aria-label={current.title[locale]}><current.Component context={props.context} /></section> : <p role="status">{locale === "fr" ? "Cet écran n’est pas disponible pour votre compte." : "This page is unavailable for your account."}</p>}
   </ExperienceFrame></ThemeProvider>;
 }
 
-function ExperienceFrame({ children }: { children: ReactNode }) {
+function ExperienceFrame({ children, embedded }: { children: ReactNode; embedded?: boolean }) {
   const { config, mode } = useTheme();
-  return <div className="hk-theme" style={themeVariables(config, mode) as CSSProperties}><style>{baseCss}</style><div className="hk-page" data-mode={mode}><div className="hk-container"><main className="hk-card">
+  const Content = embedded ? "div" : "main";
+  return <div className="hk-theme" style={{ ...themeVariables(config, mode), ...(embedded ? { "--hk-page-height": "0px" } : {}) } as CSSProperties}><style>{baseCss}</style><div className="hk-page" data-mode={mode}><div className="hk-container"><Content className="hk-card">
     <div className="hk-brand"><div className="hk-brand-heading">{config.logoUrl && <img className="hk-brand-mark" src={config.logoUrl} alt="" />}{config.headline && <p className="hk-logo-title">{config.headline}</p>}</div>{config.subline && <p className="hk-logo-subtitle">{config.subline}</p>}</div>
-    {children}</main></div></div></div>;
+    {children}</Content></div></div></div>;
 }
 
 export interface ProfileAttribute {
@@ -132,3 +134,5 @@ function validateProfile(value: PersonalProfile, subject: string) {
     names.add(attribute.name);
   }
 }
+
+export { useTheme };

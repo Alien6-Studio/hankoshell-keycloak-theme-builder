@@ -95,6 +95,7 @@ Color, logo and text changes should publish a profile instead of triggering a ne
 ## Extensible application screens
 
 `/experience/react` exports `ExperienceShell` and `ProfilePage`. Supply compiled React modules and a `hanko.experience/v1` manifest declaring their IDs, surface types and required capabilities. The host supplies authenticated context and its own API adapters; backend authorization remains authoritative. Hanko is one possible adapter. New organization, resource, permission, agent or delegation screens need no operator-specific fields.
+Set `embedded` when mounting the shell inside an application layout. Modules can read published presentation settings through `useTheme` from the same entry point.
 
 `ThemeConfig.modules` carries bounded presentation data for these modules. It cannot load remote JavaScript or grant backend permissions. Account/administration modules run in the authenticated application, separate from Keycloak login templates, and use the same branding.
 
