@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tgz
+.theme-kit/
+coverage/
+.DS_Store
