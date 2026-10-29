@@ -14,7 +14,9 @@ export default function Template(props: Readonly<Props>) {
   const { config, mode } = useTheme();
   const { kcContext, i18n, children, headerNode, infoNode, socialProvidersNode, displayMessage = true, displayInfo = false } = props;
   const message = displayMessage && (kcContext.message?.type !== "warning" || !kcContext.isAppInitiatedAction) ? kcContext.message : undefined;
-  return <div className="hk-theme" style={themeVariables(config, mode) as CSSProperties}><div className="hk-page" data-mode={mode} data-theme={mode}>
+  const locale = i18n.currentLanguage.languageTag;
+  const direction = ["ar", "he", "fa", "ur"].includes(locale.split("-")[0]!) ? "rtl" : "ltr";
+  return <div className="hk-theme" lang={locale} dir={direction} style={themeVariables(config, mode) as CSSProperties}><div className="hk-page" data-mode={mode} data-theme={mode}>
     <style>{baseCss}</style>
     {props.css && <style>{props.css}</style>}
     <div className="hk-glow" aria-hidden="true" />

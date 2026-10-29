@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:plugin:v1",
+  "title": "Studio plugin manifest draft v1",
+  "description": "Declaration of contributions from a separately reviewed and installed plugin. JSON never selects a script URL. Runtime loading and exporter support are not implemented by this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "hanko.studio.plugin/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-zA-Z0-9.-]+)?$"
+    },
+    "studioApi": {
+      "const": "1"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,63}/[a-z][a-z0-9._-]{0,63}$"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "surfaces": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "keycloak-login",
+                "keycloak-email",
+                "keycloak-account",
+                "keycloak-admin",
+                "keycloak-welcome",
+                "application"
+              ]
+            }
+          },
+          "propsSchema": {
+            "type": "object",
+            "required": [
+              "type",
+              "properties",
+              "additionalProperties"
+            ],
+            "properties": {
+              "type": {
+                "const": "object"
+              },
+              "properties": {
+                "type": "object"
+              },
+              "additionalProperties": {
+                "const": false
+              }
+            },
+            "additionalProperties": true
+          },
+          "renderers": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "keycloak",
+                "react",
+                "next",
+                "angular"
+              ]
+            }
+          },
+          "inspector": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "property": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+                },
+                "label": {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                "control": {
+                  "type": "string",
+                  "enum": [
+                    "text",
+                    "textarea",
+                    "color",
+                    "number",
+                    "select",
+                    "asset"
+                  ]
+                }
+              },
+              "required": [
+                "property",
+                "label",
+                "control"
+              ]
+            },
+            "maxItems": 32
+          }
+        },
+        "required": [
+          "type",
+          "label",
+          "surfaces",
+          "propsSchema",
+          "renderers"
+        ]
+      },
+      "maxItems": 32
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "page": {
+            "$ref": "urn:hanko:studio:page:v1"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "page"
+        ]
+      },
+      "maxItems": 32
+    },
+    "exports": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "enum": [
+          "keycloak-jar",
+          "react",
+          "next",
+          "angular"
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "maxLength": 2048
+    }
+  },
+  "required": [
+    "format",
+    "id",
+    "version",
+    "studioApi"
+  ]
+}

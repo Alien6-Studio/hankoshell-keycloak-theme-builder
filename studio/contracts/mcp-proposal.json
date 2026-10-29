@@ -1,0 +1,81 @@
+{
+  "status": "proposal-only",
+  "description": "Tool definitions for a future adapter over the studio validation and preview engine. This file does not start a server or register tools. Draft mutations must use revision checks; build, publication and deployment remain host-authorized operations.",
+  "tools": [
+    {
+      "name": "studio_get_schema",
+      "description": "Return an installed project, page, theme or plugin schema.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "project",
+              "page",
+              "theme",
+              "plugin",
+              "catalog"
+            ]
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "studio_list_blocks",
+      "description": "List installed blocks and supported target renderers.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "studio_validate",
+      "description": "Validate a document using the same engine as the visual studio.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "project",
+              "page",
+              "theme",
+              "plugin"
+            ]
+          },
+          "document": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "kind",
+          "document"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "nextTools": [
+    "studio_patch_draft",
+    "studio_preview",
+    "studio_export"
+  ]
+}

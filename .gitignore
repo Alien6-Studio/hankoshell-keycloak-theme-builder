@@ -4,3 +4,8 @@ dist/
 .theme-kit/
 coverage/
 .DS_Store
+
+# Precompiled validators and standalone publication artifacts.
+studio/src/generated/*.js
+studio/site/
+studio/artifacts/

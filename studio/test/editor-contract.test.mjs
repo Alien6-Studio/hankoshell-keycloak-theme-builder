@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {build} from 'esbuild';
+const result=await build({stdin:{contents:"export * from './src/contract-client';export * from './src/editable-project';",resolveDir:new URL('..',import.meta.url).pathname},bundle:true,platform:'node',format:'esm',write:false});
+const client=await import('data:text/javascript;base64,'+Buffer.from(result.outputFiles[0].text).toString('base64'));
+const project={format:'hanko.theme-studio.project/v1',name:'demo',pages:{'login:0':{blocks:[],brand:{name:'Demo',logo:undefined}}}};
+test('browser validation checks the same JSON wire representation as exports and HTTP requests',async()=>{assert.equal((await client.validateDocument(undefined,'project',project)).valid,true);assert.equal((await client.validateDocument(undefined,'project',{...project,name:'not valid'})).valid,false);});
+test('unsupported renderer declarations are rejected before an editor can drop their data',async()=>{await assert.rejects(()=>client.validateEditableProject({...project,outputs:['angular']}),/options/);await assert.rejects(()=>client.validateEditableProject({...project,pages:{'account:99':{blocks:[]}}}),/écran/);});

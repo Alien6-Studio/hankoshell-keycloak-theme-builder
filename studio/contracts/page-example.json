@@ -1,0 +1,22 @@
+{
+  "blocks": [
+    {
+      "id": "welcome",
+      "type": "heading",
+      "zone": "header",
+      "text": "Bienvenue chez Orion"
+    },
+    {
+      "id": "intro",
+      "type": "text",
+      "zone": "aside",
+      "text": "Votre identité, tous vos outils."
+    }
+  ],
+  "brand": {
+    "name": "Orion",
+    "mark": "O"
+  },
+  "accent": "#2455aa",
+  "layout": "center"
+}

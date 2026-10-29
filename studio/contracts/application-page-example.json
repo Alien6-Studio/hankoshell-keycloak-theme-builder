@@ -1,0 +1,18 @@
+{
+  "blocks": [
+    {
+      "id": "intro",
+      "type": "heading",
+      "zone": "header",
+      "text": "Mes organisations"
+    }
+  ],
+  "application": {
+    "module": "organizations",
+    "controllerRef": "hanko.identity",
+    "path": "/account/organizations",
+    "requiredCapabilities": [
+      "organizations.read"
+    ]
+  }
+}

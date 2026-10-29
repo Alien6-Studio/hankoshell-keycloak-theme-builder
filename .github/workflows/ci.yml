@@ -35,6 +35,43 @@ jobs:
       - run: npm run build
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
+  studio:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix studio
+      - run: npm run typecheck --prefix studio
+      - run: npm run build:site --prefix studio
+      - run: npm test --prefix studio
+      - run: npx --no-install playwright install --with-deps chromium firefox webkit
+      - name: Check the embedded module
+        run: |
+          npm run dev --prefix studio > /tmp/theme-studio.log 2>&1 &
+          studio_pid=$!
+          trap 'kill "$studio_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:7425/ > /dev/null && break
+            sleep 1
+          done
+          node studio/test/browser.mjs
+      - run: npm run test:publication --prefix studio
+      - run: npm audit --prefix studio --audit-level=high
+      - run: node studio/scripts/package-preview.mjs
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: theme-studio-preview
+          path: |
+            studio/artifacts/release/*
+            studio/artifacts/qualification/results.json
   jar:
     runs-on: ubuntu-latest
     timeout-minutes: 15

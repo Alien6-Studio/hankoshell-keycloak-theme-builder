@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "name": "midnight",
+  "headline": "Minuit",
+  "subline": "Une identité, tous vos services.",
+  "fontFamily": "system-ui, sans-serif",
+  "colors": {
+    "light": {
+      "background": "#101522",
+      "foreground": "#f2f3f8",
+      "primary": "#a5b4fc",
+      "primaryForeground": "#101522",
+      "card": "#1b2337",
+      "muted": "#abb4c7",
+      "input": "#1b2337"
+    },
+    "dark": {
+      "background": "#101522",
+      "foreground": "#f2f3f8",
+      "primary": "#a5b4fc",
+      "primaryForeground": "#101522",
+      "card": "#1b2337",
+      "muted": "#abb4c7",
+      "input": "#1b2337"
+    }
+  },
+  "layout": {
+    "cardRadius": "18px",
+    "controlRadius": "9px",
+    "contentWidth": "440px"
+  }
+}

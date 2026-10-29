@@ -5,6 +5,7 @@ import { getKcContextMock } from "./login/KcContext.js";
 import { KeycloakPage, type KeycloakPageProps } from "./keycloak.js";
 import type { ColorMode, ThemeConfig } from "./config.js";
 import type { AuthenticationPage } from "./pages.js";
+import type { I18n } from "./login/i18n.js";
 
 export interface ThemePreviewProps {
   config: ThemeConfig;
@@ -15,7 +16,7 @@ export interface ThemePreviewProps {
   css?: string;
   width?: number | string;
   height?: number;
-  locale?: "en" | "fr";
+  locale?: I18n["currentLanguage"]["languageTag"];
   renderer?: ComponentType<KeycloakPageProps>;
 }
 
@@ -28,7 +29,7 @@ export function ThemePreview({ config, mode, onModeChange, page = "login-usernam
   const { runtime: _runtime, ...draft } = config;
   return <div ref={host} data-preview-page={page} style={{ width, height, overflow: "auto", isolation: "isolate" }}>
     {shadow && createPortal(<div style={{ "--hk-page-height": `${height}px` } as CSSProperties} onSubmitCapture={event => event.preventDefault()} onClickCapture={event => { if ((event.target as Element).closest("a")) event.preventDefault(); }}>
-      <Renderer key={page} kcContext={context} config={draft} mode={mode} onModeChange={onModeChange} css={css} preview />
+      <Renderer key={`${page}:${locale}`} kcContext={context} config={draft} mode={mode} onModeChange={onModeChange} css={css} preview />
     </div>, shadow)}
   </div>;
 }

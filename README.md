@@ -1,5 +1,7 @@
 # Hankoshell Keycloak Theme Builder
 
+The reusable visual [Theme Studio](studio/README.md) provides a template gallery, guided page composition, editable translations and native integration with the Hanko Dashboard. Its current export and publication boundaries are documented separately from the native appearance builder.
+
 Build native Keycloak themes from React and brand configuration. Preview them locally, compile a JAR through the CLI or Node API, and publish appearance changes without rebuilding. Use it independently or embed it in your platform; no Hanko services or credentials are required.
 
 [![CI](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml)
@@ -18,6 +20,13 @@ node dist/cli.js build theme.json --out dist_keycloak
 ```
 
 The local gallery offers login, registration, OTP setup with QR code, OTP verification/reset, authenticator selection, recovery codes, WebAuthn, password recovery, email verification and logout. It includes English/French previews and light/dark modes. Authentication forms cannot submit in the gallery; passkey previews do not invoke an authenticator.
+
+Authentication previews also offer Spanish, German, Italian, Brazilian Portuguese,
+Arabic and Hebrew. Arabic and Hebrew previews set the appropriate language and
+right-to-left direction. Hebrew adds core login translations through Keycloakify's
+extra-language API; remaining native messages fall back to English. The legacy
+self-service gallery retains its English/French copy. Enable internationalization
+and the intended locales in the target Keycloak realm before native qualification.
 
 This package is not yet published to npm. Until its first release, consumers can install a reviewed Git commit:
 
@@ -126,3 +135,5 @@ The package targets the official npm registry. Its release workflow supports [np
 After the first public release, the [Keycloak extensions catalog](https://www.keycloak.org/extensions) is a possible community listing. A listing does not imply endorsement or inclusion in Keycloak itself.
 
 Built with [Keycloakify](https://docs.keycloakify.dev/). See the [Keycloak theme guide](https://www.keycloak.org/ui-customization/themes) for server configuration. Apache-2.0 licensed.
+
+The Studio navigation can be inspected in [studio/sitemap.xml](studio/sitemap.xml), generated alongside a readable map. Current Studio qualification and publication gates are documented in [the preview report](studio/docs/qualification-0.1.0-preview.3.md), [the Styles/gallery update](studio/docs/qualification-0.1.0-preview.4.md) and [navigation cleanup](studio/docs/qualification-0.1.0-preview.5.md).

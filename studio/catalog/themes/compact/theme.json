@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "name": "compact",
+  "headline": "Compact",
+  "subline": "Une identité, tous vos services.",
+  "fontFamily": "system-ui, sans-serif",
+  "colors": {
+    "light": {
+      "background": "#eef2f8",
+      "foreground": "#263249",
+      "primary": "#3158a6",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#64728b",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#eef2f8",
+      "foreground": "#263249",
+      "primary": "#3158a6",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#64728b",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "6px",
+    "controlRadius": "3px",
+    "contentWidth": "420px"
+  }
+}

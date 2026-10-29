@@ -1,0 +1,1439 @@
+{
+  "format": "hanko.studio.translations/v1",
+  "locales": {
+    "fr": {
+      "label": "Français",
+      "direction": "ltr"
+    },
+    "en": {
+      "label": "English",
+      "direction": "ltr"
+    },
+    "es": {
+      "label": "Español",
+      "direction": "ltr"
+    },
+    "de": {
+      "label": "Deutsch",
+      "direction": "ltr"
+    },
+    "it": {
+      "label": "Italiano",
+      "direction": "ltr"
+    },
+    "pt-BR": {
+      "label": "Português (Brasil)",
+      "direction": "ltr"
+    },
+    "ar": {
+      "label": "العربية",
+      "direction": "rtl"
+    },
+    "he": {
+      "label": "עברית",
+      "direction": "rtl"
+    }
+  },
+  "phrases": {
+    "Votre identité,\nvotre univers.": {
+      "fr": "Votre identité,\nvotre univers.",
+      "en": "Your identity,\nyour world.",
+      "es": "Tu identidad,\ntu mundo.",
+      "de": "Ihre Identität,\nIhre Welt.",
+      "it": "La tua identità,\nil tuo mondo.",
+      "pt-BR": "Sua identidade,\nseu universo.",
+      "ar": "هويتك،\nعالمك.",
+      "he": "הזהות שלך,\nהעולם שלך."
+    },
+    "Bienvenue chez Aurora": {
+      "fr": "Bienvenue chez Aurora",
+      "en": "Welcome to Aurora",
+      "es": "Te damos la bienvenida a Aurora",
+      "de": "Willkommen bei Aurora",
+      "it": "Benvenuto in Aurora",
+      "pt-BR": "Boas-vindas à Aurora",
+      "ar": "مرحبًا بك في Aurora",
+      "he": "ברוכים הבאים ל-Aurora"
+    },
+    "Votre espace personnel": {
+      "fr": "Votre espace personnel",
+      "en": "Your personal space",
+      "es": "Tu espacio personal",
+      "de": "Ihr persönlicher Bereich",
+      "it": "Il tuo spazio personale",
+      "pt-BR": "Seu espaço pessoal",
+      "ar": "مساحتك الشخصية",
+      "he": "האזור האישי שלך"
+    },
+    "Protégez votre compte": {
+      "fr": "Protégez votre compte",
+      "en": "Protect your account",
+      "es": "Protege tu cuenta",
+      "de": "Schützen Sie Ihr Konto",
+      "it": "Proteggi il tuo account",
+      "pt-BR": "Proteja sua conta",
+      "ar": "احمِ حسابك",
+      "he": "הגנה על החשבון שלך"
+    },
+    "Administration": {
+      "fr": "Administration",
+      "en": "Administration",
+      "es": "Administración",
+      "de": "Verwaltung",
+      "it": "Amministrazione",
+      "pt-BR": "Administração",
+      "ar": "الإدارة",
+      "he": "ניהול"
+    },
+    "Retrouvez vos informations et vos réglages de sécurité.": {
+      "fr": "Retrouvez vos informations et vos réglages de sécurité.",
+      "en": "Manage your information and security settings.",
+      "es": "Gestiona tu información y la seguridad de tu cuenta.",
+      "de": "Verwalten Sie Ihre Daten und Sicherheitseinstellungen.",
+      "it": "Gestisci i tuoi dati e le impostazioni di sicurezza.",
+      "pt-BR": "Gerencie seus dados e suas configurações de segurança.",
+      "ar": "أدر معلوماتك وإعدادات الأمان.",
+      "he": "ניהול המידע והגדרות האבטחה שלך."
+    },
+    "Bonjour {{prénom}},\nConfirmez votre adresse pour accéder à votre espace Aurora.": {
+      "fr": "Bonjour {{prénom}},\nConfirmez votre adresse pour accéder à votre espace Aurora.",
+      "en": "Hello {{prénom}},\nConfirm your email to access your Aurora space.",
+      "es": "Hola {{prénom}},\nConfirma tu correo para acceder a tu espacio Aurora.",
+      "de": "Hallo {{prénom}},\nbestätigen Sie Ihre E-Mail-Adresse, um auf Ihren Aurora-Bereich zuzugreifen.",
+      "it": "Ciao {{prénom}},\nconferma la tua email per accedere al tuo spazio Aurora.",
+      "pt-BR": "Olá {{prénom}},\nconfirme seu e-mail para acessar seu espaço Aurora.",
+      "ar": "مرحبًا {{prénom}}،\nأكد عنوان بريدك الإلكتروني للوصول إلى مساحتك في Aurora.",
+      "he": "שלום {{prénom}},\nיש לאשר את כתובת הדוא״ל כדי לגשת לאזור שלך ב-Aurora."
+    },
+    "Une identité, tous vos services.": {
+      "fr": "Une identité, tous vos services.",
+      "en": "One identity, all your services.",
+      "es": "Una identidad para todos tus servicios.",
+      "de": "Eine Identität für alle Ihre Dienste.",
+      "it": "Un’identità per tutti i tuoi servizi.",
+      "pt-BR": "Uma identidade para todos os seus serviços.",
+      "ar": "هوية واحدة لجميع خدماتك.",
+      "he": "זהות אחת, כל השירותים שלך."
+    },
+    "Heureux de vous retrouver": {
+      "fr": "Heureux de vous retrouver",
+      "en": "Welcome back",
+      "es": "Qué gusto verte de nuevo",
+      "de": "Willkommen zurück",
+      "it": "Bentornato",
+      "pt-BR": "Que bom ter você de volta",
+      "ar": "مرحبًا بعودتك",
+      "he": "ברוכים השבים"
+    },
+    "Créer votre compte": {
+      "fr": "Créer votre compte",
+      "en": "Create your account",
+      "es": "Crea tu cuenta",
+      "de": "Erstellen Sie Ihr Konto",
+      "it": "Crea il tuo account",
+      "pt-BR": "Crie sua conta",
+      "ar": "أنشئ حسابك",
+      "he": "יצירת החשבון שלך"
+    },
+    "Vérifiez votre identité": {
+      "fr": "Vérifiez votre identité",
+      "en": "Verify your identity",
+      "es": "Verifica tu identidad",
+      "de": "Bestätigen Sie Ihre Identität",
+      "it": "Verifica la tua identità",
+      "pt-BR": "Verifique sua identidade",
+      "ar": "تحقق من هويتك",
+      "he": "אימות הזהות שלך"
+    },
+    "Confirmez votre adresse": {
+      "fr": "Confirmez votre adresse",
+      "en": "Confirm your email",
+      "es": "Confirma tu correo",
+      "de": "Bestätigen Sie Ihre E-Mail-Adresse",
+      "it": "Conferma la tua email",
+      "pt-BR": "Confirme seu e-mail",
+      "ar": "أكد بريدك الإلكتروني",
+      "he": "אישור כתובת הדוא״ל שלך"
+    },
+    "Vos informations personnelles": {
+      "fr": "Vos informations personnelles",
+      "en": "Your personal information",
+      "es": "Tu información personal",
+      "de": "Ihre persönlichen Daten",
+      "it": "I tuoi dati personali",
+      "pt-BR": "Seus dados pessoais",
+      "ar": "معلوماتك الشخصية",
+      "he": "הפרטים האישיים שלך"
+    },
+    "Votre sécurité": {
+      "fr": "Votre sécurité",
+      "en": "Your security",
+      "es": "Tu seguridad",
+      "de": "Ihre Sicherheit",
+      "it": "La tua sicurezza",
+      "pt-BR": "Sua segurança",
+      "ar": "أمان حسابك",
+      "he": "האבטחה שלך"
+    },
+    "Gestion des utilisateurs": {
+      "fr": "Gestion des utilisateurs",
+      "en": "User management",
+      "es": "Gestión de usuarios",
+      "de": "Benutzerverwaltung",
+      "it": "Gestione utenti",
+      "pt-BR": "Gerenciamento de usuários",
+      "ar": "إدارة المستخدمين",
+      "he": "ניהול משתמשים"
+    },
+    "Console d’administration": {
+      "fr": "Console d’administration",
+      "en": "Administration console",
+      "es": "Consola de administración",
+      "de": "Verwaltungskonsole",
+      "it": "Console di amministrazione",
+      "pt-BR": "Console de administração",
+      "ar": "وحدة الإدارة",
+      "he": "מסוף ניהול"
+    },
+    "Bienvenue": {
+      "fr": "Bienvenue",
+      "en": "Welcome",
+      "es": "Bienvenido",
+      "de": "Willkommen",
+      "it": "Benvenuto",
+      "pt-BR": "Boas-vindas",
+      "ar": "مرحبًا",
+      "he": "ברוכים הבאים"
+    },
+    "Accédez à votre espace en toute sécurité.": {
+      "fr": "Accédez à votre espace en toute sécurité.",
+      "en": "Access your space securely.",
+      "es": "Accede a tu espacio de forma segura.",
+      "de": "Greifen Sie sicher auf Ihren Bereich zu.",
+      "it": "Accedi al tuo spazio in sicurezza.",
+      "pt-BR": "Acesse seu espaço com segurança.",
+      "ar": "ادخل إلى مساحتك بأمان.",
+      "he": "גישה מאובטחת לאזור האישי שלך."
+    },
+    "Le lien d’action et sa durée de validité seront fournis par Keycloak.": {
+      "fr": "Le lien d’action et sa durée de validité seront fournis par Keycloak.",
+      "en": "Keycloak provides the action link and its validity period.",
+      "es": "Keycloak proporciona el enlace y su período de validez.",
+      "de": "Keycloak stellt den Aktionslink und seine Gültigkeitsdauer bereit.",
+      "it": "Keycloak fornisce il link e il suo periodo di validità.",
+      "pt-BR": "O Keycloak fornece o link de ação e seu prazo de validade.",
+      "ar": "يوفر Keycloak رابط الإجراء ومدة صلاحيته.",
+      "he": "קישור הפעולה ומשך התוקף שלו יסופקו על ידי Keycloak."
+    },
+    "Protégez votre compte et contrôlez vos connexions.": {
+      "fr": "Protégez votre compte et contrôlez vos connexions.",
+      "en": "Protect your account and manage your sign-ins.",
+      "es": "Protege tu cuenta y controla tus conexiones.",
+      "de": "Schützen Sie Ihr Konto und verwalten Sie Ihre Anmeldungen.",
+      "it": "Proteggi il tuo account e gestisci i tuoi accessi.",
+      "pt-BR": "Proteja sua conta e gerencie seus acessos.",
+      "ar": "احمِ حسابك وأدر جلسات تسجيل الدخول.",
+      "he": "הגנה על החשבון וניהול הכניסות שלך."
+    },
+    "Gérez vos informations et votre adresse de contact.": {
+      "fr": "Gérez vos informations et votre adresse de contact.",
+      "en": "Manage your details and contact address.",
+      "es": "Gestiona tus datos y tu dirección de contacto.",
+      "de": "Verwalten Sie Ihre Daten und Ihre Kontaktadresse.",
+      "it": "Gestisci i tuoi dati e il tuo indirizzo di contatto.",
+      "pt-BR": "Gerencie seus dados e seu endereço de contato.",
+      "ar": "أدر معلوماتك وعنوان الاتصال بك.",
+      "he": "ניהול הפרטים וכתובת הקשר שלך."
+    },
+    "Créer mon compte": {
+      "fr": "Créer mon compte",
+      "en": "Create my account",
+      "es": "Crear mi cuenta",
+      "de": "Konto erstellen",
+      "it": "Crea il mio account",
+      "pt-BR": "Criar minha conta",
+      "ar": "إنشاء حسابي",
+      "he": "יצירת החשבון שלי"
+    },
+    "Vérifier": {
+      "fr": "Vérifier",
+      "en": "Verify",
+      "es": "Verificar",
+      "de": "Bestätigen",
+      "it": "Verifica",
+      "pt-BR": "Verificar",
+      "ar": "تحقق",
+      "he": "אימות"
+    },
+    "Se connecter": {
+      "fr": "Se connecter",
+      "en": "Sign in",
+      "es": "Iniciar sesión",
+      "de": "Anmelden",
+      "it": "Accedi",
+      "pt-BR": "Entrar",
+      "ar": "تسجيل الدخول",
+      "he": "כניסה"
+    },
+    "Enregistrer les modifications": {
+      "fr": "Enregistrer les modifications",
+      "en": "Save changes",
+      "es": "Guardar cambios",
+      "de": "Änderungen speichern",
+      "it": "Salva le modifiche",
+      "pt-BR": "Salvar alterações",
+      "ar": "حفظ التغييرات",
+      "he": "שמירת השינויים"
+    },
+    "Réinitialiser mon mot de passe": {
+      "fr": "Réinitialiser mon mot de passe",
+      "en": "Reset my password",
+      "es": "Restablecer mi contraseña",
+      "de": "Passwort zurücksetzen",
+      "it": "Reimposta la password",
+      "pt-BR": "Redefinir minha senha",
+      "ar": "إعادة تعيين كلمة المرور",
+      "he": "איפוס הסיסמה שלי"
+    },
+    "Confirmer mon adresse": {
+      "fr": "Confirmer mon adresse",
+      "en": "Confirm my email",
+      "es": "Confirmar mi correo",
+      "de": "E-Mail-Adresse bestätigen",
+      "it": "Conferma la mia email",
+      "pt-BR": "Confirmar meu e-mail",
+      "ar": "تأكيد بريدي الإلكتروني",
+      "he": "אישור כתובת הדוא״ל שלי"
+    },
+    "Adresse e-mail": {
+      "fr": "Adresse e-mail",
+      "en": "Email address",
+      "es": "Correo electrónico",
+      "de": "E-Mail-Adresse",
+      "it": "Indirizzo email",
+      "pt-BR": "Endereço de e-mail",
+      "ar": "البريد الإلكتروني",
+      "he": "כתובת דוא״ל"
+    },
+    "Mot de passe": {
+      "fr": "Mot de passe",
+      "en": "Password",
+      "es": "Contraseña",
+      "de": "Passwort",
+      "it": "Password",
+      "pt-BR": "Senha",
+      "ar": "كلمة المرور",
+      "he": "סיסמה"
+    },
+    "Code de vérification": {
+      "fr": "Code de vérification",
+      "en": "Verification code",
+      "es": "Código de verificación",
+      "de": "Bestätigungscode",
+      "it": "Codice di verifica",
+      "pt-BR": "Código de verificação",
+      "ar": "رمز التحقق",
+      "he": "קוד אימות"
+    },
+    "Nom complet": {
+      "fr": "Nom complet",
+      "en": "Full name",
+      "es": "Nombre completo",
+      "de": "Vollständiger Name",
+      "it": "Nome completo",
+      "pt-BR": "Nome completo",
+      "ar": "الاسم الكامل",
+      "he": "שם מלא"
+    },
+    "Authentification à deux facteurs": {
+      "fr": "Authentification à deux facteurs",
+      "en": "Two-factor authentication",
+      "es": "Autenticación de dos factores",
+      "de": "Zwei-Faktor-Authentifizierung",
+      "it": "Autenticazione a due fattori",
+      "pt-BR": "Autenticação de dois fatores",
+      "ar": "المصادقة الثنائية",
+      "he": "אימות דו-שלבי"
+    },
+    "Sessions connectées": {
+      "fr": "Sessions connectées",
+      "en": "Active sessions",
+      "es": "Sesiones activas",
+      "de": "Aktive Sitzungen",
+      "it": "Sessioni attive",
+      "pt-BR": "Sessões ativas",
+      "ar": "الجلسات النشطة",
+      "he": "חיבורים פעילים"
+    },
+    "Utilisateurs": {
+      "fr": "Utilisateurs",
+      "en": "Users",
+      "es": "Usuarios",
+      "de": "Benutzer",
+      "it": "Utenti",
+      "pt-BR": "Usuários",
+      "ar": "المستخدمون",
+      "he": "משתמשים"
+    },
+    "Clients et applications": {
+      "fr": "Clients et applications",
+      "en": "Clients and applications",
+      "es": "Clientes y aplicaciones",
+      "de": "Clients und Anwendungen",
+      "it": "Client e applicazioni",
+      "pt-BR": "Clientes e aplicativos",
+      "ar": "العملاء والتطبيقات",
+      "he": "לקוחות ויישומים"
+    },
+    "Politiques d’accès": {
+      "fr": "Politiques d’accès",
+      "en": "Access policies",
+      "es": "Políticas de acceso",
+      "de": "Zugriffsrichtlinien",
+      "it": "Criteri di accesso",
+      "pt-BR": "Políticas de acesso",
+      "ar": "سياسات الوصول",
+      "he": "מדיניות גישה"
+    },
+    "Mon compte": {
+      "fr": "Mon compte",
+      "en": "My account",
+      "es": "Mi cuenta",
+      "de": "Mein Konto",
+      "it": "Il mio account",
+      "pt-BR": "Minha conta",
+      "ar": "حسابي",
+      "he": "החשבון שלי"
+    },
+    "Mes applications": {
+      "fr": "Mes applications",
+      "en": "My applications",
+      "es": "Mis aplicaciones",
+      "de": "Meine Anwendungen",
+      "it": "Le mie applicazioni",
+      "pt-BR": "Meus aplicativos",
+      "ar": "تطبيقاتي",
+      "he": "היישומים שלי"
+    },
+    "Modifier le mot de passe": {
+      "fr": "Modifier le mot de passe",
+      "en": "Change password",
+      "es": "Cambiar contraseña",
+      "de": "Passwort ändern",
+      "it": "Cambia password",
+      "pt-BR": "Alterar senha",
+      "ar": "تغيير كلمة المرور",
+      "he": "שינוי סיסמה"
+    },
+    "Configurer le MFA": {
+      "fr": "Configurer le MFA",
+      "en": "Set up MFA",
+      "es": "Configurar MFA",
+      "de": "MFA einrichten",
+      "it": "Configura MFA",
+      "pt-BR": "Configurar MFA",
+      "ar": "إعداد المصادقة متعددة العوامل",
+      "he": "הגדרת אימות רב-שלבי"
+    },
+    "Gérer les sessions": {
+      "fr": "Gérer les sessions",
+      "en": "Manage sessions",
+      "es": "Gestionar sesiones",
+      "de": "Sitzungen verwalten",
+      "it": "Gestisci sessioni",
+      "pt-BR": "Gerenciar sessões",
+      "ar": "إدارة الجلسات",
+      "he": "ניהול חיבורים"
+    },
+    "Confirmez votre adresse Aurora": {
+      "fr": "Confirmez votre adresse Aurora",
+      "en": "Confirm your Aurora email",
+      "es": "Confirma tu correo de Aurora",
+      "de": "Bestätigen Sie Ihre Aurora-E-Mail-Adresse",
+      "it": "Conferma la tua email Aurora",
+      "pt-BR": "Confirme seu e-mail do Aurora",
+      "ar": "أكد بريدك الإلكتروني في Aurora",
+      "he": "אישור כתובת הדוא״ל שלך ב-Aurora"
+    },
+    "Un titre qui vous ressemble": {
+      "fr": "Un titre qui vous ressemble",
+      "en": "A title that reflects you",
+      "es": "Un título que te representa",
+      "de": "Ein Titel, der zu Ihnen passt",
+      "it": "Un titolo che ti rappresenta",
+      "pt-BR": "Um título com a sua identidade",
+      "ar": "عنوان يعبر عنك",
+      "he": "כותרת שמשקפת אותך"
+    },
+    "Racontez ce qui rend votre organisation unique.": {
+      "fr": "Racontez ce qui rend votre organisation unique.",
+      "en": "Tell people what makes your organization unique.",
+      "es": "Cuenta qué hace única a tu organización.",
+      "de": "Zeigen Sie, was Ihre Organisation besonders macht.",
+      "it": "Racconta ciò che rende unica la tua organizzazione.",
+      "pt-BR": "Conte o que torna sua organização única.",
+      "ar": "عرّف بما يميز مؤسستك.",
+      "he": "ספרו מה מייחד את הארגון שלכם."
+    },
+    "En savoir plus": {
+      "fr": "En savoir plus",
+      "en": "Learn more",
+      "es": "Más información",
+      "de": "Mehr erfahren",
+      "it": "Scopri di più",
+      "pt-BR": "Saiba mais",
+      "ar": "اعرف المزيد",
+      "he": "מידע נוסף"
+    },
+    "Bienvenue dans votre espace": {
+      "fr": "Bienvenue dans votre espace",
+      "en": "Welcome to your space",
+      "es": "Bienvenido a tu espacio",
+      "de": "Willkommen in Ihrem Bereich",
+      "it": "Benvenuto nel tuo spazio",
+      "pt-BR": "Boas-vindas ao seu espaço",
+      "ar": "مرحبًا بك في مساحتك",
+      "he": "ברוכים הבאים לאזור שלך"
+    },
+    "Logo Aurora": {
+      "fr": "Logo Aurora",
+      "en": "Aurora logo",
+      "es": "Logo de Aurora",
+      "de": "Aurora-Logo",
+      "it": "Logo Aurora",
+      "pt-BR": "Logotipo Aurora",
+      "ar": "شعار Aurora",
+      "he": "הלוגו של Aurora"
+    },
+    "Profil": {
+      "fr": "Profil",
+      "en": "Profile",
+      "es": "Perfil",
+      "de": "Profil",
+      "it": "Profilo",
+      "pt-BR": "Perfil",
+      "ar": "الملف الشخصي",
+      "he": "פרופיל"
+    },
+    "Sécurité": {
+      "fr": "Sécurité",
+      "en": "Security",
+      "es": "Seguridad",
+      "de": "Sicherheit",
+      "it": "Sicurezza",
+      "pt-BR": "Segurança",
+      "ar": "الأمان",
+      "he": "אבטחה"
+    },
+    "Sessions": {
+      "fr": "Sessions",
+      "en": "Sessions",
+      "es": "Sesiones",
+      "de": "Sitzungen",
+      "it": "Sessioni",
+      "pt-BR": "Sessões",
+      "ar": "الجلسات",
+      "he": "הפעלות"
+    },
+    "Console": {
+      "fr": "Console",
+      "en": "Overview",
+      "es": "Consola",
+      "de": "Übersicht",
+      "it": "Console",
+      "pt-BR": "Console",
+      "ar": "لوحة الإدارة",
+      "he": "סקירה כללית"
+    },
+    "Rôles et permissions": {
+      "fr": "Rôles et permissions",
+      "en": "Roles and permissions",
+      "es": "Roles y permisos",
+      "de": "Rollen und Berechtigungen",
+      "it": "Ruoli e autorizzazioni",
+      "pt-BR": "Papéis e permissões",
+      "ar": "الأدوار والصلاحيات",
+      "he": "תפקידים והרשאות"
+    },
+    "Fiche utilisateur": {
+      "fr": "Fiche utilisateur",
+      "en": "User details",
+      "es": "Ficha de usuario",
+      "de": "Benutzerdetails",
+      "it": "Dettagli utente",
+      "pt-BR": "Detalhes do usuário",
+      "ar": "تفاصيل المستخدم",
+      "he": "פרטי משתמש"
+    },
+    "Configuration du client": {
+      "fr": "Configuration du client",
+      "en": "Client configuration",
+      "es": "Configuración del cliente",
+      "de": "Client-Konfiguration",
+      "it": "Configurazione client",
+      "pt-BR": "Configuração do cliente",
+      "ar": "إعداد العميل",
+      "he": "הגדרות לקוח"
+    },
+    "Un accès qui reste le vôtre": {
+      "fr": "Un accès qui reste le vôtre",
+      "en": "Access that stays yours",
+      "es": "Un acceso que sigue siendo tuyo",
+      "de": "Ihr Zugang bleibt Ihr Zugang",
+      "it": "Un accesso che resta tuo",
+      "pt-BR": "Um acesso que continua sendo seu",
+      "ar": "وصول يبقى تحت سيطرتك",
+      "he": "גישה שנשארת שלך"
+    },
+    "Modifier votre mot de passe": {
+      "fr": "Modifier votre mot de passe",
+      "en": "Change your password",
+      "es": "Cambiar tu contraseña",
+      "de": "Passwort ändern",
+      "it": "Modifica la password",
+      "pt-BR": "Alterar sua senha",
+      "ar": "تغيير كلمة المرور",
+      "he": "שינוי הסיסמה שלך"
+    },
+    "Choisissez un nouveau mot de passe et confirmez-le.": {
+      "fr": "Choisissez un nouveau mot de passe et confirmez-le.",
+      "en": "Choose a new password and confirm it.",
+      "es": "Elige una nueva contraseña y confírmala.",
+      "de": "Wählen Sie ein neues Passwort und bestätigen Sie es.",
+      "it": "Scegli una nuova password e confermala.",
+      "pt-BR": "Escolha uma nova senha e confirme-a.",
+      "ar": "اختر كلمة مرور جديدة وأكدها.",
+      "he": "יש לבחור סיסמה חדשה ולאשר אותה."
+    },
+    "Mot de passe actuel": {
+      "fr": "Mot de passe actuel",
+      "en": "Current password",
+      "es": "Contraseña actual",
+      "de": "Aktuelles Passwort",
+      "it": "Password attuale",
+      "pt-BR": "Senha atual",
+      "ar": "كلمة المرور الحالية",
+      "he": "סיסמה נוכחית"
+    },
+    "Nouveau mot de passe": {
+      "fr": "Nouveau mot de passe",
+      "en": "New password",
+      "es": "Nueva contraseña",
+      "de": "Neues Passwort",
+      "it": "Nuova password",
+      "pt-BR": "Nova senha",
+      "ar": "كلمة مرور جديدة",
+      "he": "סיסמה חדשה"
+    },
+    "Confirmer le mot de passe": {
+      "fr": "Confirmer le mot de passe",
+      "en": "Confirm password",
+      "es": "Confirmar contraseña",
+      "de": "Passwort bestätigen",
+      "it": "Conferma password",
+      "pt-BR": "Confirmar senha",
+      "ar": "تأكيد كلمة المرور",
+      "he": "אישור הסיסמה"
+    },
+    "Enregistrer le mot de passe": {
+      "fr": "Enregistrer le mot de passe",
+      "en": "Save password",
+      "es": "Guardar contraseña",
+      "de": "Passwort speichern",
+      "it": "Salva password",
+      "pt-BR": "Salvar senha",
+      "ar": "حفظ كلمة المرور",
+      "he": "שמירת הסיסמה"
+    },
+    "Une protection supplémentaire": {
+      "fr": "Une protection supplémentaire",
+      "en": "An extra layer of protection",
+      "es": "Una protección adicional",
+      "de": "Zusätzlicher Schutz",
+      "it": "Una protezione in più",
+      "pt-BR": "Uma proteção adicional",
+      "ar": "حماية إضافية",
+      "he": "שכבת הגנה נוספת"
+    },
+    "Configurer une application d’authentification": {
+      "fr": "Configurer une application d’authentification",
+      "en": "Set up an authenticator app",
+      "es": "Configurar una aplicación de autenticación",
+      "de": "Authentifikator-App einrichten",
+      "it": "Configura un’app di autenticazione",
+      "pt-BR": "Configurar um aplicativo autenticador",
+      "ar": "إعداد تطبيق مصادقة",
+      "he": "הגדרת יישומון אימות"
+    },
+    "Ajoutez votre compte dans votre application, puis saisissez un code pour terminer.": {
+      "fr": "Ajoutez votre compte dans votre application, puis saisissez un code pour terminer.",
+      "en": "Add your account to your app, then enter a code to finish.",
+      "es": "Añade tu cuenta a la aplicación e introduce un código para terminar.",
+      "de": "Fügen Sie Ihr Konto in der App hinzu und geben Sie einen Code ein.",
+      "it": "Aggiungi l’account nell’app e inserisci un codice per completare.",
+      "pt-BR": "Adicione sua conta no aplicativo e insira um código para concluir.",
+      "ar": "أضف حسابك في التطبيق ثم أدخل رمزًا للإكمال.",
+      "he": "יש להוסיף את החשבון ליישומון ולהזין קוד לסיום."
+    },
+    "Ouvrez votre application d’authentification.": {
+      "fr": "Ouvrez votre application d’authentification.",
+      "en": "Open your authenticator app.",
+      "es": "Abre tu aplicación de autenticación.",
+      "de": "Öffnen Sie Ihre Authentifikator-App.",
+      "it": "Apri l’app di autenticazione.",
+      "pt-BR": "Abra seu aplicativo autenticador.",
+      "ar": "افتح تطبيق المصادقة.",
+      "he": "יש לפתוח את יישומון האימות."
+    },
+    "Ajoutez le compte Aurora avec une clé de configuration.": {
+      "fr": "Ajoutez le compte Aurora avec une clé de configuration.",
+      "en": "Add your Aurora account using a setup key.",
+      "es": "Añade tu cuenta Aurora con una clave de configuración.",
+      "de": "Fügen Sie Ihr Aurora-Konto mit einem Einrichtungsschlüssel hinzu.",
+      "it": "Aggiungi l’account Aurora con una chiave di configurazione.",
+      "pt-BR": "Adicione a conta Aurora com uma chave de configuração.",
+      "ar": "أضف حساب Aurora باستخدام مفتاح الإعداد.",
+      "he": "יש להוסיף את חשבון Aurora באמצעות מפתח הגדרה."
+    },
+    "Saisissez le code à six chiffres affiché par l’application.": {
+      "fr": "Saisissez le code à six chiffres affiché par l’application.",
+      "en": "Enter the six-digit code shown in the app.",
+      "es": "Introduce el código de seis dígitos de la aplicación.",
+      "de": "Geben Sie den sechsstelligen Code aus der App ein.",
+      "it": "Inserisci il codice a sei cifre mostrato nell’app.",
+      "pt-BR": "Insira o código de seis dígitos exibido no aplicativo.",
+      "ar": "أدخل الرمز المكون من ستة أرقام الظاهر في التطبيق.",
+      "he": "יש להזין את הקוד בן שש הספרות שמוצג ביישומון."
+    },
+    "Code à six chiffres": {
+      "fr": "Code à six chiffres",
+      "en": "Six-digit code",
+      "es": "Código de seis dígitos",
+      "de": "Sechsstelliger Code",
+      "it": "Codice a sei cifre",
+      "pt-BR": "Código de seis dígitos",
+      "ar": "رمز من ستة أرقام",
+      "he": "קוד בן שש ספרות"
+    },
+    "Activer la double authentification": {
+      "fr": "Activer la double authentification",
+      "en": "Enable two-factor authentication",
+      "es": "Activar la autenticación en dos pasos",
+      "de": "Zwei-Faktor-Authentifizierung aktivieren",
+      "it": "Attiva l’autenticazione a due fattori",
+      "pt-BR": "Ativar a autenticação de dois fatores",
+      "ar": "تفعيل المصادقة الثنائية",
+      "he": "הפעלת אימות דו-שלבי"
+    },
+    "Gardez le contrôle de vos connexions": {
+      "fr": "Gardez le contrôle de vos connexions",
+      "en": "Stay in control of your sessions",
+      "es": "Controla tus conexiones",
+      "de": "Behalten Sie Ihre Sitzungen im Blick",
+      "it": "Mantieni il controllo delle connessioni",
+      "pt-BR": "Mantenha o controle das suas conexões",
+      "ar": "تحكم في جلساتك",
+      "he": "שליטה בחיבורים שלך"
+    },
+    "Vos sessions connectées": {
+      "fr": "Vos sessions connectées",
+      "en": "Your active sessions",
+      "es": "Tus sesiones activas",
+      "de": "Ihre aktiven Sitzungen",
+      "it": "Le tue sessioni attive",
+      "pt-BR": "Suas sessões ativas",
+      "ar": "جلساتك النشطة",
+      "he": "ההפעלות הפעילות שלך"
+    },
+    "Consultez vos appareils et terminez une session à distance.": {
+      "fr": "Consultez vos appareils et terminez une session à distance.",
+      "en": "Review your devices and end a session remotely.",
+      "es": "Consulta tus dispositivos y cierra una sesión a distancia.",
+      "de": "Prüfen Sie Ihre Geräte und beenden Sie Sitzungen aus der Ferne.",
+      "it": "Controlla i dispositivi e termina una sessione da remoto.",
+      "pt-BR": "Confira seus dispositivos e encerre uma sessão remotamente.",
+      "ar": "راجع أجهزتك وأنهِ جلسة عن بُعد.",
+      "he": "אפשר לצפות במכשירים ולסיים הפעלה מרחוק."
+    },
+    "Session actuelle": {
+      "fr": "Session actuelle",
+      "en": "Current session",
+      "es": "Sesión actual",
+      "de": "Aktuelle Sitzung",
+      "it": "Sessione attuale",
+      "pt-BR": "Sessão atual",
+      "ar": "الجلسة الحالية",
+      "he": "הפעלה נוכחית"
+    },
+    "Terminer cette session": {
+      "fr": "Terminer cette session",
+      "en": "End this session",
+      "es": "Cerrar esta sesión",
+      "de": "Diese Sitzung beenden",
+      "it": "Termina questa sessione",
+      "pt-BR": "Encerrar esta sessão",
+      "ar": "إنهاء هذه الجلسة",
+      "he": "סיום הפעלה זו"
+    },
+    "Votre espace d’administration": {
+      "fr": "Votre espace d’administration",
+      "en": "Your administration space",
+      "es": "Tu espacio de administración",
+      "de": "Ihr Verwaltungsbereich",
+      "it": "Il tuo spazio di amministrazione",
+      "pt-BR": "Seu espaço de administração",
+      "ar": "مساحة الإدارة",
+      "he": "מרחב הניהול שלך"
+    },
+    "Gérez les identités, les applications et leurs accès.": {
+      "fr": "Gérez les identités, les applications et leurs accès.",
+      "en": "Manage identities, applications and their access.",
+      "es": "Gestiona identidades, aplicaciones y sus accesos.",
+      "de": "Verwalten Sie Identitäten, Anwendungen und Zugriffe.",
+      "it": "Gestisci identità, applicazioni e accessi.",
+      "pt-BR": "Gerencie identidades, aplicativos e acessos.",
+      "ar": "أدر الهويات والتطبيقات وصلاحيات الوصول.",
+      "he": "ניהול זהויות, יישומים והרשאות גישה."
+    },
+    "Les personnes de votre organisation": {
+      "fr": "Les personnes de votre organisation",
+      "en": "The people in your organization",
+      "es": "Las personas de tu organización",
+      "de": "Die Personen Ihrer Organisation",
+      "it": "Le persone della tua organizzazione",
+      "pt-BR": "As pessoas da sua organização",
+      "ar": "الأشخاص في مؤسستك",
+      "he": "האנשים בארגון שלך"
+    },
+    "Recherchez une personne et ouvrez sa fiche.": {
+      "fr": "Recherchez une personne et ouvrez sa fiche.",
+      "en": "Find a person and open their details.",
+      "es": "Busca una persona y abre su ficha.",
+      "de": "Suchen Sie eine Person und öffnen Sie ihre Details.",
+      "it": "Cerca una persona e apri i dettagli.",
+      "pt-BR": "Busque uma pessoa e abra seus detalhes.",
+      "ar": "ابحث عن شخص وافتح تفاصيله.",
+      "he": "חיפוש אדם ופתיחת פרטיו."
+    },
+    "Rechercher un utilisateur": {
+      "fr": "Rechercher un utilisateur",
+      "en": "Search users",
+      "es": "Buscar un usuario",
+      "de": "Benutzer suchen",
+      "it": "Cerca un utente",
+      "pt-BR": "Buscar um usuário",
+      "ar": "البحث عن مستخدم",
+      "he": "חיפוש משתמש"
+    },
+    "Nom ou adresse e-mail": {
+      "fr": "Nom ou adresse e-mail",
+      "en": "Name or email address",
+      "es": "Nombre o correo electrónico",
+      "de": "Name oder E-Mail-Adresse",
+      "it": "Nome o indirizzo e-mail",
+      "pt-BR": "Nome ou endereço de e-mail",
+      "ar": "الاسم أو البريد الإلكتروني",
+      "he": "שם או כתובת דוא״ל"
+    },
+    "Nom": {
+      "fr": "Nom",
+      "en": "Name",
+      "es": "Nombre",
+      "de": "Name",
+      "it": "Nome",
+      "pt-BR": "Nome",
+      "ar": "الاسم",
+      "he": "שם"
+    },
+    "État": {
+      "fr": "État",
+      "en": "Status",
+      "es": "Estado",
+      "de": "Status",
+      "it": "Stato",
+      "pt-BR": "Estado",
+      "ar": "الحالة",
+      "he": "מצב"
+    },
+    "Ouvrir la fiche": {
+      "fr": "Ouvrir la fiche",
+      "en": "Open details",
+      "es": "Abrir ficha",
+      "de": "Details öffnen",
+      "it": "Apri dettagli",
+      "pt-BR": "Abrir detalhes",
+      "ar": "فتح التفاصيل",
+      "he": "פתיחת פרטים"
+    },
+    "Une identité, ses informations": {
+      "fr": "Une identité, ses informations",
+      "en": "An identity and its details",
+      "es": "Una identidad y sus datos",
+      "de": "Eine Identität und ihre Daten",
+      "it": "Un’identità e i suoi dati",
+      "pt-BR": "Uma identidade e seus dados",
+      "ar": "هوية وتفاصيلها",
+      "he": "זהות ופרטיה"
+    },
+    "Consultez les informations du compte et ses accès.": {
+      "fr": "Consultez les informations du compte et ses accès.",
+      "en": "Review account details and access.",
+      "es": "Consulta los datos de la cuenta y sus accesos.",
+      "de": "Prüfen Sie Kontodaten und Zugriffe.",
+      "it": "Consulta i dati dell’account e gli accessi.",
+      "pt-BR": "Confira os dados da conta e seus acessos.",
+      "ar": "راجع معلومات الحساب وصلاحياته.",
+      "he": "צפייה בפרטי החשבון ובגישות שלו."
+    },
+    "Enregistrer l’utilisateur": {
+      "fr": "Enregistrer l’utilisateur",
+      "en": "Save user",
+      "es": "Guardar usuario",
+      "de": "Benutzer speichern",
+      "it": "Salva utente",
+      "pt-BR": "Salvar usuário",
+      "ar": "حفظ المستخدم",
+      "he": "שמירת המשתמש"
+    },
+    "Accès attribués": {
+      "fr": "Accès attribués",
+      "en": "Assigned access",
+      "es": "Accesos asignados",
+      "de": "Zugewiesene Zugriffe",
+      "it": "Accessi assegnati",
+      "pt-BR": "Acessos atribuídos",
+      "ar": "صلاحيات الوصول المعينة",
+      "he": "גישות שהוקצו"
+    },
+    "Voir les rôles et permissions": {
+      "fr": "Voir les rôles et permissions",
+      "en": "View roles and permissions",
+      "es": "Ver roles y permisos",
+      "de": "Rollen und Berechtigungen ansehen",
+      "it": "Visualizza ruoli e autorizzazioni",
+      "pt-BR": "Ver papéis e permissões",
+      "ar": "عرض الأدوار والصلاحيات",
+      "he": "הצגת תפקידים והרשאות"
+    },
+    "Vos applications connectées": {
+      "fr": "Vos applications connectées",
+      "en": "Your connected applications",
+      "es": "Tus aplicaciones conectadas",
+      "de": "Ihre verbundenen Anwendungen",
+      "it": "Le tue applicazioni connesse",
+      "pt-BR": "Seus aplicativos conectados",
+      "ar": "تطبيقاتك المتصلة",
+      "he": "היישומים המחוברים שלך"
+    },
+    "Ouvrez une application pour consulter sa configuration.": {
+      "fr": "Ouvrez une application pour consulter sa configuration.",
+      "en": "Open an application to review its configuration.",
+      "es": "Abre una aplicación para consultar su configuración.",
+      "de": "Öffnen Sie eine Anwendung, um ihre Konfiguration zu prüfen.",
+      "it": "Apri un’applicazione per consultarne la configurazione.",
+      "pt-BR": "Abra um aplicativo para consultar sua configuração.",
+      "ar": "افتح تطبيقًا لعرض إعداداته.",
+      "he": "פתיחת יישום לצפייה בהגדרותיו."
+    },
+    "Rechercher une application": {
+      "fr": "Rechercher une application",
+      "en": "Search applications",
+      "es": "Buscar una aplicación",
+      "de": "Anwendung suchen",
+      "it": "Cerca un’applicazione",
+      "pt-BR": "Buscar um aplicativo",
+      "ar": "البحث عن تطبيق",
+      "he": "חיפוש יישום"
+    },
+    "Nom ou identifiant du client": {
+      "fr": "Nom ou identifiant du client",
+      "en": "Name or client ID",
+      "es": "Nombre o ID de cliente",
+      "de": "Name oder Client-ID",
+      "it": "Nome o ID client",
+      "pt-BR": "Nome ou ID do cliente",
+      "ar": "الاسم أو معرف العميل",
+      "he": "שם או מזהה לקוח"
+    },
+    "Application": {
+      "fr": "Application",
+      "en": "Application",
+      "es": "Aplicación",
+      "de": "Anwendung",
+      "it": "Applicazione",
+      "pt-BR": "Aplicativo",
+      "ar": "التطبيق",
+      "he": "יישום"
+    },
+    "Identifiant du client": {
+      "fr": "Identifiant du client",
+      "en": "Client ID",
+      "es": "ID del cliente",
+      "de": "Client-ID",
+      "it": "ID client",
+      "pt-BR": "ID do cliente",
+      "ar": "معرف العميل",
+      "he": "מזהה לקוח"
+    },
+    "Protocole": {
+      "fr": "Protocole",
+      "en": "Protocol",
+      "es": "Protocolo",
+      "de": "Protokoll",
+      "it": "Protocollo",
+      "pt-BR": "Protocolo",
+      "ar": "البروتوكول",
+      "he": "פרוטוקול"
+    },
+    "Configurer l’application": {
+      "fr": "Configurer l’application",
+      "en": "Configure application",
+      "es": "Configurar aplicación",
+      "de": "Anwendung konfigurieren",
+      "it": "Configura applicazione",
+      "pt-BR": "Configurar aplicativo",
+      "ar": "إعداد التطبيق",
+      "he": "הגדרת יישום"
+    },
+    "Reliez vos applications à votre identité": {
+      "fr": "Reliez vos applications à votre identité",
+      "en": "Connect your applications to your identity",
+      "es": "Conecta tus aplicaciones con tu identidad",
+      "de": "Verbinden Sie Ihre Anwendungen mit Ihrer Identität",
+      "it": "Collega le applicazioni alla tua identità",
+      "pt-BR": "Conecte seus aplicativos à sua identidade",
+      "ar": "اربط تطبيقاتك بهويتك",
+      "he": "חיבור היישומים לזהות שלך"
+    },
+    "Configuration de l’application": {
+      "fr": "Configuration de l’application",
+      "en": "Application configuration",
+      "es": "Configuración de la aplicación",
+      "de": "Anwendungskonfiguration",
+      "it": "Configurazione applicazione",
+      "pt-BR": "Configuração do aplicativo",
+      "ar": "إعدادات التطبيق",
+      "he": "הגדרות היישום"
+    },
+    "Consultez son identifiant et ses adresses de retour.": {
+      "fr": "Consultez son identifiant et ses adresses de retour.",
+      "en": "Review its ID and redirect addresses.",
+      "es": "Consulta su ID y direcciones de retorno.",
+      "de": "Prüfen Sie die ID und Weiterleitungsadressen.",
+      "it": "Consulta l’ID e gli indirizzi di reindirizzamento.",
+      "pt-BR": "Confira seu ID e endereços de redirecionamento.",
+      "ar": "راجع معرفه وعناوين إعادة التوجيه.",
+      "he": "צפייה במזהה ובכתובות להפניה חוזרת."
+    },
+    "Nom de l’application": {
+      "fr": "Nom de l’application",
+      "en": "Application name",
+      "es": "Nombre de la aplicación",
+      "de": "Anwendungsname",
+      "it": "Nome applicazione",
+      "pt-BR": "Nome do aplicativo",
+      "ar": "اسم التطبيق",
+      "he": "שם היישום"
+    },
+    "URI de redirection": {
+      "fr": "URI de redirection",
+      "en": "Redirect URI",
+      "es": "URI de redirección",
+      "de": "Weiterleitungs-URI",
+      "it": "URI di reindirizzamento",
+      "pt-BR": "URI de redirecionamento",
+      "ar": "عنوان إعادة التوجيه",
+      "he": "כתובת להפניה חוזרת"
+    },
+    "Enregistrer l’application": {
+      "fr": "Enregistrer l’application",
+      "en": "Save application",
+      "es": "Guardar aplicación",
+      "de": "Anwendung speichern",
+      "it": "Salva applicazione",
+      "pt-BR": "Salvar aplicativo",
+      "ar": "حفظ التطبيق",
+      "he": "שמירת היישום"
+    },
+    "Des accès lisibles et maîtrisés": {
+      "fr": "Des accès lisibles et maîtrisés",
+      "en": "Clear access, under control",
+      "es": "Accesos claros y bajo control",
+      "de": "Klare, kontrollierte Zugriffe",
+      "it": "Accessi chiari e controllati",
+      "pt-BR": "Acessos claros e controlados",
+      "ar": "صلاحيات واضحة وتحت السيطرة",
+      "he": "גישה ברורה ומבוקרת"
+    },
+    "Explorez un rôle pour voir les permissions qu’il accorde.": {
+      "fr": "Explorez un rôle pour voir les permissions qu’il accorde.",
+      "en": "Explore a role to see its permissions.",
+      "es": "Explora un rol para ver sus permisos.",
+      "de": "Öffnen Sie eine Rolle, um ihre Berechtigungen zu sehen.",
+      "it": "Esplora un ruolo per vedere le autorizzazioni.",
+      "pt-BR": "Explore um papel para ver suas permissões.",
+      "ar": "استكشف دورًا للاطلاع على صلاحياته.",
+      "he": "בחירת תפקיד לצפייה בהרשאותיו."
+    },
+    "Administrateur": {
+      "fr": "Administrateur",
+      "en": "Administrator",
+      "es": "Administrador",
+      "de": "Administrator",
+      "it": "Amministratore",
+      "pt-BR": "Administrador",
+      "ar": "مسؤول",
+      "he": "מנהל"
+    },
+    "Membre": {
+      "fr": "Membre",
+      "en": "Member",
+      "es": "Miembro",
+      "de": "Mitglied",
+      "it": "Membro",
+      "pt-BR": "Membro",
+      "ar": "عضو",
+      "he": "חבר"
+    },
+    "Lecture seule": {
+      "fr": "Lecture seule",
+      "en": "Read only",
+      "es": "Solo lectura",
+      "de": "Nur lesen",
+      "it": "Sola lettura",
+      "pt-BR": "Somente leitura",
+      "ar": "قراءة فقط",
+      "he": "קריאה בלבד"
+    },
+    "Voir les permissions": {
+      "fr": "Voir les permissions",
+      "en": "View permissions",
+      "es": "Ver permisos",
+      "de": "Berechtigungen ansehen",
+      "it": "Visualizza autorizzazioni",
+      "pt-BR": "Ver permissões",
+      "ar": "عرض الصلاحيات",
+      "he": "הצגת הרשאות"
+    },
+    "Les deux mots de passe doivent être identiques.": {
+      "fr": "Les deux mots de passe doivent être identiques.",
+      "en": "The two passwords must match.",
+      "es": "Las dos contraseñas deben coincidir.",
+      "de": "Die beiden Passwörter müssen übereinstimmen.",
+      "it": "Le due password devono coincidere.",
+      "pt-BR": "As duas senhas devem ser iguais.",
+      "ar": "يجب أن تتطابق كلمتا المرور.",
+      "he": "שתי הסיסמאות חייבות להיות זהות."
+    },
+    "Double authentification activée dans cet aperçu.": {
+      "fr": "Double authentification activée dans cet aperçu.",
+      "en": "Two-factor authentication enabled in this preview.",
+      "es": "Autenticación en dos pasos activada en esta vista previa.",
+      "de": "Zwei-Faktor-Authentifizierung in dieser Vorschau aktiviert.",
+      "it": "Autenticazione a due fattori attivata in questa anteprima.",
+      "pt-BR": "Autenticação de dois fatores ativada nesta prévia.",
+      "ar": "تم تفعيل المصادقة الثنائية في هذه المعاينة.",
+      "he": "אימות דו-שלבי הופעל בתצוגה המקדימה."
+    },
+    "Modifications enregistrées dans cet aperçu.": {
+      "fr": "Modifications enregistrées dans cet aperçu.",
+      "en": "Changes saved in this preview.",
+      "es": "Cambios guardados en esta vista previa.",
+      "de": "Änderungen in dieser Vorschau gespeichert.",
+      "it": "Modifiche salvate in questa anteprima.",
+      "pt-BR": "Alterações salvas nesta prévia.",
+      "ar": "تم حفظ التغييرات في هذه المعاينة.",
+      "he": "השינויים נשמרו בתצוגה המקדימה."
+    },
+    "Données d’exemple": {
+      "fr": "Données d’exemple",
+      "en": "Sample data",
+      "es": "Datos de ejemplo",
+      "de": "Beispieldaten",
+      "it": "Dati di esempio",
+      "pt-BR": "Dados de exemplo",
+      "ar": "بيانات تجريبية",
+      "he": "נתונים לדוגמה"
+    },
+    "Actif": {
+      "fr": "Actif",
+      "en": "Active",
+      "es": "Activo",
+      "de": "Aktiv",
+      "it": "Attivo",
+      "pt-BR": "Ativo",
+      "ar": "نشط",
+      "he": "פעיל"
+    },
+    "Activée": {
+      "fr": "Activée",
+      "en": "Enabled",
+      "es": "Activada",
+      "de": "Aktiviert",
+      "it": "Attivata",
+      "pt-BR": "Ativada",
+      "ar": "مفعلة",
+      "he": "מופעל"
+    },
+    "Aucun résultat.": {
+      "fr": "Aucun résultat.",
+      "en": "No results.",
+      "es": "Sin resultados.",
+      "de": "Keine Ergebnisse.",
+      "it": "Nessun risultato.",
+      "pt-BR": "Nenhum resultado.",
+      "ar": "لا توجد نتائج.",
+      "he": "אין תוצאות."
+    },
+    "Connecté maintenant": {
+      "fr": "Connecté maintenant",
+      "en": "Connected now",
+      "es": "Conectado ahora",
+      "de": "Jetzt verbunden",
+      "it": "Connesso ora",
+      "pt-BR": "Conectado agora",
+      "ar": "متصل الآن",
+      "he": "מחובר כעת"
+    },
+    "Dernière activité : aujourd’hui": {
+      "fr": "Dernière activité : aujourd’hui",
+      "en": "Last active: today",
+      "es": "Última actividad: hoy",
+      "de": "Zuletzt aktiv: heute",
+      "it": "Ultima attività: oggi",
+      "pt-BR": "Última atividade: hoje",
+      "ar": "آخر نشاط: اليوم",
+      "he": "פעילות אחרונה: היום"
+    },
+    "Terminer cette session ?": {
+      "fr": "Terminer cette session ?",
+      "en": "End this session?",
+      "es": "¿Cerrar esta sesión?",
+      "de": "Diese Sitzung beenden?",
+      "it": "Terminare questa sessione?",
+      "pt-BR": "Encerrar esta sessão?",
+      "ar": "إنهاء هذه الجلسة؟",
+      "he": "לסיים הפעלה זו?"
+    },
+    "Annuler": {
+      "fr": "Annuler",
+      "en": "Cancel",
+      "es": "Cancelar",
+      "de": "Abbrechen",
+      "it": "Annulla",
+      "pt-BR": "Cancelar",
+      "ar": "إلغاء",
+      "he": "ביטול"
+    },
+    "Confirmer": {
+      "fr": "Confirmer",
+      "en": "Confirm",
+      "es": "Confirmar",
+      "de": "Bestätigen",
+      "it": "Conferma",
+      "pt-BR": "Confirmar",
+      "ar": "تأكيد",
+      "he": "אישור"
+    },
+    "Session terminée dans cet aperçu.": {
+      "fr": "Session terminée dans cet aperçu.",
+      "en": "Session ended in this preview.",
+      "es": "Sesión cerrada en esta vista previa.",
+      "de": "Sitzung in dieser Vorschau beendet.",
+      "it": "Sessione terminata in questa anteprima.",
+      "pt-BR": "Sessão encerrada nesta prévia.",
+      "ar": "تم إنهاء الجلسة في هذه المعاينة.",
+      "he": "ההפעלה הסתיימה בתצוגה המקדימה."
+    },
+    "Clé de démonstration": {
+      "fr": "Clé de démonstration",
+      "en": "Demo key",
+      "es": "Clave de demostración",
+      "de": "Demoschlüssel",
+      "it": "Chiave dimostrativa",
+      "pt-BR": "Chave de demonstração",
+      "ar": "مفتاح تجريبي",
+      "he": "מפתח לדוגמה"
+    },
+    "Retour": {
+      "fr": "Retour",
+      "en": "Back",
+      "es": "Volver",
+      "de": "Zurück",
+      "it": "Indietro",
+      "pt-BR": "Voltar",
+      "ar": "رجوع",
+      "he": "חזרה"
+    },
+    "Identités, applications et accès de votre organisation.": {
+      "fr": "Identités, applications et accès de votre organisation.",
+      "en": "Your organization’s identities, applications and access.",
+      "es": "Identidades, aplicaciones y accesos de tu organización.",
+      "de": "Identitäten, Anwendungen und Zugriffe Ihrer Organisation.",
+      "it": "Identità, applicazioni e accessi della tua organizzazione.",
+      "pt-BR": "Identidades, aplicativos e acessos da sua organização.",
+      "ar": "هويات مؤسستك وتطبيقاتها وصلاحيات الوصول.",
+      "he": "זהויות, יישומים וגישות של הארגון שלך."
+    },
+    "Chrome · macOS": {
+      "fr": "Chrome · macOS",
+      "en": "Chrome · macOS",
+      "es": "Chrome · macOS",
+      "de": "Chrome · macOS",
+      "it": "Chrome · macOS",
+      "pt-BR": "Chrome · macOS",
+      "ar": "Chrome · macOS",
+      "he": "Chrome · macOS"
+    },
+    "Safari · iPhone": {
+      "fr": "Safari · iPhone",
+      "en": "Safari · iPhone",
+      "es": "Safari · iPhone",
+      "de": "Safari · iPhone",
+      "it": "Safari · iPhone",
+      "pt-BR": "Safari · iPhone",
+      "ar": "Safari · iPhone",
+      "he": "Safari · iPhone"
+    },
+    "Firefox · Linux": {
+      "fr": "Firefox · Linux",
+      "en": "Firefox · Linux",
+      "es": "Firefox · Linux",
+      "de": "Firefox · Linux",
+      "it": "Firefox · Linux",
+      "pt-BR": "Firefox · Linux",
+      "ar": "Firefox · Linux",
+      "he": "Firefox · Linux"
+    },
+    "Scannez le QR code ou saisissez la clé de configuration.": {
+      "fr": "Scannez le QR code ou saisissez la clé de configuration.",
+      "en": "Scan the QR code or enter the setup key.",
+      "es": "Escanea el código QR o introduce la clave de configuración.",
+      "de": "Scannen Sie den QR-Code oder geben Sie den Einrichtungsschlüssel ein.",
+      "it": "Scansiona il codice QR o inserisci la chiave di configurazione.",
+      "pt-BR": "Escaneie o código QR ou insira a chave de configuração.",
+      "ar": "امسح رمز QR أو أدخل مفتاح الإعداد.",
+      "he": "יש לסרוק את קוד ה-QR או להזין את מפתח ההגדרה."
+    },
+    "QR code à scanner dans votre application d’authentification": {
+      "fr": "QR code à scanner dans votre application d’authentification",
+      "en": "QR code to scan with your authenticator app",
+      "es": "Código QR para escanear con tu aplicación de autenticación",
+      "de": "QR-Code für Ihre Authentifikator-App",
+      "it": "Codice QR da scansionare con l’app di autenticazione",
+      "pt-BR": "Código QR para escanear com seu aplicativo autenticador",
+      "ar": "رمز QR للمسح بتطبيق المصادقة",
+      "he": "קוד QR לסריקה ביישומון האימות"
+    },
+    "Compte de démonstration · validation locale": {
+      "fr": "Compte de démonstration · validation locale",
+      "en": "Demo account · local verification",
+      "es": "Cuenta de demostración · verificación local",
+      "de": "Demokonto · lokale Prüfung",
+      "it": "Account dimostrativo · verifica locale",
+      "pt-BR": "Conta de demonstração · verificação local",
+      "ar": "حساب تجريبي · تحقق محلي",
+      "he": "חשבון לדוגמה · אימות מקומי"
+    },
+    "Clé de configuration manuelle": {
+      "fr": "Clé de configuration manuelle",
+      "en": "Manual setup key",
+      "es": "Clave de configuración manual",
+      "de": "Manueller Einrichtungsschlüssel",
+      "it": "Chiave di configurazione manuale",
+      "pt-BR": "Chave de configuração manual",
+      "ar": "مفتاح الإعداد اليدوي",
+      "he": "מפתח להגדרה ידנית"
+    },
+    "Copier la clé": {
+      "fr": "Copier la clé",
+      "en": "Copy key",
+      "es": "Copiar clave",
+      "de": "Schlüssel kopieren",
+      "it": "Copia chiave",
+      "pt-BR": "Copiar chave",
+      "ar": "نسخ المفتاح",
+      "he": "העתקת המפתח"
+    },
+    "Copier": {
+      "fr": "Copier",
+      "en": "Copy",
+      "es": "Copiar",
+      "de": "Kopieren",
+      "it": "Copia",
+      "pt-BR": "Copiar",
+      "ar": "نسخ",
+      "he": "העתקה"
+    },
+    "Clé copiée": {
+      "fr": "Clé copiée",
+      "en": "Key copied",
+      "es": "Clave copiada",
+      "de": "Schlüssel kopiert",
+      "it": "Chiave copiata",
+      "pt-BR": "Chave copiada",
+      "ar": "تم نسخ المفتاح",
+      "he": "המפתח הועתק"
+    },
+    "Sélectionnez la clé pour la copier manuellement.": {
+      "fr": "Sélectionnez la clé pour la copier manuellement.",
+      "en": "Select the key to copy it manually.",
+      "es": "Selecciona la clave para copiarla manualmente.",
+      "de": "Wählen Sie den Schlüssel aus, um ihn manuell zu kopieren.",
+      "it": "Seleziona la chiave per copiarla manualmente.",
+      "pt-BR": "Selecione a chave para copiá-la manualmente.",
+      "ar": "حدد المفتاح لنسخه يدويًا.",
+      "he": "יש לסמן את המפתח כדי להעתיק אותו ידנית."
+    },
+    "Ouvrir mon authenticator": {
+      "fr": "Ouvrir mon authenticator",
+      "en": "Open my authenticator",
+      "es": "Abrir mi aplicación de autenticación",
+      "de": "Meine Authentifikator-App öffnen",
+      "it": "Apri la mia app di autenticazione",
+      "pt-BR": "Abrir meu aplicativo autenticador",
+      "ar": "فتح تطبيق المصادقة",
+      "he": "פתיחת יישומון האימות שלי"
+    },
+    "Code incorrect ou expiré. Saisissez le code actuel de votre application.": {
+      "fr": "Code incorrect ou expiré. Saisissez le code actuel de votre application.",
+      "en": "Incorrect or expired code. Enter the current code from your app.",
+      "es": "Código incorrecto o caducado. Introduce el código actual de tu aplicación.",
+      "de": "Falscher oder abgelaufener Code. Geben Sie den aktuellen Code aus Ihrer App ein.",
+      "it": "Codice errato o scaduto. Inserisci il codice attuale dell’app.",
+      "pt-BR": "Código incorreto ou expirado. Insira o código atual do seu aplicativo.",
+      "ar": "الرمز غير صحيح أو منتهي الصلاحية. أدخل الرمز الحالي من التطبيق.",
+      "he": "הקוד שגוי או שפג תוקפו. יש להזין את הקוד הנוכחי מהיישומון."
+    },
+    "Actions requises": {
+      "fr": "Actions requises",
+      "en": "Required actions",
+      "es": "Acciones requeridas",
+      "de": "Erforderliche Aktionen",
+      "it": "Azioni richieste",
+      "pt-BR": "Ações necessárias",
+      "ar": "الإجراءات المطلوبة",
+      "he": "פעולות נדרשות"
+    },
+    "Bonjour {{prénom}},\nRéinitialiser mon mot de passe": {
+      "fr": "Bonjour {{prénom}},\nRéinitialiser mon mot de passe",
+      "en": "Hello {{prénom}},\nReset my password",
+      "es": "Hola {{prénom}},\nRestablecer mi contraseña",
+      "de": "Hallo {{prénom}},\nPasswort zurücksetzen",
+      "it": "Ciao {{prénom}},\nReimposta la password",
+      "pt-BR": "Olá {{prénom}},\nRedefinir minha senha",
+      "ar": "مرحبًا {{prénom}}،\nإعادة تعيين كلمة المرور",
+      "he": "שלום {{prénom}},\nאיפוס הסיסמה שלי"
+    },
+    "Bonjour {{prénom}},\nActions requises": {
+      "fr": "Bonjour {{prénom}},\nActions requises",
+      "en": "Hello {{prénom}},\nRequired actions",
+      "es": "Hola {{prénom}},\nAcciones requeridas",
+      "de": "Hallo {{prénom}},\nErforderliche Aktionen",
+      "it": "Ciao {{prénom}},\nAzioni richieste",
+      "pt-BR": "Olá {{prénom}},\nAções necessárias",
+      "ar": "مرحبًا {{prénom}}،\nالإجراءات المطلوبة",
+      "he": "שלום {{prénom}},\nפעולות נדרשות"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:translations:v1",
+  "title": "Theme Studio translation exchange v1",
+  "description": "Translations for an existing project. Source snapshots prevent stale imports; page edits are applied together after validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "name",
+    "locale",
+    "pages"
+  ],
+  "properties": {
+    "format": {
+      "const": "hanko.theme-studio.translations/v1"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+    },
+    "locale": {
+      "enum": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ]
+    },
+    "pages": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?:login|email|account|admin|welcome):[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceLocale",
+          "sources",
+          "messages"
+        ],
+        "properties": {
+          "sourceLocale": {
+            "enum": [
+              "fr",
+              "en",
+              "es",
+              "de",
+              "it",
+              "pt-BR",
+              "ar",
+              "he"
+            ]
+          },
+          "sources": {
+            "type": "object",
+            "maxProperties": 200,
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 800
+            }
+          },
+          "messages": {
+            "type": "object",
+            "maxProperties": 200,
+            "propertyNames": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 800
+            }
+          }
+        }
+      }
+    }
+  }
+}

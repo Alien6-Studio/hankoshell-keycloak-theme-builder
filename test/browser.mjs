@@ -71,8 +71,23 @@ try {
   await page.getByLabel(/^First name/).fill("Unsaved");
   await page.getByRole("button", { name: "Annuler", exact: true }).click();
   assert.equal(await page.getByLabel(/^First name/).inputValue(), "Camille");
+  await page.getByLabel("Surface", { exact: true }).selectOption("authentication");
+  await page.getByLabel("Page", { exact: true }).selectOption("login-username.ftl");
+  const localizedUsernameLabels = {
+    en: "Username or email", fr: "Nom d'utilisateur ou courriel", es: "Usuario o email",
+    de: "Benutzername oder E-Mail", it: "Username o email", "pt-BR": "Nome de usuário ou e-mail",
+    ar: "اسم المستخدم أو البريد الإلكتروني", he: "שם משתמש או דוא״ל",
+  };
+  for (const [locale, label] of Object.entries(localizedUsernameLabels)) {
+    await page.getByLabel("Language", { exact: true }).selectOption(locale);
+    const preview = page.locator('[data-preview-page="login-username.ftl"]');
+    await preview.locator(`.hk-theme[lang="${locale}"]`).waitFor();
+    assert.equal(await preview.locator('.hk-theme').getAttribute('dir'), ["ar", "he"].includes(locale) ? "rtl" : "ltr");
+    await preview.locator('label[for="username"]').filter({ hasText: label }).waitFor();
+    assert.equal(await preview.evaluate(host => host.scrollWidth <= host.clientWidth), true, `${locale}: native login overflow`);
+  }
   assert.deepEqual(errors, []); assert.deepEqual(external, []);
-  console.log(`${authenticationPages.length} pages × 2 languages × 2 appearances; no browser errors or external requests`);
+  console.log(`${authenticationPages.length} pages × 2 languages × 2 appearances; 8 localized login previews including Hebrew/Arabic RTL; no browser errors or external requests`);
 } finally {
   await browser?.close();
   server.kill("SIGINT");
