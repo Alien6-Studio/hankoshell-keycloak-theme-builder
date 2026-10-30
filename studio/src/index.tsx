@@ -4,7 +4,7 @@ import {validateEditableProject} from './editable-project';
 import {Studio} from './main';
 import {HostContext,PortalContext,type StudioProps} from './host';
 import {readLocalProjects,writeLocalProject,type LocalStudioRecord} from './local-library';
-export type {StudioProps,StudioProject} from './host';
+export type {StudioProps,StudioProject,StudioBuild,StudioDestination,StudioPublicationHost} from './host';
 export function ThemeStudio(props:StudioProps){
   const [portal,setPortal]=useState<HTMLDivElement|null>(null);
   const [system,setSystem]=useState<'light'|'dark'>('light');

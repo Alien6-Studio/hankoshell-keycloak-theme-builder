@@ -11,5 +11,5 @@ test('section selection and child page selection follow the same hierarchy',()=>
  assert.equal(map.activePrimary('admin:2').id,'admin:1');assert.deepEqual(map.secondaryScreens('admin:2').map(node=>node.id),['admin:2']);assert.equal(map.activePrimary('admin:4').id,'admin:3');
 });
 test('application sitemap states publication readiness and actual URL limitations',()=>{
- const xml=map.navigationXml();assert.match(xml,/<screen id="account:3"[^>]+parent="account:1"/);assert.match(xml,/view id="deploy"[^>]+status="preparation"/);assert.match(xml,/browser-history="not-yet-connected"/);assert.doesNotMatch(xml,/authenticatorSecret|Bearer |otpauth:/);
+ const xml=map.navigationXml();assert.match(xml,/<screen id="account:3"[^>]+parent="account:1"/);assert.match(xml,/view id="deploy"[^>]+status="host-required"/);assert.match(xml,/browser-history="not-yet-connected"/);assert.doesNotMatch(xml,/authenticatorSecret|Bearer |otpauth:/);
 });

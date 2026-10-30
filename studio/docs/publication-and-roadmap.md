@@ -2,7 +2,7 @@
 
 ## Positionnement
 
-Présenter Hanko Theme Studio comme un éditeur guidé d’expériences d’identité : connexion, espace personnel, sécurité, organisations et accès, avec une bibliothèque de modèles et une intégration Hanko. La préversion actuelle permet de composer, tester et échanger un projet. Le futur socle stable doit produire les sorties exécutables à partir de cette même composition.
+Présenter Hanko Theme Studio comme un éditeur guidé d’expériences d’identité : connexion, espace personnel, sécurité, organisations et accès, avec une bibliothèque de modèles et une intégration Hanko. La préversion actuelle permet de composer, tester et échanger un projet. La préversion 0.2.0-preview.3 produit maintenant le JAR de connexion et les trois courriels guidés à partir de cette composition. Le Dashboard expose la construction, les observations et l’affectation via une API et un opérateur compatibles ; la qualification sur un cluster installé reste un jalon de mise en production.
 
 Il existe déjà un [Keycloak Theme Editor](https://github.com/kathari00/keycloak-theme-editor) avec export JAR et un [éditeur visuel présenté par Keycloakify](https://www.keycloakify.dev/). Notre axe de différenciation proposé est la continuité entre Keycloak, les écrans applicatifs et la gestion des organisations/permissions, avec un catalogue ouvert et une intégration embarquable. La bibliothèque, la documentation et la fidélité des exports doivent concrétiser cette proposition.
 
@@ -38,7 +38,7 @@ L’[annuaire officiel des extensions Keycloak](https://www.keycloak.org/extensi
 ### Première version stable
 
 - Un compilateur de composition commun et des renderers distincts pour Keycloak et les applications, avec tests de fidélité entre aperçu et sortie.
-- JAR de connexion et courriels réellement issus du projet ; compilation isolée, artefact immuable, vérification puis affectation et retour arrière.
+- Qualifier sur un cluster installé le parcours désormais implémenté : JAR de connexion et courriels issus du projet, compilation isolée, installation, affectation et retour arrière. Conserver la politique d’approbation des images et vérifier les reprises sur erreur.
 - Export React/Next fidèle, SDK public et exemple d’intégration exécutable.
 - Navigation à état unique, liens profonds et historique ; sauvegarde automatique versionnée ou garde d’abandon des changements dans le Dashboard.
 - Matrice de versions Keycloak vérifiées, essais des flux natifs et tests de non-régression sur les archives distribuées.

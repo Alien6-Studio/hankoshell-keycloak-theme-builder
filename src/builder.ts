@@ -8,6 +8,9 @@ import { spawn } from "node:child_process";
 import { parseTheme, type ThemeConfig } from "./config.js";
 import { htmlText, sourceLiteral } from "./serialization.js";
 import { hebrewMessages } from "./login/messages/he-core.js";
+import type { StudioComposition } from "./composition-types.js";
+import { parseStudioProject } from "./studio-project.js";
+import { writeEmailTheme } from "./email-theme.js";
 
 const require = createRequire(import.meta.url);
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -41,6 +44,7 @@ async function dependencies(): Promise<string> {
 }
 
 export interface BuildOptions {
+  composition?: StudioComposition;
   assetsDir?: string;
   runtimeAdapter?: string;
   renderer?: string;
@@ -61,6 +65,8 @@ export async function previewTheme(config: ThemeConfig, options: BuildOptions = 
 }
 async function compile(command: "build" | "dev", input: ThemeConfig, options: BuildOptions) {
   let config = parseTheme(input);
+  const composition = options.composition ? parseStudioProject(options.composition) : undefined;
+  if (composition && (options.renderer || options.runtimeAdapter)) throw new Error("Studio builds use only the installed declarative renderer");
   options.signal?.throwIfAborted();
   const assets = options.assetsDir ? await realpath(resolve(options.assetsDir)) : undefined;
   const stylesheet = assets && await exists(join(assets, "theme.css")) ? await asset(assets, "theme.css") : undefined;
@@ -83,7 +89,9 @@ async function compile(command: "build" | "dev", input: ThemeConfig, options: Bu
     const adapter = options.runtimeAdapter ? await realpath(resolve(options.runtimeAdapter)) : undefined;
     const renderer = options.renderer ? await realpath(resolve(options.renderer)) : undefined;
     const pageImport = renderer ?? fileURLToPath(new URL("./keycloak.js", import.meta.url));
-    const rendererImport = renderer ? `import KeycloakPage from ${sourceLiteral(pageImport)};` : `import {KeycloakPage} from ${sourceLiteral(pageImport)};`;
+    const rendererImport = composition ? `import {KeycloakPage as NativeKeycloakPage} from ${sourceLiteral(pageImport)};import composition from ${sourceLiteral(join(source, 'composition.ts'))};const KeycloakPage=props=><NativeKeycloakPage {...props} composition={composition}/>;` : renderer ? `import KeycloakPage from ${sourceLiteral(pageImport)};` : `import {KeycloakPage} from ${sourceLiteral(pageImport)};`;
+    if (composition) await writeFile(join(source, "composition.ts"), `export default ${sourceLiteral(composition)};\n`);
+    if (composition) await writeEmailTheme(composition, join(source, "email"));
     const cssImport = stylesheet ? `import css from ${sourceLiteral(stylesheet + "?inline")};` : 'const css = undefined;';
     const loaderImport = adapter ? `import loader from ${sourceLiteral(adapter)};` : 'const loader = undefined;';
     const keycloakify = JSON.parse(await readFile(require.resolve("keycloakify/package.json"), "utf8")) as { version: string };

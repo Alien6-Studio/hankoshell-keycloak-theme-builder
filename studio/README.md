@@ -4,6 +4,14 @@ Visual editor shared by the standalone builder and the Hanko Dashboard. React mo
 
 The gallery includes **Essentiel, Éditorial and Minuit**: 18 screens each, eight content languages including Arabic and Hebrew RTL, original licensed illustrations, plus four reusable sections. Apply a whole theme or one page while choosing whether to retain your brand and existing content. Save personal templates in the host library; standalone projects and templates use IndexedDB in the current browser. Export JSON for backup and sharing. The editing interface is currently French. Projects show their unsaved state, and a document close/reload prompts when changes remain. Browser history and deep links for editor states are not connected yet.
 
+## Gallery and live editor
+
+![Template gallery with three complete multilingual identity themes](docs/screenshots/gallery.png)
+
+![Live editor with guided blocks, image uploads and style controls](docs/screenshots/editor.png)
+
+The screenshots come from the standalone build and contain demo data. Regenerate them with `npm run build:site && npm run screenshots:readme` after installing the parent builder's Playwright development dependency.
+
 ## Run and verify
 
 Requires Node 22. From this directory:
@@ -29,7 +37,7 @@ Open <http://127.0.0.1:7426/>. The `site/` directory is static and supports subd
 
 `npm run package:preview` prepares a website ZIP, npm archive, manifest and SHA-256 sums in `artifacts/release/`. The package uses the npm `preview` channel. Its manifest reports any uncommitted source changes; these files are not a published release.
 
-See the [qualification report](docs/qualification-0.1.0-preview.3.md), [Styles/gallery update](docs/qualification-0.1.0-preview.4.md), [navigation cleanup](docs/qualification-0.1.0-preview.5.md) and [publication plan and roadmap](docs/publication-and-roadmap.md).
+See the [composition/publication qualification](docs/qualification-0.2.0-preview.3.md), [qualification report](docs/qualification-0.1.0-preview.3.md), [Styles/gallery update](docs/qualification-0.1.0-preview.4.md), [navigation cleanup](docs/qualification-0.1.0-preview.5.md) and [publication plan and roadmap](docs/publication-and-roadmap.md).
 
 ## Navigation map
 
@@ -54,6 +62,8 @@ import '@alien6/hankoshell-theme-studio/styles.css';
   templates={templateMetadata}
   onLoadTemplate={loadTemplate}
   onSaveTemplate={saveTemplate}
+  publication={{builds, build: buildSavedProject, status: observeBuild,
+    attach: assignInstalledTheme, rollback: restorePreviousAssignment}}
 />
 ```
 
@@ -69,4 +79,6 @@ Load this browser component without SSR in Next.js. The host owns authentication
 
 ## Export boundaries
 
-Project JSON contains the full composition. React/Next exports provide a starter using the Hanko SDK account components, the brand and basic appearance; custom blocks and form text are not reproduced yet. The SDK must also be distributed before public consumers can install that export; administration interactions in the preview use demo data. The native builder can consume the appearance configuration. Compilation of arbitrary Studio blocks and email compositions into a JAR, deployment and assignment are **not connected** to the publication screen yet. Saving a project records a draft and never implies deployment. Angular remains a future adapter. Authenticator previews use transient demo secrets that are excluded from project and template exports.
+Project JSON contains the full composition. React/Next exports provide a starter using the Hanko SDK account components, the brand and basic appearance; custom blocks and form text are not reproduced yet. The SDK must also be distributed before public consumers can install that export; administration interactions in the preview use demo data. The native builder can consume the appearance configuration. The `0.2.0-preview.3` native compiler consumes guided login, registration, OTP and email compositions, including blocks, images, styles and translations. Other login flows retain native Keycloak forms inside the shared layout. In a compatible Hanko host, the publication screen saves and freezes a revision, observes operator build/installation, then requests realm or client assignment and guarded rollback. The standalone editor displays the export and CLI installation path. Its browser does not hold Keycloak administrator credentials.
+
+The host implements `StudioPublicationHost`: `build(project)` must persist and freeze the source; `status(id)` returns observed build state; `attach(id,destination)` and `rollback(id)` return pending receipts until Keycloak confirms the settings. Pass historical receipts as `builds`. A realm supports login and email; a client supports login only. Native email subjects accept literal translations, with supported user variables in the body. Cluster builds require the compatible operator CRDs, API migration 036 and a reviewed compiler image. Saving a project records a draft and never implies deployment. Angular remains a future adapter. Authenticator previews use transient demo secrets that are excluded from project and template exports.

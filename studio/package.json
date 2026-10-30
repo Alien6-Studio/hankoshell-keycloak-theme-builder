@@ -1,13 +1,14 @@
 {
   "name": "@alien6/hankoshell-theme-studio",
-  "version": "0.1.0-preview.6",
+  "version": "0.2.0-preview.3",
   "type": "module",
   "license": "Apache-2.0",
   "description": "Visual identity theme studio and reusable theme catalogue for Hanko and standalone applications",
   "files": [
     "dist",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "docs/screenshots"
   ],
   "exports": {
     ".": {
@@ -33,7 +34,8 @@
     "sitemap": "node scripts/sitemap.mjs",
     "test:publication": "node test/publication.mjs",
     "test:dashboard": "node test/dashboard-host.mjs",
-    "package:preview": "npm run build:site && node scripts/package-preview.mjs"
+    "package:preview": "npm run build:site && node scripts/package-preview.mjs",
+    "screenshots:readme": "node scripts/capture-readme.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",

@@ -3,6 +3,7 @@ import type { KcContext } from "./KcContext.js";
 import { useI18n } from "./i18n.js";
 import { classes } from "./classes.js";
 import { usePresentation } from "../presentation.js";
+import { useComposition, compositionI18n } from "../composition-model.js";
 
 
 const DefaultPage = lazy(() => import("keycloakify/login/DefaultPage"));
@@ -30,7 +31,9 @@ type Props = {
 };
 
 export default function KcPage({ kcContext }: Readonly<Props>) {
-  const { i18n } = useI18n({ kcContext });
+  const { i18n: originalI18n } = useI18n({ kcContext });
+  const composition = useComposition();
+  const i18n = compositionI18n(originalI18n, kcContext.pageId, composition);
   const { preview } = usePresentation();
 
   return (

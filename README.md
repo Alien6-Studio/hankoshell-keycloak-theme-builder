@@ -7,6 +7,16 @@ Build native Keycloak themes from React and brand configuration. Preview them lo
 [![CI](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
+## Theme Studio in pictures
+
+Start from a complete theme, an individual page or a reusable section.
+
+![Theme Studio gallery with the Essentiel, Éditorial and Minuit identity themes](studio/docs/screenshots/gallery.png)
+
+Edit text, images and styles live, with guided drag-and-drop blocks and image uploads.
+
+![Theme Studio editor with an illustrated login page, block library and live style inspector](studio/docs/screenshots/editor.png)
+
 ## Try it
 
 Requires Node.js 22+. Building a JAR also requires Java 21 and Maven. From a checkout:
@@ -35,6 +45,25 @@ npm install 'git+https://github.com/Alien6-Studio/hankoshell-keycloak-theme-buil
 ```
 
 Future tagged releases provide a package tarball, example JAR, SHA-256 checksums and GitHub build attestations. Verify downloaded assets with `gh attestation verify <file> --repo Alien6-Studio/hankoshell-keycloak-theme-builder`.
+
+## Compile a Studio project
+
+The `0.2.0-preview.3` compiler consumes exported `hanko.theme-studio.project/v1` documents with the installed, declarative renderer:
+
+```sh
+node dist/cli.js dev-project identity.studio.json --port 5173
+node dist/cli.js build-project identity.studio.json --name identity --out dist_keycloak
+```
+
+Login, registration and OTP compositions reproduce their guided blocks, embedded images, appearance and translated form labels. Other authentication steps retain the native renderer within the shared login layout. Input names, form actions, validation, MFA enrollment and action tokens remain managed by Keycloak. Preview input examples never prefill credentials. Custom executable renderers and plugin declarations are rejected in project mode.
+
+Email verification, password reset and required-action emails compile to native HTML and plain-text FreeMarker templates. Authored text remains message data, with HTML escaping; `{{prénom}}` and `{{organisation}}` are supported in email bodies. Subjects support literal translated text. Other email kinds inherit Keycloak's parent theme. Remote HTTPS assets still require network access when displayed; embedded images are preferable.
+
+Install the JAR under Keycloak's `providers/`, build/restart the Keycloak image as required by your installation, then choose its login and/or email theme in the realm. A client's login override is independent of the realm email theme. The standalone editor exports a project and installation instructions. A compatible Hanko host adds persisted versions, isolated compilation, installation observations, assignment and guarded rollback.
+
+For Node applications, import `buildStudioProject` from `@alien6/hankoshell-keycloak-theme-builder/project`. The result includes the JAR SHA-256, project SHA-256 and native theme types. The CLI also accepts gzip snapshots and `--project-sha256` to verify the exact uncompressed input bytes before building. Inputs are limited to 40 MiB; Hanko cluster builds additionally bound the compressed payload to 900,000 base64 characters.
+
+Account and administration compositions remain in project JSON. React/Next exports are SDK starters; they do not yet reproduce arbitrary Studio blocks and are not native account/admin console themes. See [Studio qualification](studio/docs/qualification-0.2.0-preview.3.md) for the verified scope and remaining release gates.
 
 ## Brand configuration
 

@@ -8,10 +8,10 @@ export const studioViews=[
  {id:'catalog',label:'Galerie de modèles',status:'available',panels:['Thèmes complets','Pages','Sections réutilisables','Mes modèles']},
  {id:'translations',label:'Traductions',status:'available',panels:['Langues','Textes','Import et export']},
  {id:'contracts',label:'Contrats JSON',status:'available',panels:['Page','Projet','Plugin déclaratif','Catalogue']},
- {id:'validate',label:'Vérifier l’écran',status:'available',panels:[]},
- {id:'build',label:'Construire',status:'preparation',panels:[]},
- {id:'deploy',label:'Déployer',status:'preparation',panels:[]},
- {id:'attach',label:'Affecter',status:'preparation',panels:[]},
+ {id:'validate',label:'Vérifier le projet',status:'available',panels:[]},
+ {id:'build',label:'Construire',status:'host-required',panels:[]},
+ {id:'deploy',label:'Déployer',status:'host-required',panels:[]},
+ {id:'attach',label:'Affecter',status:'host-required',panels:[]},
 ] as const;
 export type StudioView=(typeof studioViews)[number]['id'];
 export function navigationScreen(id:string){return screenNavigation.find(node=>node.id===id);}

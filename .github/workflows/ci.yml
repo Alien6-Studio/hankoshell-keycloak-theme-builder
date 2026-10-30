@@ -35,6 +35,7 @@ jobs:
       - run: npm run build
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:browser
+      - run: npm run test:project-browser
   studio:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -107,6 +108,12 @@ jobs:
           docker run --rm --network none --read-only --tmpfs /output:uid=10001,gid=10001,mode=0700 --tmpfs /theme:uid=10001,gid=10001,mode=0700 -e THEME_SLUG=aurora -e THEME_JAR_NAME=aurora.jar --entrypoint /bin/sh theme-installer-test -ec 'printf tampered > /theme/theme.jar; printf previous > /output/aurora.jar; if /bin/sh /build-theme.sh; then exit 1; fi; test "$(cat /output/aurora.jar)" = previous'
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run test:keycloak
+      - name: Qualify Studio login and email composition
+        run: |
+          node test/project-fixture.mjs
+          node dist/cli.js build-project .theme-kit/project-qualification.json --out .theme-kit/project-jar
+          THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=.theme-kit/project-jar/studio-qualification-theme.jar npm run test:keycloak
+          npm run test:project-email
       - name: Check authentication templates
         run: |
           jar tf artifacts/aurora-theme.jar > /tmp/theme-files

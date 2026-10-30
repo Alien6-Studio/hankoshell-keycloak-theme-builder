@@ -25,13 +25,13 @@
       <panel label="Plugin déclaratif" />
       <panel label="Catalogue" />
     </view>
-    <view id="validate" label="Vérifier l’écran" status="available">
+    <view id="validate" label="Vérifier le projet" status="available">
     </view>
-    <view id="build" label="Construire" status="preparation">
+    <view id="build" label="Construire" status="host-required">
     </view>
-    <view id="deploy" label="Déployer" status="preparation">
+    <view id="deploy" label="Déployer" status="host-required">
     </view>
-    <view id="attach" label="Affecter" status="preparation">
+    <view id="attach" label="Affecter" status="host-required">
     </view>
   </workspace>
   <theme-screens>

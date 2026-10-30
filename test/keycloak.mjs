@@ -8,6 +8,8 @@ import { randomUUID, createHash, createHmac } from "node:crypto";
 import { chromium } from "playwright";
 
 const jar = resolve(process.env.THEME_JAR ?? "artifacts/aurora-theme.jar");
+const themeName = process.env.THEME_NAME || "aurora";
+assert.match(themeName, /^[a-z0-9][a-z0-9._-]{0,63}$/);
 const work = await mkdtemp(join(tmpdir(), "theme-keycloak-"));
 const name = `theme-kit-${randomUUID().slice(0, 8)}`;
 const password = randomUUID();
@@ -29,8 +31,8 @@ function otp(secret) {
 try {
   await chmod(work, 0o755);
   await writeFile(join(work, "theme-test-realm.json"), JSON.stringify({
-    realm: "theme-test", enabled: true, loginTheme: "aurora", registrationAllowed: true, resetPasswordAllowed: true,
-    internationalizationEnabled: true, supportedLocales: ["en", "fr"], defaultLocale: "en",
+    realm: "theme-test", enabled: true, loginTheme: themeName, registrationAllowed: true, resetPasswordAllowed: true,
+    internationalizationEnabled: true, supportedLocales: ["en", "fr"], defaultLocale: process.env.THEME_REGISTRATION_EMAIL_LABEL ? "fr" : "en",
     clients: [{ clientId: "theme-browser", enabled: true, publicClient: true, standardFlowEnabled: true, redirectUris: [callback], attributes: { "post.logout.redirect.uris": "+", "pkce.code.challenge.method": "S256" } }],
     users: [
       { username: "otp-user", enabled: true, email: "otp@example.test", firstName: "Test", lastName: "OTP", credentials: [{ type: "password", value: password, temporary: false }], requiredActions: ["CONFIGURE_TOTP"] },
@@ -74,6 +76,15 @@ try {
     assert.equal(new URL(page.url()).searchParams.get("state"), "logout-state");
   }
 
+  if (process.env.THEME_REGISTRATION_EMAIL_LABEL) {
+    const auth = new URL(`${issuer}/protocol/openid-connect/auth`);
+    auth.search = new URLSearchParams({client_id:"theme-browser",redirect_uri:callback,response_type:"code",scope:"openid",ui_locales:"fr",code_challenge:createHash("sha256").update(randomUUID()+randomUUID()).digest("base64url"),code_challenge_method:"S256"}).toString();
+    await page.goto(auth.href);await page.locator('a[href*="registration"]').click();
+    await page.locator('#kc-register-form').waitFor();assert.equal(await page.locator('.hkc-root').getAttribute('lang'),'fr');
+    await page.locator('label[for="email"]').filter({hasText:process.env.THEME_REGISTRATION_EMAIL_LABEL}).waitFor();
+    assert.equal(await page.locator('#kc-register-form').getAttribute('method'),'post');
+    console.log("Native registration profile labels and POST form passed");
+  }
   let verifier = await login("otp-user");
   await page.locator("#kc-totp-settings-form").waitFor();
   assert.equal(await page.locator("#kc-totp-secret-qr-code").evaluate(image => image.complete && image.naturalWidth > 0), true);

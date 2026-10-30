@@ -16,7 +16,7 @@ if(previousArchive&&!previousArchive.equals(nextArchive))throw Error('This Studi
 await copyFile(resolve(temporary,packed.filename),resolve(destination,packed.filename));
 const hash=createHash('sha256');
 async function visit(dir){for(const entry of (await readdir(dir,{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name))){const path=resolve(dir,entry.name);if(entry.isDirectory())await visit(path);else{hash.update(relative(root,path));hash.update(await readFile(path));}}}
-for(const name of ['src','contracts','catalog','scripts'])await visit(resolve(root,name));
+for(const name of ['src','contracts','catalog','scripts','docs/screenshots'])await visit(resolve(root,name));
 for(const name of ['package.json','package-lock.json','README.md']){hash.update(name);hash.update(await readFile(resolve(root,name)));}
 const archive=await readFile(resolve(destination,packed.filename));
 await writeFile(resolve(destination,'theme-studio-source.json'),JSON.stringify({package:packed.name,version:packed.version,source:'Alien6-Studio/hankoshell-keycloak-theme-builder/studio',sourceSha256:hash.digest('hex'),archiveSha256:createHash('sha256').update(archive).digest('hex')},null,2)+'\n');
