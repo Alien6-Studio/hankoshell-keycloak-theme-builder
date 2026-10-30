@@ -7,7 +7,7 @@ Build native Keycloak themes from React and brand configuration. Preview them lo
 
 ## Try it
 
-Requires Node.js 22+. Building a JAR also requires Java 21 and Maven. From a checkout:
+Requires Node.js 22.12+. Building a JAR also requires Java 21 and Maven. From a checkout:
 
 ```sh
 npm ci
