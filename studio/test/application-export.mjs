@@ -8,6 +8,7 @@ profile.blocks.push({id:'sized-divider',type:'divider',zone:'footer',text:'',alt
 profile.blocks[0].style={...profile.blocks[0].style,width:70,align:'center'};
 profile.i18n.messages.he['blocks.'+profile.blocks[0].id+'.text']='הזהות שלי';profile.i18n.messages.he['native.emailLabel']='כתובת הדואר שלי';
 const password=JSON.parse(await readFile(resolve(root,'catalog/themes/essential/pages/account-password.json'),'utf8'));
+for(const page of [profile,security,password,admin])page.appearance.composition='workspace';
 const project={format:'hanko.theme-studio.project/v1',name:'export-test',pages:{'account:0':profile,'account:1':security,'account:2':password,'admin:1':admin},media:[],destination:{mode:'standalone',url:'',realm:'',scope:'realm',client:'',theme:'export-test'},publication:{status:'draft',built:false,deployed:false,attached:false}};
 const server=await staticServer(resolve(root,'site'));let browser,application;
 try{

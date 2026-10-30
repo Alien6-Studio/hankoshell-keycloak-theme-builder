@@ -12,6 +12,7 @@ const png=await readFile(new URL('../catalog/themes/essential/assets/identity.pn
 const report={version:JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8')).version,date:new Date().toISOString(),checks:[],accessibility:[]};
 async function exported(page){const waiting=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter le projet',exact:true}).click();return JSON.parse(await readFile(await(await waiting).path(),'utf8'));}
 const minimal={format:'hanko.theme-studio.project/v1',name:'empty',pages:{'login:0':{blocks:[]}},media:[],destination:{mode:'standalone',url:'',realm:'',scope:'realm',client:'',theme:'empty'},publication:{status:'draft',built:false,deployed:false,attached:false}};
+const catalogue=JSON.parse(await readFile(new URL('../catalog/themes.json',import.meta.url),'utf8'));
 async function importProject(page,document){await page.getByRole('button',{name:'JSON',exact:true}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('tab',{name:'Projet',exact:true}).click();await dialog.getByRole('textbox',{name:'Document JSON'}).fill(JSON.stringify(document));await dialog.getByRole('button',{name:'Importer le projet',exact:true}).click();await dialog.waitFor({state:'detached'});}
 try{
  for(const name of (process.env.STUDIO_BROWSERS||'chromium,firefox,webkit').split(',')){
@@ -75,7 +76,25 @@ try{
    await page.getByRole('button',{name:'4 Déployer',exact:true}).click();await page.getByRole('heading',{name:'Installer le JAR compilé',exact:true}).waitFor();await page.getByRole('button',{name:'Revenir à l’éditeur',exact:true}).click();
    await page.setViewportSize({width:390,height:844});await page.screenshot({path:new URL(name+'-mobile.png',output).pathname,fullPage:true});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'No mobile page overflow');
    assert.equal(requests.filter(url=>!url.startsWith(new URL(server.url).origin)).length,0,'No external network request');assert.equal(requests.filter(url=>url.includes('/__studio/')||url.includes('/api/')).length,0,'No development or backend API required');assert.equal(errors.length,0,errors.join('\n'));
-   report.checks.push({browser:name,version:browser.version(),status:'passed',coverage:['sitemap-XML','hierarchical-navigation','single-screen-navigation','cross-page-undo','static-subpath','strict-script-CSP','catalogue','screen-style-controls','styles-preserve-content','single-model-gallery-entry','live-editing','media-upload','media-remove-undo','drag-drop-undo','JSON-export-import','personal-template-media','saved-reload','RTL','translations','invalid-input-rejection','mobile-layout']});
+    report.checks.push({browser:name,version:browser.version(),status:'passed',coverage:['sitemap-XML','hierarchical-navigation','single-screen-navigation','cross-page-undo','static-subpath','strict-script-CSP','catalogue','screen-style-controls','styles-preserve-content','single-model-gallery-entry','live-editing','media-upload','media-remove-undo','drag-drop-undo','JSON-export-import','personal-template-media','saved-reload','RTL','translations','invalid-input-rejection','mobile-layout']});
+    if(name==='chromium'){
+     const preview=await context.newPage();
+     for(const theme of catalogue.themes.filter(theme=>theme.baseTheme)){
+      await preview.goto(server.url+'?preview='+theme.id);
+      const frame=preview.locator('[data-hanko-frame]');await frame.waitFor();
+      assert.equal(await frame.getAttribute('data-hanko-frame'),theme.style.composition);
+      for(const width of [1512,390]){
+       await preview.setViewportSize({width,height:1100});
+       assert.equal(await preview.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,theme.id+' viewport '+width);
+       const aside=await frame.locator('[data-hanko-slot=aside]').boundingBox(),form=await frame.locator('[data-hanko-slot=form]').boundingBox();
+       if(aside&&form&&aside.width>0&&aside.height>0){
+        const overlap=Math.max(0,Math.min(aside.x+aside.width,form.x+form.width)-Math.max(aside.x,form.x))*Math.max(0,Math.min(aside.y+aside.height,form.y+form.height)-Math.max(aside.y,form.y));
+        assert.ok(overlap<1,theme.id+' content must not overlap its form at '+width);
+       }
+      }
+     }
+     await preview.close();report.checks.at(-1).coverage.push('20-live-compositions','desktop-and-mobile','no-content-form-overlap');
+    }
    await context.close();
    if(name==='chromium'){
     const audit=await browser.newContext({bypassCSP:true,viewport:{width:1512,height:1100}}),view=await audit.newPage();await view.goto(server.url);await view.locator('.gallery-card').first().waitFor();

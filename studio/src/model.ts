@@ -7,15 +7,16 @@ export type BlockType = 'heading' | 'text' | 'image' | 'divider' | 'button';
 export type Layout = 'left' | 'center' | 'right';
 export type ElementStyle = { color?: string; background?: string; fontSize?: number; fontWeight?: number; padding?: number; margin?: number; radius?: number; width?: number; imageHeight?: number; fit?: 'contain' | 'cover'; align?: 'left' | 'center' | 'right'; lineHeight?: number };
 export type Block = { id: string; type: BlockType; zone: Zone; text: string; alt: string; src?: string; href?: string; align: 'left' | 'center' | 'right'; style?: ElementStyle };
-export type Preset = { id: string; name: string; description: string; accent: string; background: string; surface: string; foreground: string; muted: string; radius: number; layout: Layout; font: string; density: 'comfortable' | 'compact' };
+export type Composition = 'card' | 'workspace' | 'developer' | 'split' | 'console' | 'editorial' | 'minimal' | 'spotlight';
+export type Preset = { composition?: Composition; fieldStyle?: 'outline'|'underline'|'filled'; actionSize?: 'full'|'compact'; id: string; name: string; description: string; accent: string; background: string; surface: string; foreground: string; muted: string; radius: number; layout: Layout; font: string; density: 'comfortable' | 'compact' };
 export type NativeCopy = { title: string; description: string; action: string; usernameLabel: string; usernameExample: string; passwordLabel: string; passwordExample: string; otpLabel: string; otpExample: string; nameLabel: string; nameExample: string; emailLabel: string; emailExample: string; row0: string; row1: string; row2: string; row0Action: string; row1Action: string; row2Action: string };
 export type NativePart = keyof NativeCopy;
 export type Page = {
   i18n?: PageI18n;
   blocks: Block[]; preset: string; layout: Layout; subject: string; radius: number; accent: string;
   brand: { name: string; mark: string; logo?: string; alt: string; size: number; fontSize: number; align: 'left' | 'center' | 'right'; color: string };
-  appearance: { background: string; surface: string; foreground: string; muted: string; font: string; density: 'comfortable' | 'compact'; padding: number; gap: number; contentWidth: number; backgroundImage?: string; backgroundFit: 'cover' | 'contain' };
-  native: { copy: NativeCopy; styles: Partial<Record<NativePart, ElementStyle>>; background: string; foreground: string; inputBackground: string; inputBorder: string; padding: number; radius: number; gap: number; buttonBackground: string; buttonColor: string };
+  appearance: { composition?: Composition; background: string; surface: string; foreground: string; muted: string; font: string; density: 'comfortable' | 'compact'; padding: number; gap: number; contentWidth: number; backgroundImage?: string; backgroundFit: 'cover' | 'contain' };
+  native: { fieldStyle?: 'outline'|'underline'|'filled'; actionSize?: 'full'|'compact'; copy: NativeCopy; styles: Partial<Record<NativePart, ElementStyle>>; background: string; foreground: string; inputBackground: string; inputBorder: string; padding: number; radius: number; gap: number; buttonBackground: string; buttonColor: string };
 };
 export type Asset = { id: string; name: string; src: string; size: number };
 export const families: Record<Family, { label: string; pages: string[]; attachment: string }> = {
@@ -53,8 +54,8 @@ export function initialPage(family: Family, pageIndex = 0): Page {
 export function stylePage(page: Page, preset: Preset): Page {
   return { ...page, preset: preset.id, layout: preset.layout, radius: preset.radius, accent: preset.accent,
     brand: { ...page.brand, color: preset.foreground },
-    appearance: { ...page.appearance, background: preset.background, surface: preset.surface, foreground: preset.foreground, muted: preset.muted, font: preset.font, density: preset.density, padding: preset.density === 'compact' ? 18 : 24, gap: preset.density === 'compact' ? 12 : 20 },
-    native: { ...page.native, background: preset.surface, foreground: preset.foreground, inputBackground: preset.surface, inputBorder: preset.muted, buttonBackground: preset.accent, buttonColor: accentForeground(preset.accent), radius: preset.radius, padding: preset.density === 'compact' ? 14 : 20 },
+    appearance: { ...page.appearance, composition: preset.composition ?? page.appearance.composition, background: preset.background, surface: preset.surface, foreground: preset.foreground, muted: preset.muted, font: preset.font, density: preset.density, padding: preset.density === 'compact' ? 18 : 24, gap: preset.density === 'compact' ? 12 : 20 },
+    native: { ...page.native, fieldStyle:preset.fieldStyle??page.native.fieldStyle,actionSize:preset.actionSize??page.native.actionSize, background: preset.surface, foreground: preset.foreground, inputBackground: preset.surface, inputBorder: preset.muted, buttonBackground: preset.accent, buttonColor: accentForeground(preset.accent), radius: preset.radius, padding: preset.density === 'compact' ? 14 : 20 },
   };
 }
 
@@ -79,7 +80,7 @@ export const nativePartNames: Record<NativePart, string> = { title: 'Titre du fo
 export const sample = (text: string) => text.replaceAll('{{prénom}}', 'Camille').replaceAll('{{organisation}}', 'Aurora');
 export function checks(page: Page) {
   return [
-    { label: 'Un titre permet d’identifier l’écran', ok: page.blocks.some(b => b.type === 'heading' && b.text.trim()) },
+    { label: 'Un titre permet d’identifier l’écran', ok: page.blocks.some(b => b.type === 'heading' && b.text.trim()) || !!page.native.copy.title.trim() },
     { label: 'Tous les visuels ont une image et un texte alternatif', ok: page.blocks.filter(b => b.type === 'image').every(b => b.src && b.alt.trim()) },
     { label: 'Les textes ajoutés sont renseignés', ok: page.blocks.filter(b => b.type === 'text').every(b => b.text.trim()) },
     { label: 'Les fonctions Keycloak sont conservées', ok: true },

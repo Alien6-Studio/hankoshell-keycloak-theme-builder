@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "vertex",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#fafafa",
+      "foreground": "#171717",
+      "primary": "#171717",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#606060",
+      "border": "#606060",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#fafafa",
+      "foreground": "#171717",
+      "primary": "#171717",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#606060",
+      "border": "#606060",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "6px",
+    "controlRadius": "6px",
+    "contentWidth": "440px"
+  }
+}

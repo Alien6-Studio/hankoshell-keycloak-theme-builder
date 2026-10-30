@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "grove",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f1f5f2",
+      "foreground": "#1e3029",
+      "primary": "#006b4f",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#53675d",
+      "border": "#53675d",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f1f5f2",
+      "foreground": "#1e3029",
+      "primary": "#006b4f",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#53675d",
+      "border": "#53675d",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "12px",
+    "controlRadius": "12px",
+    "contentWidth": "440px"
+  }
+}

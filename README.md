@@ -11,7 +11,7 @@ Build native Keycloak themes from React and brand configuration. Preview them lo
 
 Start from a complete theme, an individual page or a reusable section.
 
-![Theme Studio gallery with complete identity themes and market-inspired styles](studio/docs/screenshots/gallery.png)
+![Theme Studio gallery with complete identity theme compositions](studio/docs/screenshots/gallery.png)
 
 Edit text, images and styles live, with guided drag-and-drop blocks and image uploads.
 
@@ -154,4 +154,4 @@ After the first public release, the [Keycloak extensions catalog](https://www.ke
 
 Built with [Keycloakify](https://docs.keycloakify.dev/). See the [Keycloak theme guide](https://www.keycloak.org/ui-customization/themes) for server configuration. Apache-2.0 licensed.
 
-The Studio navigation can be inspected in [studio/sitemap.xml](studio/sitemap.xml). The [catalogue](studio/catalog) contains 23 complete themes, including independent starting points inspired by Microsoft Entra, Google Workspace, GitHub, GitLab, Okta, Auth0, AWS, Salesforce and other familiar interfaces. Each theme provides 18 editable screens and eight content languages.
+The Studio navigation can be inspected in [studio/sitemap.xml](studio/sitemap.xml). The [catalogue](studio/catalog) contains 23 complete themes with independent names and designs. Each theme provides 18 editable screens and eight content languages.

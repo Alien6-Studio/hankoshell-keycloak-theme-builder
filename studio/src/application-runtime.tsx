@@ -6,8 +6,8 @@ export interface IdentityPage {
  blocks:{id:string;type:'heading'|'text'|'image'|'divider'|'button';zone:'header'|'aside'|'footer';text:string;alt:string;src?:string;href?:string;align:'left'|'center'|'right';style?:IdentityElementStyle}[];
  layout:'left'|'center'|'right';accent:string;radius:number;
  brand:{name:string;mark:string;logo?:string;alt:string;size:number;fontSize:number;align:string;color:string};
- appearance:{background:string;foreground:string;surface:string;muted:string;font:string;padding:number;gap:number;contentWidth:number;backgroundImage?:string;backgroundFit:string};
- native:{copy:Record<string,string>;styles:Partial<Record<string,IdentityElementStyle>>;background:string;foreground:string;inputBackground:string;inputBorder:string;padding:number;radius:number;gap:number;buttonBackground:string;buttonColor:string};
+ appearance:{composition?:string;background:string;foreground:string;surface:string;muted:string;font:string;padding:number;gap:number;contentWidth:number;backgroundImage?:string;backgroundFit:string};
+ native:{fieldStyle?:string;actionSize?:string;copy:Record<string,string>;styles:Partial<Record<string,IdentityElementStyle>>;background:string;foreground:string;inputBackground:string;inputBorder:string;padding:number;radius:number;gap:number;buttonBackground:string;buttonColor:string};
  i18n?:{defaultLocale:string;supportedLocales:readonly string[];messages:Partial<Record<string,Record<string,string>>>};
 }
 export interface IdentityProject {name:string;pages:Record<string,IdentityPage>;navigation?:{id:string;parent?:string;labels:Record<string,string>}[]}
@@ -31,7 +31,7 @@ function translated(source:IdentityPage,language?:string){
 }
 
 /** Bind an exported, validated composition to the host's authenticated content. */
-export function createIdentityTheme(project:IdentityProject){
+export function createIdentityTheme(project:IdentityProject,frameCss=''){
  const screens=Object.keys(project.pages).filter(id=>/^(account:[0-4]|admin:[0-5]|welcome:0)$/.test(id));
  if(!screens.length)throw Error('The project contains no application screen.');
  function IdentityScreen({screen,initialScreen,locale,renderNative,onNavigate}:IdentityScreenProps){
@@ -40,7 +40,7 @@ export function createIdentityTheme(project:IdentityProject){
   const {page,locale:language}=translated(project.pages[current],locale),a=page.appearance,n=page.native;
   const navigate=(id:string)=>{if(!screens.includes(id))throw Error('Unknown application screen: '+id);if(!screen)setSelected(id);onNavigate?.(id);};
   const context:IdentityScreenContext={screen:current,page,locale:language,onNavigate:navigate};
-  function zone(name:string){return <div className={'identity-zone identity-'+name}>{page.blocks.filter(block=>block.zone===name).map(block=>{
+  function zone(name:string){return <div className={'identity-zone identity-'+name} data-hanko-slot={name}>{page.blocks.filter(block=>block.zone===name).map(block=>{
    const style={textAlign:block.align,whiteSpace:'pre-wrap',overflowWrap:'anywhere',...elementStyle(block.style)} as CSSProperties;
    const align=block.style?.align||block.align;
    const frame:CSSProperties={width:block.style?.width?block.style.width+'%':undefined,marginInline:align==='center'?'auto':align==='right'?'auto 0':undefined};
@@ -63,12 +63,12 @@ export function createIdentityTheme(project:IdentityProject){
   while(!primary.some(node=>node.id===active)&&!visited.has(active)){visited.add(active);const parent=familyNodes.find(node=>node.id===active)?.parent;if(!parent)break;active=parent;}
   const secondary=familyNodes.filter(node=>node.parent===active&&!primary.some(root=>root.id===node.id));
   const label=(node:typeof navigation[number])=>node.labels[language]||node.labels[language.split('-')[0]]||translated(project.pages[node.id],language).page.native.copy.title;
-  return <div className="hanko-identity-composition" data-screen={current} lang={language} dir={['ar','he','fa','ur'].includes(language.split('-')[0])?'rtl':'ltr'} style={{minHeight:'100%',boxSizing:'border-box',background:a.background,color:a.foreground,fontFamily:a.font,padding:a.padding,backgroundImage:a.backgroundImage?`url(${JSON.stringify(a.backgroundImage)})`:undefined,backgroundSize:a.backgroundFit,backgroundPosition:'center','--identity-gap':a.gap+'px'} as CSSProperties}>
-   <style>{identityCss}</style><div style={{maxWidth:a.contentWidth,marginInline:'auto'}}>
-    <div className="identity-brand" style={{justifyContent:page.brand.align==='center'?'center':page.brand.align==='right'?'flex-end':'flex-start',color:page.brand.color,fontSize:page.brand.fontSize}}>{page.brand.logo?<img src={page.brand.logo} alt={page.brand.alt} style={{height:page.brand.size,maxWidth:180,objectFit:'contain'}}/>:<span style={{display:'grid',placeItems:'center',width:page.brand.size,height:page.brand.size,borderRadius:6,background:page.accent,color:'#fff'}}>{page.brand.mark}</span>}<strong>{page.brand.name}</strong></div>
-    {(primary.length>1||secondary.length>0)&&<nav className="identity-navigation" aria-label={language==='fr'?'Navigation de l’application':'Application navigation'}>{primary.map(node=><button type="button" key={node.id} aria-current={node.id===current?'page':node.id===active?'location':undefined} onClick={()=>navigate(node.id)}>{label(node)}</button>)}</nav>}
-    {secondary.length>0&&<nav className="identity-navigation identity-subpages" aria-label={language==='fr'?'Sous-pages':'Subpages'}>{secondary.map(node=><button type="button" key={node.id} aria-current={node.id===current?'page':undefined} onClick={()=>navigate(node.id)}>{label(node)}</button>)}</nav>}
-    {zone('header')}<div className="identity-body" data-layout={page.layout}>{zone('aside')}<section className="identity-native" style={{background:n.background,color:n.foreground,padding:n.padding,borderRadius:n.radius,gap:n.gap}}>
+  return <div className="hanko-identity-composition" data-screen={current} lang={language} dir={['ar','he','fa','ur'].includes(language.split('-')[0])?'rtl':'ltr'} style={{minHeight:'100%',boxSizing:'border-box',background:a.background,color:a.foreground,fontFamily:a.font,padding:a.padding,backgroundImage:a.backgroundImage?`url(${JSON.stringify(a.backgroundImage)})`:undefined,backgroundSize:a.backgroundFit,backgroundPosition:'center','--hf-bg':a.background,'--hf-surface':a.surface,'--hf-fg':a.foreground,'--hf-muted':a.muted,'--hf-accent':page.accent,'--hf-radius':page.radius+'px','--hf-padding':a.padding+'px','--identity-gap':a.gap+'px'} as CSSProperties}>
+   <style>{identityCss}{frameCss}</style><div data-hanko-frame={a.composition} data-hanko-family={family} style={{maxWidth:a.contentWidth,marginInline:'auto'}}>
+    <div className="identity-brand" data-hanko-slot="brand" style={{justifyContent:page.brand.align==='center'?'center':page.brand.align==='right'?'flex-end':'flex-start',color:page.brand.color,fontSize:page.brand.fontSize}}>{page.brand.logo?<img src={page.brand.logo} alt={page.brand.alt} style={{height:page.brand.size,maxWidth:180,objectFit:'contain'}}/>:<span style={{display:'grid',placeItems:'center',width:page.brand.size,height:page.brand.size,borderRadius:6,background:page.accent,color:n.buttonColor}}>{page.brand.mark}</span>}<strong>{page.brand.name}</strong></div>
+    {(primary.length>1||secondary.length>0)&&<nav className="identity-navigation" data-hanko-slot="nav" aria-label={language==='fr'?'Navigation de l’application':'Application navigation'}>{primary.map(node=><button type="button" key={node.id} aria-current={node.id===current?'page':node.id===active?'location':undefined} onClick={()=>navigate(node.id)}>{label(node)}</button>)}</nav>}
+    {secondary.length>0&&<nav className="identity-navigation identity-subpages" data-hanko-slot="subnav" aria-label={language==='fr'?'Sous-pages':'Subpages'}>{secondary.map(node=><button type="button" key={node.id} aria-current={node.id===current?'page':undefined} onClick={()=>navigate(node.id)}>{label(node)}</button>)}</nav>}
+    {zone('header')}<div className="identity-body" data-hanko-slot="body" data-layout={page.layout}>{zone('aside')}<section className="identity-native" data-hanko-slot="form" data-hanko-field={n.fieldStyle} data-hanko-action={n.actionSize} style={{background:n.background,color:n.foreground,padding:n.padding,borderRadius:n.radius,gap:n.gap}}>
      <h1 style={{fontSize:20,lineHeight:1.25,margin:0,...elementStyle(n.styles.title)}}>{n.copy.title}</h1>
      {n.copy.description&&<p style={{margin:0,fontSize:13,whiteSpace:'pre-wrap',...elementStyle(n.styles.description)}}>{n.copy.description}</p>}
      {renderNative(context)}
@@ -81,7 +81,7 @@ export function createIdentityTheme(project:IdentityProject){
 
 export function IdentityInput({context,part,value,onChange,...props}:{context:IdentityScreenContext;part:'name'|'email'|'username'|'password'|'otp';value:string;onChange:InputHTMLAttributes<HTMLInputElement>['onChange']}&Omit<InputHTMLAttributes<HTMLInputElement>,'value'|'onChange'>){
  const id=useId(),n=context.page.native,label=part+'Label',example=part+'Example';
- return <div className="identity-field"><label htmlFor={id} style={{fontSize:13,...elementStyle(n.styles[label])}}>{n.copy[label]}</label><input {...props} id={id} value={value} onChange={onChange} placeholder={props.placeholder??n.copy[example]} type={props.type??(part==='password'?'password':part==='email'?'email':'text')} style={{boxSizing:'border-box',width:'100%',font:'inherit',padding:'10px 12px',border:'1px solid '+n.inputBorder,borderRadius:context.page.radius,background:n.inputBackground,color:n.foreground,...elementStyle(n.styles[example]),...props.style}}/></div>;
+ return <div className="identity-field"><label htmlFor={id} style={{fontSize:13,...elementStyle(n.styles[label])}}>{n.copy[label]}</label><input {...props} id={id} value={value} onChange={onChange} placeholder={props.placeholder??n.copy[example]} type={props.type??(part==='password'?'password':part==='email'?'email':'text')} style={{boxSizing:'border-box',width:'100%',font:'inherit',padding:'10px 12px',border:'1px solid '+n.inputBorder,borderWidth:n.fieldStyle==='underline'||n.fieldStyle==='filled'?'0 0 1px':undefined,borderRadius:context.page.radius,background:n.inputBackground,color:n.foreground,...elementStyle(n.styles[example]),...props.style}}/></div>;
 }
 export function IdentityButton({context,children,...props}:ButtonHTMLAttributes<HTMLButtonElement>&{context:IdentityScreenContext}){
  const n=context.page.native;return <button {...props} type={props.type||'button'} style={{font:'inherit',border:0,padding:'10px 16px',borderRadius:context.page.radius,background:n.buttonBackground,color:n.buttonColor,...elementStyle(n.styles.action),...props.style}}>{children??n.copy.action}</button>;

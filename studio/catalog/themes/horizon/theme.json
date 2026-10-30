@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "horizon",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#eef4ff",
+      "foreground": "#032d60",
+      "primary": "#0176d3",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#54647d",
+      "border": "#54647d",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#eef4ff",
+      "foreground": "#032d60",
+      "primary": "#0176d3",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#54647d",
+      "border": "#54647d",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "12px",
+    "controlRadius": "12px",
+    "contentWidth": "440px"
+  }
+}

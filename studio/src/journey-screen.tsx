@@ -1,5 +1,5 @@
 import {activePrimary,navigationScreen,primaryScreens,rootScreens,type NavigationScreen} from './navigation';
-import { useState, type CSSProperties, type FormEvent } from 'react';
+import { useId, useState, type CSSProperties, type FormEvent } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Eye, LockKeyhole, ShieldCheck, Smartphone } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -48,7 +48,7 @@ export function ApplicationNavigation({ family, index, locale, onNavigate }: { f
   const entries = family==='account'||family==='admin'?primaryScreens(family).map(node=>node.id):[];
   const activeKey=activePrimary(`${family}:${index}`)?.id;
   if (!entries.length) return null;
-  return <nav className="application-nav" aria-label="Navigation de l’application">{entries.map(key => {
+  return <nav className="application-nav" data-hanko-slot="nav" aria-label="Navigation de l’application">{entries.map(key => {
     const screen = journeyScreens[key];
     const active = key === activeKey;
     return <button type="button" key={key} aria-current={active ? 'page' : undefined} onClick={e => { e.stopPropagation(); onNavigate(key); }}>{journeyText(screen.label,locale)}</button>;
@@ -60,6 +60,7 @@ export function JourneyScreen({ page, family, index, locale, testing, selected, 
   onSelect: (part: NativePart | null) => void; onChange: (part: NativePart, value: string) => void; onNavigate: Navigate;
   demo: DemoState; onDemo: (next: DemoState) => void; entity?: string;
 }) {
+  const instance=useId();
   const screen = screenAt(family,index);
   const kind = screen?.kind;
   const t = (value: string) => journeyText(value,locale);
@@ -83,8 +84,8 @@ export function JourneyScreen({ page, family, index, locale, testing, selected, 
   function field(name: 'username' | 'password' | 'email' | 'name' | 'otp', type = 'text') {
     const label = `${name}Label` as NativePart, example = `${name}Example` as NativePart;
     const password = type === 'password';
-    const id = `journey-${family}-${index}-${name}`;
-    return <div className="native-field" key={name}><label htmlFor={id}>{text(label,'native-label',false)}</label><Input id={id} aria-label={testing ? page.native.copy[label] : `Aperçu ${page.native.copy[label]}`} dir={password || name === 'email' || name === 'username' || name === 'otp' ? 'ltr' : undefined} readOnly={!testing} value={testing ? values[name] || '' : ''} placeholder={page.native.copy[example]} type={testing ? type : 'text'} autoComplete={name === 'otp'?'one-time-code':'off'} required={testing} pattern={testing && name === 'otp' ? '[0-9]{6}' : undefined} inputMode={name === 'otp' ? 'numeric' : undefined} maxLength={name === 'otp'?6:undefined} style={{ background:page.native.inputBackground, borderColor:page.native.inputBorder, ...style(example) }} onChange={e => setValues(p => ({...p,[name]:name === 'otp'?e.target.value.replace(/[^0-9]/g,'').slice(0,6):e.target.value}))} onPaste={event=>{if(name === 'otp' && testing) {event.preventDefault();const value=event.clipboardData.getData('text/plain').replace(/[^0-9]/g,'').slice(0,6);setValues(p=>({...p,otp:value}));}}} onClick={e => { e.stopPropagation(); if (!testing) onSelect(example); }} /></div>;
+    const id = `journey-${family}-${index}-${instance}-${name}`;
+    return <div className="native-field" key={name}><label htmlFor={id}>{text(label,'native-label',false)}</label><Input id={id} aria-label={testing ? page.native.copy[label] : `Aperçu ${page.native.copy[label]}`} dir={password || name === 'email' || name === 'username' || name === 'otp' ? 'ltr' : undefined} readOnly={!testing} value={testing ? values[name] || '' : ''} placeholder={page.native.copy[example]} type={testing ? type : 'text'} autoComplete={name === 'otp'?'one-time-code':'off'} required={testing} pattern={testing && name === 'otp' ? '[0-9]{6}' : undefined} inputMode={name === 'otp' ? 'numeric' : undefined} maxLength={name === 'otp'?6:undefined} style={{ background:page.native.inputBackground, color:page.native.foreground,borderWidth:page.native.fieldStyle==='underline'?'0 0 1px':page.native.fieldStyle==='filled'?'0 0 1px':undefined,borderColor:page.native.inputBorder, ...style(example) }} onChange={e => setValues(p => ({...p,[name]:name === 'otp'?e.target.value.replace(/[^0-9]/g,'').slice(0,6):e.target.value}))} onPaste={event=>{if(name === 'otp' && testing) {event.preventDefault();const value=event.clipboardData.getData('text/plain').replace(/[^0-9]/g,'').slice(0,6);setValues(p=>({...p,otp:value}));}}} onClick={e => { e.stopPropagation(); if (!testing) onSelect(example); }} /></div>;
   }
   function primary() {
     const styles = { background:page.native.buttonBackground, color:page.native.buttonColor, ...style('action') };
@@ -114,7 +115,7 @@ export function JourneyScreen({ page, family, index, locale, testing, selected, 
     </div>;
   }
   const hasForm = ['profile','password','mfa','user','client'].includes(kind || '') || family === 'login' || family === 'email';
-  return <section className={`native-card journey-native kind-${kind || family}`} data-selected={!testing && selected?.startsWith('@native')} aria-label="Fonctions Keycloak protégées" style={{ background:page.native.background,color:page.native.foreground,padding:page.native.padding,borderRadius:page.native.radius,'--field-gap':page.native.gap+'px' } as CSSProperties} onClick={e => {e.stopPropagation();if(!testing) onSelect(null);}}>
+  return <section className={`native-card journey-native kind-${kind || family}`} data-hanko-slot="form" data-hanko-field={page.native.fieldStyle} data-hanko-action={page.native.actionSize} data-selected={!testing && selected?.startsWith('@native')} aria-label="Fonctions Keycloak protégées" style={{ background:page.native.background,color:page.native.foreground,padding:page.native.padding,borderRadius:page.native.radius,'--page-fg':page.native.foreground,'--page-muted':page.native.styles.description?.color||page.appearance.muted,'--field-gap':page.native.gap+'px' } as CSSProperties} onClick={e => {e.stopPropagation();if(!testing) onSelect(null);}}>
     {!testing && <button type="button" className="native-lock" aria-label="Formulaire · apparence modifiable : personnaliser" onClick={e => {e.stopPropagation();onSelect(null);}}><LockKeyhole size={12}/>Formulaire · apparence modifiable</button>}
     {screen?.parent && <button type="button" className="journey-back" onClick={() => onNavigate(screen.parent!)}><ArrowLeft size={13}/>{t(journeyScreens[screen.parent].label)}</button>}
     <h2>{text('title')}</h2><p className="native-description">{text('description')}</p>

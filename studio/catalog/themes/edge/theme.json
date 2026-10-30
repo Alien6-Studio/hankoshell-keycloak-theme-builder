@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "edge",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Verdana, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#fff7ed",
+      "foreground": "#2b241e",
+      "primary": "#b84800",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#6c5e50",
+      "border": "#6c5e50",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#fff7ed",
+      "foreground": "#2b241e",
+      "primary": "#b84800",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#6c5e50",
+      "border": "#6c5e50",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "6px",
+    "controlRadius": "6px",
+    "contentWidth": "440px"
+  }
+}

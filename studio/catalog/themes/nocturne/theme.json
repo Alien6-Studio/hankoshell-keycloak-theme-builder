@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "nocturne",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#101114",
+      "foreground": "#f4f4f5",
+      "primary": "#c3bcff",
+      "primaryForeground": "#000000",
+      "card": "#191a20",
+      "muted": "#b0b2be",
+      "border": "#b0b2be",
+      "input": "#191a20"
+    },
+    "dark": {
+      "background": "#101114",
+      "foreground": "#f4f4f5",
+      "primary": "#c3bcff",
+      "primaryForeground": "#000000",
+      "card": "#191a20",
+      "muted": "#b0b2be",
+      "border": "#b0b2be",
+      "input": "#191a20"
+    }
+  },
+  "layout": {
+    "cardRadius": "10px",
+    "controlRadius": "10px",
+    "contentWidth": "440px"
+  }
+}

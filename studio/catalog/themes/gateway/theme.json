@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "gateway",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#111827",
+      "foreground": "#f8fafc",
+      "primary": "#c23d00",
+      "primaryForeground": "#ffffff",
+      "card": "#1f2937",
+      "muted": "#b0b9ca",
+      "border": "#b0b9ca",
+      "input": "#1f2937"
+    },
+    "dark": {
+      "background": "#111827",
+      "foreground": "#f8fafc",
+      "primary": "#c23d00",
+      "primaryForeground": "#ffffff",
+      "card": "#1f2937",
+      "muted": "#b0b9ca",
+      "border": "#b0b9ca",
+      "input": "#1f2937"
+    }
+  },
+  "layout": {
+    "cardRadius": "8px",
+    "controlRadius": "8px",
+    "contentWidth": "440px"
+  }
+}

@@ -4,6 +4,7 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize/index.js";
 import type { KcContext } from "./login/KcContext.js";
 import type { I18n } from "./login/i18n.js";
 import type { CompositionPage, CompositionStyle, StudioComposition } from "./composition-types.js";
+import {frameCss} from "./composition-frame.js";
 import { baseCss } from "./styles.js";
 import { compositionPage, nativePages } from "./composition-model.js";
 
@@ -17,7 +18,7 @@ export function CompositionTemplate(props: Readonly<TemplateProps<KcContext, I18
   const customized = nativePages.has(kcContext.pageId);
   const message = props.displayMessage !== false && (kcContext.message?.type !== "warning" || !kcContext.isAppInitiatedAction) ? kcContext.message : undefined;
   function zone(name: string) {
-    return <div className={"hkc-zone hkc-" + name}>{page.blocks.filter(block => block.zone === name).map(block => {
+    return <div className={"hkc-zone hkc-" + name} data-hanko-slot={name}>{page.blocks.filter(block => block.zone === name).map(block => {
       const style = { textAlign: block.align, ...elementStyle(block.style), whiteSpace: "pre-wrap", overflowWrap: "anywhere" } as CSSProperties;
       const align = block.style?.align || block.align;
       return <div className="hkc-block" data-block={block.id} key={block.id} style={{width:block.style?.width ? block.style.width+"%" : undefined,marginInline:align==="center" ? "auto" : align==="right" ? "auto 0" : undefined}}>{block.type === "image" ? block.src && <img src={block.src} alt={block.alt} style={{ ...style, maxWidth: "100%", height: block.style?.imageHeight, maxHeight: block.style?.imageHeight || 240, objectFit: block.style?.fit || "contain", borderRadius: block.style?.radius ?? page.radius }} />
@@ -26,11 +27,11 @@ export function CompositionTemplate(props: Readonly<TemplateProps<KcContext, I18
             : block.type === "heading" ? <h2 style={{ fontSize: 36, fontWeight: 600, lineHeight: 1.15, margin: 0, ...style }}>{block.text}</h2> : <p style={{ margin: 0, fontSize: 12, lineHeight: 1.65, ...style }}>{block.text}</p>}</div>;
     })}</div>;
   }
-  const variables = { "--bg": a.background, "--bg-card": n.background, "--fg": n.foreground, "--fg-muted": a.muted, "--primary": n.buttonBackground, "--primary-fg": n.buttonColor, "--border": n.inputBorder, "--input-bg": n.inputBackground, "--font-family": a.font, "--control-radius": page.radius + "px", "--card-radius": n.radius + "px", "--content-width": "100%", "--hkc-gap": a.gap + "px", "--hkc-native-gap": n.gap + "px" } as CSSProperties;
+  const variables = { "--hf-bg":a.background,"--hf-surface":a.surface,"--hf-fg":a.foreground,"--hf-muted":a.muted,"--hf-accent":page.accent,"--hf-radius":page.radius+"px","--hf-padding":a.padding+"px","--bg": a.background, "--bg-card": n.background, "--fg": n.foreground, "--fg-muted": a.muted, "--primary": n.buttonBackground, "--primary-fg": n.buttonColor, "--border": n.inputBorder, "--input-bg": n.inputBackground, "--font-family": a.font, "--control-radius": page.radius + "px", "--card-radius": n.radius + "px", "--content-width": "100%", "--hkc-gap": a.gap + "px", "--hkc-native-gap": n.gap + "px" } as CSSProperties;
   return <div className="hk-theme hkc-root" lang={locale} dir={["ar", "he", "fa", "ur"].includes(locale.split("-")[0]!) ? "rtl" : "ltr"} style={{ ...variables, minHeight: "100svh", boxSizing: "border-box", background: a.background, color: a.foreground, padding: a.padding, fontFamily: a.font, backgroundImage: a.backgroundImage ? `url(${JSON.stringify(a.backgroundImage)})` : undefined, backgroundSize: a.backgroundFit, backgroundPosition: "center" }}>
-    <style>{baseCss}{compositionCss}</style><div className="hkc-page" data-layout={page.layout} style={{ maxWidth: a.contentWidth, marginInline: "auto" }}>
-      <div className="hkc-brand" style={{ justifyContent: page.brand.align === "center" ? "center" : page.brand.align === "right" ? "flex-end" : "flex-start", color: page.brand.color, fontSize: page.brand.fontSize }}>{page.brand.logo ? <img src={page.brand.logo} alt={page.brand.alt} style={{ maxWidth: 180, height: page.brand.size, objectFit: "contain" }} /> : <span style={{ display: "grid", placeItems: "center", width: page.brand.size, height: page.brand.size, borderRadius: 6, background: page.accent, color: "white" }}>{page.brand.mark}</span>}<strong>{page.brand.name}</strong></div>
-      {zone("header")}<div className="hkc-body">{zone("aside")}<section className="hkc-form" style={{ background: n.background, color: n.foreground, padding: n.padding, borderRadius: n.radius }}>
+    <style>{baseCss}{compositionCss}{frameCss}</style><div className="hkc-page" data-hanko-frame={a.composition} data-hanko-family="login" data-layout={page.layout} style={{ maxWidth: a.contentWidth, marginInline: "auto" }}>
+      <div className="hkc-brand" data-hanko-slot="brand" style={{ justifyContent: page.brand.align === "center" ? "center" : page.brand.align === "right" ? "flex-end" : "flex-start", color: page.brand.color, fontSize: page.brand.fontSize }}>{page.brand.logo ? <img src={page.brand.logo} alt={page.brand.alt} style={{ maxWidth: 180, height: page.brand.size, objectFit: "contain" }} /> : <span style={{ display: "grid", placeItems: "center", width: page.brand.size, height: page.brand.size, borderRadius: 6, background: page.accent, color: n.buttonColor }}>{page.brand.mark}</span>}<strong>{page.brand.name}</strong></div>
+      {zone("header")}<div className="hkc-body" data-hanko-slot="body">{zone("aside")}<section className="hkc-form" data-hanko-slot="form" data-hanko-field={n.fieldStyle} data-hanko-action={n.actionSize} style={{ background: n.background, color: n.foreground, padding: n.padding, borderRadius: n.radius }}>
         {props.headerNode && <h1 id="kc-page-title" style={elementStyle(n.styles.title)}>{customized ? n.copy.title : props.headerNode}</h1>}
         {customized && n.copy.description && <p className="hk-help" style={elementStyle(n.styles.description)}>{n.copy.description}</p>}
         {props.displayRequiredFields && <p className="hk-help">* {i18n.msg("requiredFields")}</p>}

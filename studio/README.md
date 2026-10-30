@@ -73,7 +73,7 @@ Load this browser component without SSR in Next.js. The host owns authentication
 
 ## Catalogue source
 
-`catalog/` is the bundled theme library. Essential, Editorial and Midnight provide the shared screen documents and original assets. Twenty independent market-inspired styles reuse those documents; applying a theme materializes a standalone project with its colors, typography, spacing and layout. They include Microsoft Entra, Google Workspace, GitHub, GitLab, Okta, Auth0, AWS Console, Salesforce, Atlassian, Slack, Notion, Linear, Stripe, Shopify, Vercel, Dropbox, HubSpot, Zoom, Datadog and Cloudflare. Vendor names describe inspiration; no vendor logos or assets are included. Validate changes with `npm test` and inspect their previews.
+`catalog/` is the bundled theme library. Essential, Editorial and Midnight provide shared screen documents and original assets. Atlas, Orbit, Forge, Foundry, Harbor, Gateway, Control, Horizon, Relay, Mosaic, Folio, Nocturne, Current, Grove, Vertex, Canvas, Ember, Gather, Prism and Edge add complete compositions with distinct form treatments, hierarchy, artwork and navigation. Applying a theme creates an independent project. No third-party names, logos or assets identify these templates. Validate changes with `npm test` and inspect their live previews.
 
 ## Export boundaries
 

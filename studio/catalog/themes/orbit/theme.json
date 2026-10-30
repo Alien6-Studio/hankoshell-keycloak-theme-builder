@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "orbit",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f0f4f9",
+      "foreground": "#1f1f1f",
+      "primary": "#0b57d0",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#4f5b69",
+      "border": "#4f5b69",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f0f4f9",
+      "foreground": "#1f1f1f",
+      "primary": "#0b57d0",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#4f5b69",
+      "border": "#4f5b69",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "28px",
+    "controlRadius": "12px",
+    "contentWidth": "440px"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "ember",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#fff5ef",
+      "foreground": "#243e54",
+      "primary": "#b44018",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#596b78",
+      "border": "#596b78",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#fff5ef",
+      "foreground": "#243e54",
+      "primary": "#b44018",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#596b78",
+      "border": "#596b78",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "8px",
+    "controlRadius": "8px",
+    "contentWidth": "440px"
+  }
+}

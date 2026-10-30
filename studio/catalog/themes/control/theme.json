@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "control",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f2f3f3",
+      "foreground": "#16191f",
+      "primary": "#0972d3",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#535e6b",
+      "border": "#535e6b",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f2f3f3",
+      "foreground": "#16191f",
+      "primary": "#0972d3",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#535e6b",
+      "border": "#535e6b",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "2px",
+    "controlRadius": "2px",
+    "contentWidth": "440px"
+  }
+}

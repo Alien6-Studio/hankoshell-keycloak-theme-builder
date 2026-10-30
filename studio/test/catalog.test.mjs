@@ -27,24 +27,31 @@ test('complete themes contain every guided screen and valid portable documents',
  }
  assert.equal(catalogue.sections.length,4);
 });
-test('market-inspired themes materialize distinct styles without changing shared pages',async()=>{
- const expected=['microsoft-entra','google-workspace','github','gitlab','okta','auth0','aws-console','salesforce','atlassian','slack','notion','linear','stripe','shopify','vercel','dropbox','hubspot','zoom','datadog','cloudflare'];
+test('named composition themes materialize distinct styles without changing shared pages',async()=>{
+ const expected=['atlas','orbit','forge','foundry','harbor','gateway','control','horizon','relay','mosaic','folio','nocturne','current','grove','vertex','canvas','ember','gather','prism','edge'];
  const snapshot=JSON.stringify(templates);
  for(const id of expected){
   const theme=catalogue.themes.find(theme=>theme.id===id);assert.ok(theme?.complete,id);
   const base=catalogue.themes.find(entry=>entry.id===theme.baseTheme);assert.ok(base?.complete);assert.equal(base.baseTheme,undefined,'Only a concrete base may be shared');
   const pages=materializeThemePages(theme,templates);
   for(const [key,page] of Object.entries(pages)){
-   assert.equal(page.preset,id);assert.equal(page.layout,theme.style.layout);assert.equal(page.accent,theme.style.accent);
+   assert.equal(page.preset,id);assert.equal(page.layout,key.startsWith('email:')?'center':key.startsWith('login:')&&['card','developer','minimal'].includes(theme.style.composition)?'center':key.startsWith('login:')&&theme.style.composition==='console'?'left':theme.style.layout);assert.equal(page.accent,theme.style.accent);
    assert.equal(page.appearance.font,theme.style.font);assert.equal(page.appearance.background,theme.style.background);
-   assert.deepEqual(page.i18n,templates[theme.templates.find(template=>template.editorPage===key).path].i18n);
+   const sourceI18n=templates[theme.templates.find(template=>template.editorPage===key).path].i18n;assert.deepEqual(page.i18n.supportedLocales,sourceI18n.supportedLocales);for(const [locale,messages] of Object.entries(sourceI18n.messages))for(const [field,value] of Object.entries(messages))if(!field.startsWith('blocks.'))assert.equal(page.i18n.messages[locale][field],value);
    const native=await json(theme.themePath);assert.equal(page.native.buttonColor,native.colors.light.primaryForeground);
   }
   pages['login:0'].blocks[0].text='Custom title';pages['login:0'].native.copy.title='Custom form';
   assert.equal(JSON.stringify(templates),snapshot,'Applying or editing a theme must not mutate library documents');
   assert.notEqual(materializeThemePages(theme,templates)['login:0'].blocks[0].text,'Custom title');
  }
- assert.equal(new Set(expected.map(id=>catalogue.themes.find(theme=>theme.id===id).style.layout)).size,3);
+ assert.equal(new Set(expected.map(id=>catalogue.themes.find(theme=>theme.id===id).style.composition)).size,8);
+ const compact=materializeThemePages(catalogue.themes.find(theme=>theme.id==='atlas'),templates)['login:0'];
+ assert.equal(compact.blocks.some(block=>block.zone==='aside'),false);
+ const wide=materializeThemePages(catalogue.themes.find(theme=>theme.id==='orbit'),templates)['login:0'];
+ assert.equal(wide.blocks.find(block=>block.zone==='aside').type,'text');
+ const illustrated=materializeThemePages(catalogue.themes.find(theme=>theme.id==='gateway'),templates)['login:0'];
+ assert.equal(illustrated.blocks.find(block=>block.zone==='aside').type,'image');
+ assert.notEqual(illustrated.appearance.foreground,illustrated.native.foreground,'A split composition can use separate hero and form surfaces');
 });
 function luminance(hex){const [r,g,b]=hex.slice(1).match(/../g).map(value=>{const c=parseInt(value,16)/255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;});return .2126*r+.7152*g+.0722*b;}
 function contrast(a,b){const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}

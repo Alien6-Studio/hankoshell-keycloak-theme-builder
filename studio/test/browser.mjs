@@ -12,28 +12,29 @@ try{
  await page.getByRole('dialog').waitFor();await page.getByRole('button',{name:'Sécurité',exact:true}).click();
  await page.getByRole('button',{name:'Configurer le MFA',exact:true}).click();await page.locator('.authenticator-qr').waitFor();
  await page.getByRole('button',{name:'Fermer l’aperçu du modèle'}).click();
- await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Microsoft Entra');
+ await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Atlas');
  assert.equal(await page.locator('.gallery-card').count(),1);
- await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Linear');
+ await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Nocturne');
  await page.getByRole('button',{name:'Explorer',exact:true}).click();
  await page.getByRole('dialog').locator('.theme-page').waitFor();
  assert.equal(await page.getByRole('dialog').locator('.theme-page').evaluate(node=>getComputedStyle(node).backgroundColor),'rgb(16, 17, 20)');
  await page.getByRole('button',{name:'Fermer l’aperçu du modèle'}).click();
- await page.getByLabel('Conserver les contenus des écrans existants',{exact:true}).click();
- await page.locator('.gallery-card').filter({has:page.getByRole('heading',{name:'Linear',exact:true})}).getByRole('button',{name:'Utiliser ce thème'}).click();
+ await page.getByLabel('Conserver les contenus des écrans existants',{exact:true}).uncheck();
+ await page.locator('.gallery-card').filter({has:page.getByRole('heading',{name:'Nocturne',exact:true})}).getByRole('button',{name:'Utiliser ce thème'}).click();
  await page.locator('.template-gallery').waitFor({state:'detached'});
  await page.getByRole('button',{name:'Enregistrer',exact:true}).click();
  await page.waitForFunction(async()=>new Promise(resolve=>{const r=indexedDB.open('hanko-theme-studio');r.onsuccess=()=>{const g=r.result.transaction('projects').objectStore('projects').get('draft');g.onsuccess=()=>{r.result.close();resolve(Object.keys(g.result?.document.pages||{}).length===18);};};}));
  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter le projet',exact:true}).click();
  const {readFile}=await import('node:fs/promises');const project=JSON.parse(await readFile(await(await download).path(),'utf8'));
  for(const screen of Object.values(project.pages)){
-  assert.equal(screen.preset,'linear');assert.equal(screen.appearance.background,'#101114');
+  assert.equal(screen.preset,'nocturne');assert.equal(screen.appearance.background,'#101114');
   assert.equal(screen.native.buttonColor,'#000000');assert.equal(screen.i18n.supportedLocales.length,8);
  }
+ assert.equal(project.pages['login:0'].blocks.some(block=>block.zone==='aside'),false,'Compact composition matches its preview when applied');
  assert.equal(project.baseTheme,undefined,'Exported projects are independent of catalogue inheritance');
- await page.getByRole('button',{name:'Enregistrer comme modèle'}).click();await page.getByRole('dialog').getByRole('textbox').fill('My Linear identity');await page.getByRole('dialog').getByRole('button',{name:'Enregistrer le modèle',exact:true}).click();
- await page.getByRole('dialog').waitFor({state:'detached'});await page.getByRole('button',{name:'Modèles',exact:true}).click();await page.getByRole('tab',{name:'Mes modèles'}).click();await page.getByRole('heading',{name:'My Linear identity'}).waitFor();
- await page.reload();await page.getByRole('tab',{name:'Mes modèles'}).click();await page.getByRole('heading',{name:'My Linear identity'}).waitFor();
+ await page.getByRole('button',{name:'Enregistrer comme modèle'}).click();await page.getByRole('dialog').getByRole('textbox').fill('My Nocturne identity');await page.getByRole('dialog').getByRole('button',{name:'Enregistrer le modèle',exact:true}).click();
+ await page.getByRole('dialog').waitFor({state:'detached'});await page.getByRole('button',{name:'Modèles',exact:true}).click();await page.getByRole('tab',{name:'Mes modèles'}).click();await page.getByRole('heading',{name:'My Nocturne identity'}).waitFor();
+ await page.reload();await page.getByRole('tab',{name:'Mes modèles'}).click();await page.getByRole('heading',{name:'My Nocturne identity'}).waitFor();
  await page.getByRole('button',{name:'Retour au Studio',exact:true}).click();
  await page.screenshot({path:new URL('standalone.png',output).pathname,fullPage:true});
  await page.goto(base+'/test/host.html?slow-validation');await page.locator('.gallery-card').first().waitFor();

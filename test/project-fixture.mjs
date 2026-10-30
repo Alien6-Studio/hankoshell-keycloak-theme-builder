@@ -6,6 +6,7 @@ export async function projectFixture(){
   return[(index<3?'login:':'email:')+(index%3),JSON.parse(raw)];
  }));
  const pages=Object.fromEntries(entries);
+ for(const [id,page] of Object.entries(pages))if(id.startsWith('login:')){page.appearance.composition='workspace';page.layout='left';page.native.fieldStyle='outline';page.native.actionSize='compact';}
  pages['login:0'].blocks[0].text='Identité composée dans le Studio';pages['login:0'].native.copy.action='Entrer dans mon espace';
  for(const key of ['login:0','email:0'])pages[key].blocks.push({id:'layout-divider',type:'divider',zone:'footer',text:'',alt:'',align:'center',style:{width:50,imageHeight:3,color:'#335577'}});
  pages['login:1'].native.copy.emailLabel='Votre adresse de contact';

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "foundry",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f7f5fc",
+      "foreground": "#232150",
+      "primary": "#6b4fbb",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#62617a",
+      "border": "#62617a",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f7f5fc",
+      "foreground": "#232150",
+      "primary": "#6b4fbb",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#62617a",
+      "border": "#62617a",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "8px",
+    "controlRadius": "8px",
+    "contentWidth": "440px"
+  }
+}

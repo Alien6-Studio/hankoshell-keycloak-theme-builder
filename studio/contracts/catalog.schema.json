@@ -120,6 +120,34 @@
                   "comfortable",
                   "compact"
                 ]
+              },
+              "composition": {
+                "type": "string",
+                "enum": [
+                  "card",
+                  "workspace",
+                  "developer",
+                  "split",
+                  "console",
+                  "editorial",
+                  "minimal",
+                  "spotlight"
+                ]
+              },
+              "fieldStyle": {
+                "type": "string",
+                "enum": [
+                  "outline",
+                  "underline",
+                  "filled"
+                ]
+              },
+              "actionSize": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact"
+                ]
               }
             },
             "required": [

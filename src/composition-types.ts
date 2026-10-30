@@ -11,8 +11,8 @@ export interface CompositionBlock {
 export interface CompositionPage {
   blocks: CompositionBlock[]; layout: "left" | "center" | "right"; radius: number; accent: string; subject: string;
   brand: { name: string; mark: string; logo?: string; alt: string; size: number; fontSize: number; align: string; color: string };
-  appearance: { background: string; surface: string; foreground: string; muted: string; font: string; density: string; padding: number; gap: number; contentWidth: number; backgroundImage?: string; backgroundFit: string };
-  native: { copy: Record<string, string>; styles: Record<string, CompositionStyle>; background: string; foreground: string; inputBackground: string; inputBorder: string; padding: number; radius: number; gap: number; buttonBackground: string; buttonColor: string };
+  appearance: { composition?: string; background: string; surface: string; foreground: string; muted: string; font: string; density: string; padding: number; gap: number; contentWidth: number; backgroundImage?: string; backgroundFit: string };
+  native: { fieldStyle?: string; actionSize?: string; copy: Record<string, string>; styles: Record<string, CompositionStyle>; background: string; foreground: string; inputBackground: string; inputBorder: string; padding: number; radius: number; gap: number; buttonBackground: string; buttonColor: string };
   i18n?: { defaultLocale: string; supportedLocales: string[]; messages: Record<string, Record<string, string>> };
 }
 export interface StudioComposition {
