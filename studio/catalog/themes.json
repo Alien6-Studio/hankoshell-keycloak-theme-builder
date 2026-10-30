@@ -6,17 +6,17 @@
     {
       "id": "essential",
       "version": "0.1.0",
-      "name": "Essentiel",
-      "description": "Clair, centré et lisible",
+      "name": "Essential",
+      "description": "Clear surfaces, centered forms and generous spacing.",
       "license": "Apache-2.0",
       "tags": [
         "comfortable",
-        "left"
+        "center"
       ],
       "style": {
         "id": "essential",
-        "name": "Essentiel",
-        "description": "Clair, centré et lisible",
+        "name": "Essential",
+        "description": "Clear surfaces, centered forms and generous spacing.",
         "accent": "#2558a1",
         "background": "#eef3f8",
         "surface": "#ffffff",
@@ -31,70 +31,76 @@
       "templates": [
         {
           "id": "login",
-          "name": "Connexion",
+          "name": "Sign in",
           "surface": "keycloak-login",
           "editorPage": "login:0",
           "path": "themes/essential/pages/login.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "register",
-          "name": "Inscription",
+          "name": "Registration",
           "surface": "keycloak-login",
           "editorPage": "login:1",
           "path": "themes/essential/pages/register.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "otp",
-          "name": "Code OTP",
+          "name": "Verification code",
           "surface": "keycloak-login",
           "editorPage": "login:2",
           "path": "themes/essential/pages/otp.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "email-verification",
-          "name": "Vérification de l’adresse",
+          "name": "Verify email",
           "surface": "keycloak-email",
           "editorPage": "email:0",
           "path": "themes/essential/pages/email-verification.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-password-reset",
-          "name": "Mot de passe oublié",
+          "name": "Email Password Reset",
           "surface": "keycloak-email",
           "editorPage": "email:1",
           "path": "themes/essential/pages/email-password-reset.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-required-actions",
-          "name": "Actions requises",
+          "name": "Email Required Actions",
           "surface": "keycloak-email",
           "editorPage": "email:2",
           "path": "themes/essential/pages/email-required-actions.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "account-profile",
-          "name": "Profil",
+          "name": "Profile",
           "surface": "keycloak-account",
           "editorPage": "account:0",
           "path": "themes/essential/pages/account-profile.json",
@@ -105,7 +111,7 @@
         },
         {
           "id": "account-security",
-          "name": "Sécurité",
+          "name": "Security",
           "surface": "keycloak-account",
           "editorPage": "account:1",
           "path": "themes/essential/pages/account-security.json",
@@ -116,7 +122,7 @@
         },
         {
           "id": "account-password",
-          "name": "Mot de passe",
+          "name": "Password",
           "surface": "keycloak-account",
           "editorPage": "account:2",
           "path": "themes/essential/pages/account-password.json",
@@ -127,7 +133,7 @@
         },
         {
           "id": "account-mfa",
-          "name": "Authentification à deux facteurs",
+          "name": "Account Mfa",
           "surface": "keycloak-account",
           "editorPage": "account:3",
           "path": "themes/essential/pages/account-mfa.json",
@@ -149,7 +155,7 @@
         },
         {
           "id": "admin-console",
-          "name": "Console",
+          "name": "Administration",
           "surface": "keycloak-admin",
           "editorPage": "admin:0",
           "path": "themes/essential/pages/admin-console.json",
@@ -159,7 +165,7 @@
         },
         {
           "id": "admin-users",
-          "name": "Utilisateurs",
+          "name": "Users",
           "surface": "keycloak-admin",
           "editorPage": "admin:1",
           "path": "themes/essential/pages/admin-users.json",
@@ -169,7 +175,7 @@
         },
         {
           "id": "admin-user",
-          "name": "Fiche utilisateur",
+          "name": "User details",
           "surface": "keycloak-admin",
           "editorPage": "admin:2",
           "path": "themes/essential/pages/admin-user.json",
@@ -179,7 +185,7 @@
         },
         {
           "id": "admin-clients",
-          "name": "Clients et applications",
+          "name": "Applications",
           "surface": "keycloak-admin",
           "editorPage": "admin:3",
           "path": "themes/essential/pages/admin-clients.json",
@@ -189,7 +195,7 @@
         },
         {
           "id": "admin-client",
-          "name": "Configuration du client",
+          "name": "Application details",
           "surface": "keycloak-admin",
           "editorPage": "admin:4",
           "path": "themes/essential/pages/admin-client.json",
@@ -199,7 +205,7 @@
         },
         {
           "id": "admin-permissions",
-          "name": "Rôles et permissions",
+          "name": "Permissions",
           "surface": "keycloak-admin",
           "editorPage": "admin:5",
           "path": "themes/essential/pages/admin-permissions.json",
@@ -209,7 +215,7 @@
         },
         {
           "id": "welcome",
-          "name": "Page d’accueil",
+          "name": "Welcome",
           "surface": "keycloak-welcome",
           "editorPage": "welcome:0",
           "path": "themes/essential/pages/welcome.json",
@@ -242,17 +248,17 @@
     {
       "id": "editorial",
       "version": "0.1.0",
-      "name": "Éditorial",
-      "description": "Composition illustrée, serif et tons chauds",
+      "name": "Editorial",
+      "description": "Illustrated split layout, serif typography and warm paper tones.",
       "license": "Apache-2.0",
       "tags": [
         "comfortable",
-        "center"
+        "left"
       ],
       "style": {
         "id": "editorial",
-        "name": "Éditorial",
-        "description": "Composition illustrée, serif et tons chauds",
+        "name": "Editorial",
+        "description": "Illustrated split layout, serif typography and warm paper tones.",
         "accent": "#9a411e",
         "background": "#f5ede3",
         "surface": "#fff9f0",
@@ -267,70 +273,76 @@
       "templates": [
         {
           "id": "login",
-          "name": "Connexion",
+          "name": "Sign in",
           "surface": "keycloak-login",
           "editorPage": "login:0",
           "path": "themes/editorial/pages/login.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "register",
-          "name": "Inscription",
+          "name": "Registration",
           "surface": "keycloak-login",
           "editorPage": "login:1",
           "path": "themes/editorial/pages/register.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "otp",
-          "name": "Code OTP",
+          "name": "Verification code",
           "surface": "keycloak-login",
           "editorPage": "login:2",
           "path": "themes/editorial/pages/otp.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "email-verification",
-          "name": "Vérification de l’adresse",
+          "name": "Verify email",
           "surface": "keycloak-email",
           "editorPage": "email:0",
           "path": "themes/editorial/pages/email-verification.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-password-reset",
-          "name": "Mot de passe oublié",
+          "name": "Email Password Reset",
           "surface": "keycloak-email",
           "editorPage": "email:1",
           "path": "themes/editorial/pages/email-password-reset.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-required-actions",
-          "name": "Actions requises",
+          "name": "Email Required Actions",
           "surface": "keycloak-email",
           "editorPage": "email:2",
           "path": "themes/editorial/pages/email-required-actions.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "account-profile",
-          "name": "Profil",
+          "name": "Profile",
           "surface": "keycloak-account",
           "editorPage": "account:0",
           "path": "themes/editorial/pages/account-profile.json",
@@ -341,7 +353,7 @@
         },
         {
           "id": "account-security",
-          "name": "Sécurité",
+          "name": "Security",
           "surface": "keycloak-account",
           "editorPage": "account:1",
           "path": "themes/editorial/pages/account-security.json",
@@ -352,7 +364,7 @@
         },
         {
           "id": "account-password",
-          "name": "Mot de passe",
+          "name": "Password",
           "surface": "keycloak-account",
           "editorPage": "account:2",
           "path": "themes/editorial/pages/account-password.json",
@@ -363,7 +375,7 @@
         },
         {
           "id": "account-mfa",
-          "name": "Authentification à deux facteurs",
+          "name": "Account Mfa",
           "surface": "keycloak-account",
           "editorPage": "account:3",
           "path": "themes/editorial/pages/account-mfa.json",
@@ -385,7 +397,7 @@
         },
         {
           "id": "admin-console",
-          "name": "Console",
+          "name": "Administration",
           "surface": "keycloak-admin",
           "editorPage": "admin:0",
           "path": "themes/editorial/pages/admin-console.json",
@@ -395,7 +407,7 @@
         },
         {
           "id": "admin-users",
-          "name": "Utilisateurs",
+          "name": "Users",
           "surface": "keycloak-admin",
           "editorPage": "admin:1",
           "path": "themes/editorial/pages/admin-users.json",
@@ -405,7 +417,7 @@
         },
         {
           "id": "admin-user",
-          "name": "Fiche utilisateur",
+          "name": "User details",
           "surface": "keycloak-admin",
           "editorPage": "admin:2",
           "path": "themes/editorial/pages/admin-user.json",
@@ -415,7 +427,7 @@
         },
         {
           "id": "admin-clients",
-          "name": "Clients et applications",
+          "name": "Applications",
           "surface": "keycloak-admin",
           "editorPage": "admin:3",
           "path": "themes/editorial/pages/admin-clients.json",
@@ -425,7 +437,7 @@
         },
         {
           "id": "admin-client",
-          "name": "Configuration du client",
+          "name": "Application details",
           "surface": "keycloak-admin",
           "editorPage": "admin:4",
           "path": "themes/editorial/pages/admin-client.json",
@@ -435,7 +447,7 @@
         },
         {
           "id": "admin-permissions",
-          "name": "Rôles et permissions",
+          "name": "Permissions",
           "surface": "keycloak-admin",
           "editorPage": "admin:5",
           "path": "themes/editorial/pages/admin-permissions.json",
@@ -445,7 +457,7 @@
         },
         {
           "id": "welcome",
-          "name": "Page d’accueil",
+          "name": "Welcome",
           "surface": "keycloak-welcome",
           "editorPage": "welcome:0",
           "path": "themes/editorial/pages/welcome.json",
@@ -478,8 +490,8 @@
     {
       "id": "midnight",
       "version": "0.1.0",
-      "name": "Minuit",
-      "description": "Interface sombre, visuel à droite et accent indigo",
+      "name": "Midnight",
+      "description": "Dark surfaces, a right-hand illustration and soft indigo accents.",
       "license": "Apache-2.0",
       "tags": [
         "comfortable",
@@ -487,8 +499,8 @@
       ],
       "style": {
         "id": "midnight",
-        "name": "Minuit",
-        "description": "Interface sombre, visuel à droite et accent indigo",
+        "name": "Midnight",
+        "description": "Dark surfaces, a right-hand illustration and soft indigo accents.",
         "accent": "#a5b4fc",
         "background": "#101522",
         "surface": "#1b2337",
@@ -503,70 +515,76 @@
       "templates": [
         {
           "id": "login",
-          "name": "Connexion",
+          "name": "Sign in",
           "surface": "keycloak-login",
           "editorPage": "login:0",
           "path": "themes/midnight/pages/login.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "register",
-          "name": "Inscription",
+          "name": "Registration",
           "surface": "keycloak-login",
           "editorPage": "login:1",
           "path": "themes/midnight/pages/register.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "otp",
-          "name": "Code OTP",
+          "name": "Verification code",
           "surface": "keycloak-login",
           "editorPage": "login:2",
           "path": "themes/midnight/pages/otp.json",
           "targets": [
             "project-json",
-            "native-appearance"
+            "native-appearance",
+            "native-composition"
           ]
         },
         {
           "id": "email-verification",
-          "name": "Vérification de l’adresse",
+          "name": "Verify email",
           "surface": "keycloak-email",
           "editorPage": "email:0",
           "path": "themes/midnight/pages/email-verification.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-password-reset",
-          "name": "Mot de passe oublié",
+          "name": "Email Password Reset",
           "surface": "keycloak-email",
           "editorPage": "email:1",
           "path": "themes/midnight/pages/email-password-reset.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "email-required-actions",
-          "name": "Actions requises",
+          "name": "Email Required Actions",
           "surface": "keycloak-email",
           "editorPage": "email:2",
           "path": "themes/midnight/pages/email-required-actions.json",
           "targets": [
-            "project-json"
+            "project-json",
+            "native-composition"
           ]
         },
         {
           "id": "account-profile",
-          "name": "Profil",
+          "name": "Profile",
           "surface": "keycloak-account",
           "editorPage": "account:0",
           "path": "themes/midnight/pages/account-profile.json",
@@ -577,7 +595,7 @@
         },
         {
           "id": "account-security",
-          "name": "Sécurité",
+          "name": "Security",
           "surface": "keycloak-account",
           "editorPage": "account:1",
           "path": "themes/midnight/pages/account-security.json",
@@ -588,7 +606,7 @@
         },
         {
           "id": "account-password",
-          "name": "Mot de passe",
+          "name": "Password",
           "surface": "keycloak-account",
           "editorPage": "account:2",
           "path": "themes/midnight/pages/account-password.json",
@@ -599,7 +617,7 @@
         },
         {
           "id": "account-mfa",
-          "name": "Authentification à deux facteurs",
+          "name": "Account Mfa",
           "surface": "keycloak-account",
           "editorPage": "account:3",
           "path": "themes/midnight/pages/account-mfa.json",
@@ -621,7 +639,7 @@
         },
         {
           "id": "admin-console",
-          "name": "Console",
+          "name": "Administration",
           "surface": "keycloak-admin",
           "editorPage": "admin:0",
           "path": "themes/midnight/pages/admin-console.json",
@@ -631,7 +649,7 @@
         },
         {
           "id": "admin-users",
-          "name": "Utilisateurs",
+          "name": "Users",
           "surface": "keycloak-admin",
           "editorPage": "admin:1",
           "path": "themes/midnight/pages/admin-users.json",
@@ -641,7 +659,7 @@
         },
         {
           "id": "admin-user",
-          "name": "Fiche utilisateur",
+          "name": "User details",
           "surface": "keycloak-admin",
           "editorPage": "admin:2",
           "path": "themes/midnight/pages/admin-user.json",
@@ -651,7 +669,7 @@
         },
         {
           "id": "admin-clients",
-          "name": "Clients et applications",
+          "name": "Applications",
           "surface": "keycloak-admin",
           "editorPage": "admin:3",
           "path": "themes/midnight/pages/admin-clients.json",
@@ -661,7 +679,7 @@
         },
         {
           "id": "admin-client",
-          "name": "Configuration du client",
+          "name": "Application details",
           "surface": "keycloak-admin",
           "editorPage": "admin:4",
           "path": "themes/midnight/pages/admin-client.json",
@@ -671,7 +689,7 @@
         },
         {
           "id": "admin-permissions",
-          "name": "Rôles et permissions",
+          "name": "Permissions",
           "surface": "keycloak-admin",
           "editorPage": "admin:5",
           "path": "themes/midnight/pages/admin-permissions.json",
@@ -681,7 +699,7 @@
         },
         {
           "id": "welcome",
-          "name": "Page d’accueil",
+          "name": "Welcome",
           "surface": "keycloak-welcome",
           "editorPage": "welcome:0",
           "path": "themes/midnight/pages/welcome.json",
@@ -714,8 +732,8 @@
     {
       "id": "warm",
       "version": "0.1.0",
-      "name": "Chaleureux",
-      "description": "Tons naturels · formes douces",
+      "name": "Warm",
+      "description": "Natural tones and softly rounded forms.",
       "license": "Apache-2.0",
       "tags": [
         "comfortable",
@@ -723,8 +741,8 @@
       ],
       "style": {
         "id": "warm",
-        "name": "Chaleureux",
-        "description": "Tons naturels · formes douces",
+        "name": "Warm",
+        "description": "Natural tones and softly rounded forms.",
         "accent": "#ad542c",
         "background": "#f5eee5",
         "surface": "#fffcf5",
@@ -771,7 +789,7 @@
       "id": "compact",
       "version": "0.1.0",
       "name": "Compact",
-      "description": "Sobre · espaces resserrés",
+      "description": "Restrained colors and closely spaced controls.",
       "license": "Apache-2.0",
       "tags": [
         "compact",
@@ -780,7 +798,7 @@
       "style": {
         "id": "compact",
         "name": "Compact",
-        "description": "Sobre · espaces resserrés",
+        "description": "Restrained colors and closely spaced controls.",
         "accent": "#3158a6",
         "background": "#eef2f8",
         "surface": "#ffffff",
@@ -822,6 +840,4886 @@
         "ar",
         "he"
       ]
+    },
+    {
+      "id": "microsoft-entra",
+      "version": "0.1.0",
+      "name": "Microsoft Entra",
+      "description": "Microsoft Entra-inspired starting point. Blue actions, square controls and a spacious enterprise layout.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "microsoft-entra",
+        "name": "Microsoft Entra",
+        "description": "Blue actions, square controls and a spacious enterprise layout.",
+        "accent": "#005a9e",
+        "background": "#f3f6fb",
+        "surface": "#ffffff",
+        "foreground": "#1b1b1b",
+        "muted": "#526174",
+        "radius": 4,
+        "layout": "left",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/microsoft-entra/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "google-workspace",
+      "version": "0.1.0",
+      "name": "Google Workspace",
+      "description": "Google Workspace-inspired starting point. Rounded cards and a calm, centered productivity workspace.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "google-workspace",
+        "name": "Google Workspace",
+        "description": "Rounded cards and a calm, centered productivity workspace.",
+        "accent": "#0b57d0",
+        "background": "#f0f4f9",
+        "surface": "#ffffff",
+        "foreground": "#1f1f1f",
+        "muted": "#4f5b69",
+        "radius": 24,
+        "layout": "center",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/google-workspace/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "version": "0.1.0",
+      "name": "GitHub",
+      "description": "GitHub-inspired starting point. Compact developer sign-in with cool neutral surfaces.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "github",
+        "name": "GitHub",
+        "description": "Compact developer sign-in with cool neutral surfaces.",
+        "accent": "#0969da",
+        "background": "#f6f8fa",
+        "surface": "#ffffff",
+        "foreground": "#1f2328",
+        "muted": "#59636e",
+        "radius": 6,
+        "layout": "center",
+        "font": "system-ui, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/github/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "gitlab",
+      "version": "0.1.0",
+      "name": "GitLab",
+      "description": "GitLab-inspired starting point. Purple accents and a split developer workspace.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "gitlab",
+        "name": "GitLab",
+        "description": "Purple accents and a split developer workspace.",
+        "accent": "#6b4fbb",
+        "background": "#f7f5fc",
+        "surface": "#ffffff",
+        "foreground": "#232150",
+        "muted": "#62617a",
+        "radius": 8,
+        "layout": "left",
+        "font": "system-ui, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/gitlab/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "okta",
+      "version": "0.1.0",
+      "name": "Okta",
+      "description": "Okta-inspired starting point. Focused identity forms with deep blue actions.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "okta",
+        "name": "Okta",
+        "description": "Focused identity forms with deep blue actions.",
+        "accent": "#00297a",
+        "background": "#f3f6fd",
+        "surface": "#ffffff",
+        "foreground": "#14234b",
+        "muted": "#566581",
+        "radius": 8,
+        "layout": "center",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/okta/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "auth0",
+      "version": "0.1.0",
+      "name": "Auth0",
+      "description": "Auth0-inspired starting point. Warm orange actions and an illustrated identity panel.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "auth0",
+        "name": "Auth0",
+        "description": "Warm orange actions and an illustrated identity panel.",
+        "accent": "#c23d00",
+        "background": "#fff6ef",
+        "surface": "#ffffff",
+        "foreground": "#29201c",
+        "muted": "#6b5c54",
+        "radius": 8,
+        "layout": "left",
+        "font": "system-ui, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/auth0/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "aws-console",
+      "version": "0.1.0",
+      "name": "AWS Console",
+      "description": "AWS Console-inspired starting point. Dense cloud-console forms with crisp corners.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "aws-console",
+        "name": "AWS Console",
+        "description": "Dense cloud-console forms with crisp corners.",
+        "accent": "#0972d3",
+        "background": "#f2f3f3",
+        "surface": "#ffffff",
+        "foreground": "#16191f",
+        "muted": "#535e6b",
+        "radius": 2,
+        "layout": "center",
+        "font": "Arial, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/aws-console/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "salesforce",
+      "version": "0.1.0",
+      "name": "Salesforce",
+      "description": "Salesforce-inspired starting point. Airy cloud-blue forms and rounded surfaces.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "salesforce",
+        "name": "Salesforce",
+        "description": "Airy cloud-blue forms and rounded surfaces.",
+        "accent": "#0176d3",
+        "background": "#eef4ff",
+        "surface": "#ffffff",
+        "foreground": "#032d60",
+        "muted": "#54647d",
+        "radius": 12,
+        "layout": "center",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/salesforce/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "atlassian",
+      "version": "0.1.0",
+      "name": "Atlassian",
+      "description": "Atlassian-inspired starting point. Compact collaboration forms with navy text and blue actions.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "atlassian",
+        "name": "Atlassian",
+        "description": "Compact collaboration forms with navy text and blue actions.",
+        "accent": "#0052cc",
+        "background": "#f4f5f7",
+        "surface": "#ffffff",
+        "foreground": "#172b4d",
+        "muted": "#52617b",
+        "radius": 6,
+        "layout": "center",
+        "font": "system-ui, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/atlassian/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "slack",
+      "version": "0.1.0",
+      "name": "Slack",
+      "description": "Slack-inspired starting point. Aubergine actions and an inviting split composition.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "slack",
+        "name": "Slack",
+        "description": "Aubergine actions and an inviting split composition.",
+        "accent": "#611f69",
+        "background": "#faf5fa",
+        "surface": "#ffffff",
+        "foreground": "#301734",
+        "muted": "#6c596f",
+        "radius": 12,
+        "layout": "left",
+        "font": "system-ui, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/slack/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "notion",
+      "version": "0.1.0",
+      "name": "Notion",
+      "description": "Notion-inspired starting point. Paper-like neutrals with editorial headings and restrained controls.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "notion",
+        "name": "Notion",
+        "description": "Paper-like neutrals with editorial headings and restrained controls.",
+        "accent": "#202020",
+        "background": "#f7f7f5",
+        "surface": "#ffffff",
+        "foreground": "#202020",
+        "muted": "#62625f",
+        "radius": 4,
+        "layout": "left",
+        "font": "Georgia, serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/notion/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "linear",
+      "version": "0.1.0",
+      "name": "Linear",
+      "description": "Linear-inspired starting point. A dark product workspace with lavender actions and compact spacing.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "right",
+        "dark"
+      ],
+      "baseTheme": "midnight",
+      "style": {
+        "id": "linear",
+        "name": "Linear",
+        "description": "A dark product workspace with lavender actions and compact spacing.",
+        "accent": "#c3bcff",
+        "background": "#101114",
+        "surface": "#191a20",
+        "foreground": "#f4f4f5",
+        "muted": "#b0b2be",
+        "radius": 10,
+        "layout": "right",
+        "font": "system-ui, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/linear/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/midnight/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/midnight/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/midnight/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/midnight/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/midnight/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/midnight/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/midnight/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/midnight/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/midnight/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/midnight/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/midnight/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/midnight/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/midnight/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/midnight/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/midnight/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/midnight/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/midnight/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/midnight/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/midnight/assets/identity.png",
+          "source": "themes/midnight/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "10c373f935df7b8481e796050d3a9d33a18e354fb4135c1a5116437b9ff3cdaf"
+        }
+      ]
+    },
+    {
+      "id": "stripe",
+      "version": "0.1.0",
+      "name": "Stripe",
+      "description": "Stripe-inspired starting point. Indigo actions and a spacious service-oriented composition.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "stripe",
+        "name": "Stripe",
+        "description": "Indigo actions and a spacious service-oriented composition.",
+        "accent": "#5346b9",
+        "background": "#f6f8ff",
+        "surface": "#ffffff",
+        "foreground": "#26324b",
+        "muted": "#5b6680",
+        "radius": 12,
+        "layout": "left",
+        "font": "system-ui, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/stripe/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "shopify",
+      "version": "0.1.0",
+      "name": "Shopify",
+      "description": "Shopify-inspired starting point. Calm merchant greens and softly rounded forms.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "shopify",
+        "name": "Shopify",
+        "description": "Calm merchant greens and softly rounded forms.",
+        "accent": "#006b4f",
+        "background": "#f1f5f2",
+        "surface": "#ffffff",
+        "foreground": "#1e3029",
+        "muted": "#53675d",
+        "radius": 12,
+        "layout": "left",
+        "font": "system-ui, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/shopify/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "vercel",
+      "version": "0.1.0",
+      "name": "Vercel",
+      "description": "Vercel-inspired starting point. Monochrome surfaces, compact spacing and minimal controls.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "vercel",
+        "name": "Vercel",
+        "description": "Monochrome surfaces, compact spacing and minimal controls.",
+        "accent": "#171717",
+        "background": "#fafafa",
+        "surface": "#ffffff",
+        "foreground": "#171717",
+        "muted": "#606060",
+        "radius": 6,
+        "layout": "center",
+        "font": "system-ui, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/vercel/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "dropbox",
+      "version": "0.1.0",
+      "name": "Dropbox",
+      "description": "Dropbox-inspired starting point. Confident blue actions and a geometric split layout.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "dropbox",
+        "name": "Dropbox",
+        "description": "Confident blue actions and a geometric split layout.",
+        "accent": "#0061ff",
+        "background": "#edf3ff",
+        "surface": "#ffffff",
+        "foreground": "#1e1919",
+        "muted": "#596377",
+        "radius": 0,
+        "layout": "left",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/dropbox/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "hubspot",
+      "version": "0.1.0",
+      "name": "HubSpot",
+      "description": "HubSpot-inspired starting point. Warm service colors and an illustration opposite the form.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "right",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "hubspot",
+        "name": "HubSpot",
+        "description": "Warm service colors and an illustration opposite the form.",
+        "accent": "#b44018",
+        "background": "#fff5ef",
+        "surface": "#ffffff",
+        "foreground": "#243e54",
+        "muted": "#596b78",
+        "radius": 8,
+        "layout": "right",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/hubspot/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
+    },
+    {
+      "id": "zoom",
+      "version": "0.1.0",
+      "name": "Zoom",
+      "description": "Zoom-inspired starting point. Bright blue actions and welcoming rounded cards.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "center",
+        "light"
+      ],
+      "baseTheme": "essential",
+      "style": {
+        "id": "zoom",
+        "name": "Zoom",
+        "description": "Bright blue actions and welcoming rounded cards.",
+        "accent": "#0b5cff",
+        "background": "#f2f6ff",
+        "surface": "#ffffff",
+        "foreground": "#182b50",
+        "muted": "#566682",
+        "radius": 16,
+        "layout": "center",
+        "font": "Arial, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/zoom/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/essential/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/essential/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/essential/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/essential/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/essential/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/essential/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/essential/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/essential/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/essential/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/essential/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/essential/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/essential/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/essential/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/essential/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/essential/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/essential/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/essential/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/essential/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/essential/assets/identity.png",
+          "source": "themes/essential/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "c67c366106c5b94bf7022db0d3d25a09f0413c19bbf981fa8ea2bd84d2909aa2"
+        }
+      ]
+    },
+    {
+      "id": "datadog",
+      "version": "0.1.0",
+      "name": "Datadog",
+      "description": "Datadog-inspired starting point. Purple observability accents and a compact split workspace.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "compact",
+        "right",
+        "light"
+      ],
+      "baseTheme": "midnight",
+      "style": {
+        "id": "datadog",
+        "name": "Datadog",
+        "description": "Purple observability accents and a compact split workspace.",
+        "accent": "#6b3db1",
+        "background": "#f6f3fc",
+        "surface": "#ffffff",
+        "foreground": "#2a2340",
+        "muted": "#665c78",
+        "radius": 6,
+        "layout": "right",
+        "font": "system-ui, sans-serif",
+        "density": "compact"
+      },
+      "themePath": "themes/datadog/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/midnight/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/midnight/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/midnight/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/midnight/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/midnight/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/midnight/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/midnight/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/midnight/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/midnight/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/midnight/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/midnight/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/midnight/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/midnight/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/midnight/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/midnight/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/midnight/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/midnight/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/midnight/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/midnight/assets/identity.png",
+          "source": "themes/midnight/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "10c373f935df7b8481e796050d3a9d33a18e354fb4135c1a5116437b9ff3cdaf"
+        }
+      ]
+    },
+    {
+      "id": "cloudflare",
+      "version": "0.1.0",
+      "name": "Cloudflare",
+      "description": "Cloudflare-inspired starting point. Warm edge-console accents with readable, structured controls.",
+      "license": "Apache-2.0",
+      "tags": [
+        "inspired",
+        "comfortable",
+        "left",
+        "light"
+      ],
+      "baseTheme": "editorial",
+      "style": {
+        "id": "cloudflare",
+        "name": "Cloudflare",
+        "description": "Warm edge-console accents with readable, structured controls.",
+        "accent": "#b84800",
+        "background": "#fff7ed",
+        "surface": "#ffffff",
+        "foreground": "#2b241e",
+        "muted": "#6c5e50",
+        "radius": 6,
+        "layout": "left",
+        "font": "Verdana, sans-serif",
+        "density": "comfortable"
+      },
+      "themePath": "themes/cloudflare/theme.json",
+      "templates": [
+        {
+          "id": "login",
+          "name": "Sign in",
+          "surface": "keycloak-login",
+          "editorPage": "login:0",
+          "path": "themes/editorial/pages/login.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "register",
+          "name": "Registration",
+          "surface": "keycloak-login",
+          "editorPage": "login:1",
+          "path": "themes/editorial/pages/register.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "otp",
+          "name": "Verification code",
+          "surface": "keycloak-login",
+          "editorPage": "login:2",
+          "path": "themes/editorial/pages/otp.json",
+          "targets": [
+            "project-json",
+            "native-appearance",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-verification",
+          "name": "Verify email",
+          "surface": "keycloak-email",
+          "editorPage": "email:0",
+          "path": "themes/editorial/pages/email-verification.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-password-reset",
+          "name": "Email Password Reset",
+          "surface": "keycloak-email",
+          "editorPage": "email:1",
+          "path": "themes/editorial/pages/email-password-reset.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "email-required-actions",
+          "name": "Email Required Actions",
+          "surface": "keycloak-email",
+          "editorPage": "email:2",
+          "path": "themes/editorial/pages/email-required-actions.json",
+          "targets": [
+            "project-json",
+            "native-composition"
+          ]
+        },
+        {
+          "id": "account-profile",
+          "name": "Profile",
+          "surface": "keycloak-account",
+          "editorPage": "account:0",
+          "path": "themes/editorial/pages/account-profile.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-security",
+          "name": "Security",
+          "surface": "keycloak-account",
+          "editorPage": "account:1",
+          "path": "themes/editorial/pages/account-security.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-password",
+          "name": "Password",
+          "surface": "keycloak-account",
+          "editorPage": "account:2",
+          "path": "themes/editorial/pages/account-password.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-mfa",
+          "name": "Account Mfa",
+          "surface": "keycloak-account",
+          "editorPage": "account:3",
+          "path": "themes/editorial/pages/account-mfa.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "account-sessions",
+          "name": "Sessions",
+          "surface": "keycloak-account",
+          "editorPage": "account:4",
+          "path": "themes/editorial/pages/account-sessions.json",
+          "targets": [
+            "project-json",
+            "react-next"
+          ]
+        },
+        {
+          "id": "admin-console",
+          "name": "Administration",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:0",
+          "path": "themes/editorial/pages/admin-console.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-users",
+          "name": "Users",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:1",
+          "path": "themes/editorial/pages/admin-users.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-user",
+          "name": "User details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:2",
+          "path": "themes/editorial/pages/admin-user.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-clients",
+          "name": "Applications",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:3",
+          "path": "themes/editorial/pages/admin-clients.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-client",
+          "name": "Application details",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:4",
+          "path": "themes/editorial/pages/admin-client.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "admin-permissions",
+          "name": "Permissions",
+          "surface": "keycloak-admin",
+          "editorPage": "admin:5",
+          "path": "themes/editorial/pages/admin-permissions.json",
+          "targets": [
+            "project-json"
+          ]
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome",
+          "surface": "keycloak-welcome",
+          "editorPage": "welcome:0",
+          "path": "themes/editorial/pages/welcome.json",
+          "targets": [
+            "project-json"
+          ]
+        }
+      ],
+      "locales": [
+        "fr",
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt-BR",
+        "ar",
+        "he"
+      ],
+      "complete": true,
+      "assets": [
+        {
+          "path": "themes/editorial/assets/identity.png",
+          "source": "themes/editorial/assets/identity.svg",
+          "license": "Apache-2.0",
+          "sha256": "a55855a4c949251e8662e1de9d72b02df74820e51e1af347c909ee721a7f6018"
+        }
+      ]
     }
   ],
   "locales": [
@@ -838,8 +5736,8 @@
   "sections": [
     {
       "id": "welcome-banner",
-      "name": "Bandeau de bienvenue",
-      "description": "Titre et introduction en en-tête.",
+      "name": "Welcome banner",
+      "description": "A heading and introduction for the page header.",
       "blocks": [
         {
           "id": "section-title",
@@ -861,8 +5759,8 @@
     },
     {
       "id": "help-panel",
-      "name": "Aide à la connexion",
-      "description": "Texte d’aide et lien vers la sécurité du compte.",
+      "name": "Sign-in help",
+      "description": "Help text and a link to account security.",
       "blocks": [
         {
           "id": "section-help-title",
@@ -885,8 +5783,8 @@
     },
     {
       "id": "legal-footer",
-      "name": "Pied de page sobre",
-      "description": "Séparateur et signature de marque.",
+      "name": "Minimal footer",
+      "description": "A divider and brand signature.",
       "blocks": [
         {
           "id": "section-divider",
@@ -908,8 +5806,8 @@
     },
     {
       "id": "security-links",
-      "name": "Accès à la sécurité",
-      "description": "Liens vers le mot de passe et la double authentification.",
+      "name": "Security shortcuts",
+      "description": "Links to password and two-factor authentication settings.",
       "blocks": [
         {
           "id": "section-password",

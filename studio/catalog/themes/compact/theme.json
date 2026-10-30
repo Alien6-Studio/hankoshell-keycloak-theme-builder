@@ -2,7 +2,7 @@
   "version": 1,
   "name": "compact",
   "headline": "Compact",
-  "subline": "Une identité, tous vos services.",
+  "subline": "One identity, all your services.",
   "fontFamily": "system-ui, sans-serif",
   "colors": {
     "light": {
@@ -12,7 +12,8 @@
       "primaryForeground": "#ffffff",
       "card": "#ffffff",
       "muted": "#64728b",
-      "input": "#ffffff"
+      "input": "#ffffff",
+      "border": "#64728b"
     },
     "dark": {
       "background": "#eef2f8",
@@ -21,7 +22,8 @@
       "primaryForeground": "#ffffff",
       "card": "#ffffff",
       "muted": "#64728b",
-      "input": "#ffffff"
+      "input": "#ffffff",
+      "border": "#64728b"
     }
   },
   "layout": {

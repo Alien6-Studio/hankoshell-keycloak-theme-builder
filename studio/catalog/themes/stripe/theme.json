@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "stripe",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "system-ui, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f6f8ff",
+      "foreground": "#26324b",
+      "primary": "#5346b9",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#5b6680",
+      "border": "#5b6680",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f6f8ff",
+      "foreground": "#26324b",
+      "primary": "#5346b9",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#5b6680",
+      "border": "#5b6680",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "12px",
+    "controlRadius": "12px",
+    "contentWidth": "440px"
+  }
+}

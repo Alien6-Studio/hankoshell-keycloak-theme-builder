@@ -1,8 +1,8 @@
 {
   "version": 1,
   "name": "warm",
-  "headline": "Chaleureux",
-  "subline": "Une identité, tous vos services.",
+  "headline": "Warm",
+  "subline": "One identity, all your services.",
   "fontFamily": "system-ui, sans-serif",
   "colors": {
     "light": {
@@ -12,7 +12,8 @@
       "primaryForeground": "#fffcf5",
       "card": "#fffcf5",
       "muted": "#856f5c",
-      "input": "#fffcf5"
+      "input": "#fffcf5",
+      "border": "#856f5c"
     },
     "dark": {
       "background": "#f5eee5",
@@ -21,7 +22,8 @@
       "primaryForeground": "#fffcf5",
       "card": "#fffcf5",
       "muted": "#856f5c",
-      "input": "#fffcf5"
+      "input": "#fffcf5",
+      "border": "#856f5c"
     }
   },
   "layout": {

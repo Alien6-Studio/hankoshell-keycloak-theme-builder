@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "okta",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#f3f6fd",
+      "foreground": "#14234b",
+      "primary": "#00297a",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#566581",
+      "border": "#566581",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#f3f6fd",
+      "foreground": "#14234b",
+      "primary": "#00297a",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#566581",
+      "border": "#566581",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "8px",
+    "controlRadius": "8px",
+    "contentWidth": "440px"
+  }
+}

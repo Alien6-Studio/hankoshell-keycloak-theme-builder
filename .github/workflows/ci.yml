@@ -63,10 +63,10 @@ jobs:
           npm run test:package
       - run: npm run test:publication --prefix studio
       - run: npm audit --prefix studio --audit-level=high
-      - run: node studio/scripts/package-preview.mjs
+      - run: node studio/scripts/package-release.mjs
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
-          name: theme-studio-preview
+          name: theme-studio
           path: |
             studio/artifacts/release/*
             studio/artifacts/qualification/results.json
@@ -90,7 +90,7 @@ jobs:
       - name: Read the pinned Keycloak matrix
         id: compatibility
         run: node --input-type=module -e 'import fs from "node:fs"; const include=JSON.parse(fs.readFileSync("test/keycloak-matrix.json")); fs.appendFileSync(process.env.GITHUB_OUTPUT, `matrix=${JSON.stringify({include})}\n`)'
-      - run: node dist/cli.js build examples/aurora/theme.json --renderer examples/aurora/BrandPage.tsx --out artifacts
+      - run: node dist/cli.js build examples/aurora/theme.json --out artifacts
       - name: Package the precompiled installer
         run: |
           node --input-type=module <<'JS'

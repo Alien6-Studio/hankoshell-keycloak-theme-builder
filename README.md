@@ -11,7 +11,7 @@ Build native Keycloak themes from React and brand configuration. Preview them lo
 
 Start from a complete theme, an individual page or a reusable section.
 
-![Theme Studio gallery with the Essentiel, Éditorial and Minuit identity themes](studio/docs/screenshots/gallery.png)
+![Theme Studio gallery with complete identity themes and market-inspired styles](studio/docs/screenshots/gallery.png)
 
 Edit text, images and styles live, with guided drag-and-drop blocks and image uploads.
 
@@ -19,7 +19,7 @@ Edit text, images and styles live, with guided drag-and-drop blocks and image up
 
 ## Try it
 
-Requires Node.js 22+. Building a JAR also requires Java 21 and Maven. From a checkout:
+Requires Node.js 22.12+. Building a JAR also requires Java 21 and Maven. From a checkout:
 
 ```sh
 npm ci
@@ -48,7 +48,7 @@ Future tagged releases provide a package tarball, example JAR, SHA-256 checksums
 
 ## Compile a Studio project
 
-The `0.2.0` compiler consumes exported `hanko.theme-studio.project/v1` documents with the installed, declarative renderer:
+The compiler consumes exported `hanko.theme-studio.project/v1` documents with the installed, declarative renderer:
 
 ```sh
 node dist/cli.js dev-project identity.studio.json --port 5173
@@ -82,17 +82,6 @@ Account, administration and welcome pages export as React/Next source with their
 ```
 
 Use `--assets ./brand` to bundle `logo.svg`, trusted `theme.css`, fonts referenced by that CSS, and an optional `OFL.txt` license. Keep customer assets and deployment configuration in your own project. Remote logos must use HTTPS; embedded assets avoid external requests during authentication.
-
-## React themes
-
-Provide your own React renderer as a local module exporting a component with `KeycloakPageProps`. It can reuse `KeycloakPage` and customize selected pages or supply its own layout. See [`BrandPage.tsx`](examples/aurora/BrandPage.tsx).
-
-```sh
-node dist/cli.js dev theme.json --renderer ./BrandPage.tsx
-node dist/cli.js build theme.json --renderer ./BrandPage.tsx
-```
-
-The Node API accepts the same `renderer` path. Pass that component to `ThemePreview` to preview the same React code. Renderers and runtime adapters are trusted build inputs; appearance JSON cannot select executable modules.
 
 ## Dashboard preview
 
@@ -165,4 +154,4 @@ After the first public release, the [Keycloak extensions catalog](https://www.ke
 
 Built with [Keycloakify](https://docs.keycloakify.dev/). See the [Keycloak theme guide](https://www.keycloak.org/ui-customization/themes) for server configuration. Apache-2.0 licensed.
 
-The Studio navigation can be inspected in [studio/sitemap.xml](studio/sitemap.xml), generated alongside a readable map. Current Studio qualification and publication gates are documented in [the preview report](studio/docs/qualification-0.1.0-preview.3.md), [the Styles/gallery update](studio/docs/qualification-0.1.0-preview.4.md) and [navigation cleanup](studio/docs/qualification-0.1.0-preview.5.md).
+The Studio navigation can be inspected in [studio/sitemap.xml](studio/sitemap.xml). The [catalogue](studio/catalog) contains 23 complete themes, including independent starting points inspired by Microsoft Entra, Google Workspace, GitHub, GitLab, Okta, Auth0, AWS, Salesforce and other familiar interfaces. Each theme provides 18 editable screens and eight content languages.

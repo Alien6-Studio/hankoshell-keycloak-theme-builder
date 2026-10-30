@@ -1,8 +1,8 @@
 {
   "version": 1,
   "name": "editorial",
-  "headline": "Éditorial",
-  "subline": "Une identité, tous vos services.",
+  "headline": "Editorial",
+  "subline": "One identity, all your services.",
   "fontFamily": "Georgia, serif",
   "colors": {
     "light": {
@@ -12,7 +12,8 @@
       "primaryForeground": "#fff9f0",
       "card": "#fff9f0",
       "muted": "#756252",
-      "input": "#fff9f0"
+      "input": "#fff9f0",
+      "border": "#756252"
     },
     "dark": {
       "background": "#f5ede3",
@@ -21,7 +22,8 @@
       "primaryForeground": "#fff9f0",
       "card": "#fff9f0",
       "muted": "#756252",
-      "input": "#fff9f0"
+      "input": "#fff9f0",
+      "border": "#756252"
     }
   },
   "layout": {

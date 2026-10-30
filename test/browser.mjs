@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 import { authenticationPages } from "../dist/index.js";
 
 const origin = "http://127.0.0.1:5189";
-const server = spawn(process.execPath, ["dist/cli.js", "dev", "examples/aurora/theme.json", "--renderer", "examples/aurora/BrandPage.tsx", "--port", "5189"], { stdio: ["ignore", "pipe", "pipe"] });
+const server = spawn(process.execPath, ["dist/cli.js", "dev", "examples/aurora/theme.json", "--port", "5189"], { stdio: ["ignore", "pipe", "pipe"] });
 let output = "";
 server.stdout.on("data", chunk => { output += chunk; }); server.stderr.on("data", chunk => { output += chunk; });
 let browser;
@@ -22,7 +22,7 @@ try {
   page.on("request", request => { if (!request.url().startsWith(origin) && !request.url().startsWith("data:")) external.push(request.url()); });
   await page.goto(origin);
   await page.locator(".hk-card").waitFor();
-  assert.equal(await page.locator('[data-example-brand="aurora"]').count(), 1);
+  assert.match(await page.locator('.hk-brand-mark').getAttribute('src'), /^data:image\/svg\+xml;base64,/);
   for (const locale of ["en", "fr"]) {
     await page.getByLabel("Language", { exact: true }).selectOption(locale);
     for (const id of authenticationPages) {
@@ -33,6 +33,10 @@ try {
         await page.getByLabel("Appearance", { exact: true }).selectOption(mode);
         await preview.locator(`.hk-page[data-mode="${mode}"]`).waitFor();
         assert.equal(await preview.locator(".hk-logo-title").innerText(), "Aurora");
+        const appearance=await preview.locator('.hk-theme').evaluate(node=>{
+          const css=getComputedStyle(node);return ['--primary','--bg','--card-radius','--control-radius','--content-width','--font-family'].map(key=>css.getPropertyValue(key).trim());
+        });
+        assert.deepEqual(appearance,[mode==='dark'?'#38bdf8':'#2563eb',mode==='dark'?'#0b1220':'#f8fafc','16px','12px','440px','system-ui, sans-serif']);
         assert.equal(await preview.evaluate(host => host.scrollWidth <= host.clientWidth), true, `${id}: horizontal overflow`);
       }
       if (id === "login-config-totp.ftl") {

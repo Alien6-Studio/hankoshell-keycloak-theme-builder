@@ -2,7 +2,7 @@
 
 Visual editor shared by the standalone builder and the Hanko Dashboard. React module, shadcn/Radix controls, scoped styles, guided blocks, media uploads, editable translations and interactive account/administration previews.
 
-The gallery includes **Essentiel, Éditorial and Minuit**: 18 screens each, eight content languages including Arabic and Hebrew RTL, original licensed illustrations, plus four reusable sections. Apply a whole theme or one page while choosing whether to retain your brand and existing content. Save personal templates in the host library; standalone projects and templates use IndexedDB in the current browser. Export JSON for backup and sharing. The editing interface is currently French. Projects show their unsaved state, and a document close/reload prompts when changes remain. Browser history and deep links for editor states are not connected yet.
+The gallery includes **23 complete themes**: 18 screens each, eight content languages including Arabic and Hebrew RTL, original licensed illustrations, plus four reusable sections. Apply a whole theme or one page while choosing whether to retain your brand and existing content. Save personal templates in the host library; standalone projects and templates use IndexedDB in the current browser. Export JSON for backup and sharing. The editing interface is currently French. Projects show their unsaved state, and a document close/reload prompts when changes remain. Browser history and deep links for editor states are not connected yet.
 
 ## Gallery and live editor
 
@@ -35,9 +35,8 @@ python3 -m http.server 7426 --bind 127.0.0.1 --directory site
 
 Open <http://127.0.0.1:7426/>. The `site/` directory is static and supports subdirectory hosting. Schema validators are generated at build time and loaded on demand; no development API or runtime JavaScript compilation is needed. Embedding hosts may still provide `contractsBase` for their own authenticated validation endpoint. Server-side validation and authorization remain mandatory for host persistence.
 
-`npm run package:preview` prepares a website ZIP, npm archive, manifest and SHA-256 sums in `artifacts/release/`. Stable releases use the npm `latest` channel; prereleases use `preview`. Its manifest reports any uncommitted source changes; these files are not a published release.
+`npm run package:release` prepares a website ZIP, npm archive, manifest and SHA-256 sums in `artifacts/release/`. Stable releases use the npm `latest` channel; prereleases use `preview`. Its manifest reports any uncommitted source changes; these files are not a published release.
 
-See the [composition/publication qualification](docs/qualification-0.2.0-preview.3.md), [qualification report](docs/qualification-0.1.0-preview.3.md), [Styles/gallery update](docs/qualification-0.1.0-preview.4.md), [navigation cleanup](docs/qualification-0.1.0-preview.5.md) and [publication plan and roadmap](docs/publication-and-roadmap.md).
 
 ## Navigation map
 
@@ -71,15 +70,14 @@ Load this browser component without SSR in Next.js. The host owns authentication
 
 ## Dashboard distribution
 
-`node scripts/sync-dashboard.mjs [path-to-hanko-platform]` builds and packs the module into the Dashboard's versioned `vendor/` directory and writes its source digest. Run the printed installation command, then Dashboard checks. This keeps clean CI installs independent of a neighboring checkout or unpublished npm package. Rebuild and synchronize whenever Studio source, contracts or catalogue changes.
 
 ## Catalogue source
 
-`catalog/` is a vendored snapshot of the sibling `hankoshell-theme-catalog` repository. `scripts/generate-catalog.mjs` generates the three complete packs and original SVG/PNG assets; `scripts/preview-catalog.mjs` captures their rendered previews using the running dev server. Generation is a maintainer task, not a runtime dependency. Validate changes with `npm test` and review their previews before synchronizing the Dashboard distribution.
+`catalog/` is the bundled theme library. Essential, Editorial and Midnight provide the shared screen documents and original assets. Twenty independent market-inspired styles reuse those documents; applying a theme materializes a standalone project with its colors, typography, spacing and layout. They include Microsoft Entra, Google Workspace, GitHub, GitLab, Okta, Auth0, AWS Console, Salesforce, Atlassian, Slack, Notion, Linear, Stripe, Shopify, Vercel, Dropbox, HubSpot, Zoom, Datadog and Cloudflare. Vendor names describe inspiration; no vendor logos or assets are included. Validate changes with `npm test` and inspect their previews.
 
 ## Export boundaries
 
-Project JSON contains the full composition. React/Next exports reproduce the authored account, administration and welcome pages: blocks, images, styles, native labels, translations and navigation. React is the only required runtime package; the host connects its authenticated forms and operations. Administration interactions inside the Studio use demo data. The `0.2.0` native compiler consumes guided login, registration, OTP and email compositions, including blocks, images, styles and translations. Other login flows retain native Keycloak forms inside the shared layout. In a compatible Hanko host, the publication screen saves and freezes a revision, observes operator build/installation, then requests realm or client assignment and guarded rollback. The standalone editor displays the export and CLI installation path. Its browser does not hold Keycloak administrator credentials.
+Project JSON contains the full composition. React/Next exports reproduce the authored account, administration and welcome pages: blocks, images, styles, native labels, translations and navigation. React is the only required runtime package; the host connects its authenticated forms and operations. Administration interactions inside the Studio use demo data. The native compiler consumes guided login, registration, OTP and email compositions, including blocks, images, styles and translations. Other login flows retain native Keycloak forms inside the shared layout. In a compatible Hanko host, the publication screen saves and freezes a revision, observes operator build/installation, then requests realm or client assignment and guarded rollback. The standalone editor displays the export and CLI installation path. Its browser does not hold Keycloak administrator credentials.
 
 The host implements `StudioPublicationHost`: `build(project)` must persist and freeze the source; `status(id)` returns observed build state; `attach(id,destination)` and `rollback(id)` return pending receipts until Keycloak confirms the settings. Pass historical receipts as `builds`. A realm supports login and email; a client supports login only. Native email subjects accept literal translations, with supported user variables in the body. Cluster builds require the compatible operator CRDs, API migration 036 and a reviewed compiler image. Saving a project records a draft and never implies deployment. Angular remains a future adapter. Authenticator previews use transient demo secrets that are excluded from project and template exports.
 

@@ -1,8 +1,8 @@
 {
   "version": 1,
   "name": "essential",
-  "headline": "Essentiel",
-  "subline": "Une identité, tous vos services.",
+  "headline": "Essential",
+  "subline": "One identity, all your services.",
   "fontFamily": "system-ui, sans-serif",
   "colors": {
     "light": {
@@ -12,7 +12,8 @@
       "primaryForeground": "#ffffff",
       "card": "#ffffff",
       "muted": "#596b80",
-      "input": "#ffffff"
+      "input": "#ffffff",
+      "border": "#596b80"
     },
     "dark": {
       "background": "#eef3f8",
@@ -21,7 +22,8 @@
       "primaryForeground": "#ffffff",
       "card": "#ffffff",
       "muted": "#596b80",
-      "input": "#ffffff"
+      "input": "#ffffff",
+      "border": "#596b80"
     }
   },
   "layout": {

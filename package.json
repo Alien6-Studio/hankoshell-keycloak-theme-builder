@@ -1,11 +1,11 @@
 {
   "name": "@alien6/hankoshell-keycloak-theme-builder",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Standalone React theme builder for Keycloak, with live appearance and reusable account screens",
   "type": "module",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12.0"
   },
   "repository": {
     "type": "git",
@@ -79,10 +79,10 @@
     "test:package": "node test/package-consumer.mjs"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^6.1.2",
     "ajv": "8.20.0",
     "keycloakify": "11.16.4",
-    "vite": "6.4.5"
+    "vite": "8.3.5"
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",
@@ -92,10 +92,11 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "playwright": "^1.60.0",
+    "playwright": "^1.64.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "typescript": "^5.7.3"
+    "typescript": "^7.0.2",
+    "esbuild": "0.28.2"
   },
   "publishConfig": {
     "access": "public"

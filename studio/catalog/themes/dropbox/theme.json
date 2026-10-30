@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "dropbox",
+  "headline": "Aurora",
+  "subline": "One identity, all your services.",
+  "fontFamily": "Arial, sans-serif",
+  "socialPosition": "after",
+  "colors": {
+    "light": {
+      "background": "#edf3ff",
+      "foreground": "#1e1919",
+      "primary": "#0061ff",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#596377",
+      "border": "#596377",
+      "input": "#ffffff"
+    },
+    "dark": {
+      "background": "#edf3ff",
+      "foreground": "#1e1919",
+      "primary": "#0061ff",
+      "primaryForeground": "#ffffff",
+      "card": "#ffffff",
+      "muted": "#596377",
+      "border": "#596377",
+      "input": "#ffffff"
+    }
+  },
+  "layout": {
+    "cardRadius": "0px",
+    "controlRadius": "0px",
+    "contentWidth": "440px"
+  }
+}

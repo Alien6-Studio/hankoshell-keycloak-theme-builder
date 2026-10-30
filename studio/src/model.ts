@@ -54,8 +54,18 @@ export function stylePage(page: Page, preset: Preset): Page {
   return { ...page, preset: preset.id, layout: preset.layout, radius: preset.radius, accent: preset.accent,
     brand: { ...page.brand, color: preset.foreground },
     appearance: { ...page.appearance, background: preset.background, surface: preset.surface, foreground: preset.foreground, muted: preset.muted, font: preset.font, density: preset.density, padding: preset.density === 'compact' ? 18 : 24, gap: preset.density === 'compact' ? 12 : 20 },
-    native: { ...page.native, background: preset.surface, foreground: preset.foreground, inputBackground: preset.surface, inputBorder: preset.muted, buttonBackground: preset.accent, buttonColor: preset.surface, radius: preset.radius, padding: preset.density === 'compact' ? 14 : 20 },
+    native: { ...page.native, background: preset.surface, foreground: preset.foreground, inputBackground: preset.surface, inputBorder: preset.muted, buttonBackground: preset.accent, buttonColor: accentForeground(preset.accent), radius: preset.radius, padding: preset.density === 'compact' ? 14 : 20 },
   };
+}
+
+/** Choose readable button text for both light and dark accent palettes. */
+export function accentForeground(color: string): '#ffffff' | '#000000' {
+  const channels = color.slice(1).match(/.{2}/g)!.map(value => {
+    const channel = parseInt(value, 16) / 255;
+    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+  const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  return 1.05 / (luminance + 0.05) >= 4.5 ? '#ffffff' : '#000000';
 }
 export function normalizePage(page: Page, family: Family, index = 0): Page {
   const blocks=page.blocks.map(block=>({...makeBlock(block.type,block.zone),...block}));

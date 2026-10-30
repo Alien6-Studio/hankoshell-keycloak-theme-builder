@@ -19,10 +19,10 @@ try{
   try{
    const context=await browser.newContext({viewport:{width:1512,height:1100}}),page=await context.newPage();const errors=[],requests=[];
    page.on('pageerror',error=>errors.push(error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});page.on('request',request=>requests.push(request.url()));
-   await page.goto(server.url);await page.locator('.gallery-card').first().waitFor();assert.equal(await page.locator('.gallery-card').count(),3);
+   await page.goto(server.url);await page.locator('.gallery-card').first().waitFor();assert.equal(await page.locator('.gallery-card').count(),23);
    const xmlResponse=await page.request.get(new URL('sitemap.xml',server.url).href);assert.equal(xmlResponse.status(),200);const sitemap=await xmlResponse.text();const parsed=await page.evaluate(xml=>{const doc=new DOMParser().parseFromString(xml,'application/xml');return{errors:doc.querySelectorAll('parsererror').length,screens:doc.getElementsByTagName('screen').length,parent:[...doc.getElementsByTagName('screen')].find(node=>node.getAttribute('id')==='account:3')?.getAttribute('parent')};},sitemap);assert.deepEqual(parsed,{errors:0,screens:18,parent:'account:1'});
-   await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Minuit');assert.equal(await page.locator('.gallery-card').count(),1);await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('');
-   await page.locator('.gallery-card').filter({has:page.getByRole('heading',{name:'Éditorial',exact:true})}).getByRole('button',{name:'Utiliser ce thème'}).click();await page.locator('.template-gallery').waitFor({state:'detached'});
+   await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('Midnight');assert.equal(await page.locator('.gallery-card').count(),1);await page.getByRole('textbox',{name:'Rechercher un modèle'}).fill('');
+   await page.locator('.gallery-card').filter({has:page.getByRole('heading',{name:'Editorial',exact:true})}).getByRole('button',{name:'Utiliser ce thème'}).click();await page.locator('.template-gallery').waitFor({state:'detached'});
    assert.equal(await page.getByRole('combobox',{name:'Écran',exact:true}).count(),0,'Screen navigation has no duplicate dropdown');
    assert.equal(await page.locator('.screen-breadcrumb').count(),0,'Screen navigation has no duplicate breadcrumb');
    assert.equal(await page.locator('.canvas-area>.canvas-caption').count(),0,'Canvas does not repeat the screen path');
