@@ -115,7 +115,7 @@ export function JourneyScreen({ page, family, index, locale, testing, selected, 
   }
   const hasForm = ['profile','password','mfa','user','client'].includes(kind || '') || family === 'login' || family === 'email';
   return <section className={`native-card journey-native kind-${kind || family}`} data-selected={!testing && selected?.startsWith('@native')} aria-label="Fonctions Keycloak protégées" style={{ background:page.native.background,color:page.native.foreground,padding:page.native.padding,borderRadius:page.native.radius,'--field-gap':page.native.gap+'px' } as CSSProperties} onClick={e => {e.stopPropagation();if(!testing) onSelect(null);}}>
-    {!testing && <button type="button" className="native-lock" aria-label="Personnaliser le formulaire" onClick={e => {e.stopPropagation();onSelect(null);}}><LockKeyhole size={12}/>Formulaire · apparence modifiable</button>}
+    {!testing && <button type="button" className="native-lock" aria-label="Formulaire · apparence modifiable : personnaliser" onClick={e => {e.stopPropagation();onSelect(null);}}><LockKeyhole size={12}/>Formulaire · apparence modifiable</button>}
     {screen?.parent && <button type="button" className="journey-back" onClick={() => onNavigate(screen.parent!)}><ArrowLeft size={13}/>{t(journeyScreens[screen.parent].label)}</button>}
     <h2>{text('title')}</h2><p className="native-description">{text('description')}</p>
     {kind === 'security' && screen!.links.map((link,i) => linkRow(`row${i}` as 'row0'|'row1'|'row2',link,link.part))}
