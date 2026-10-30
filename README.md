@@ -48,7 +48,7 @@ Future tagged releases provide a package tarball, example JAR, SHA-256 checksums
 
 ## Compile a Studio project
 
-The `0.2.0-preview.3` compiler consumes exported `hanko.theme-studio.project/v1` documents with the installed, declarative renderer:
+The `0.2.0` compiler consumes exported `hanko.theme-studio.project/v1` documents with the installed, declarative renderer:
 
 ```sh
 node dist/cli.js dev-project identity.studio.json --port 5173

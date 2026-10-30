@@ -1,6 +1,6 @@
 {
   "name": "@alien6/hankoshell-keycloak-theme-builder",
-  "version": "0.2.0-preview.3",
+  "version": "0.2.0",
   "description": "Standalone React theme builder for Keycloak, with live appearance and reusable account screens",
   "type": "module",
   "license": "Apache-2.0",

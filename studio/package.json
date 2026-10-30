@@ -1,6 +1,6 @@
 {
   "name": "@alien6/hankoshell-theme-studio",
-  "version": "0.2.0-preview.3",
+  "version": "0.2.0",
   "type": "module",
   "license": "Apache-2.0",
   "description": "Visual identity theme studio and reusable theme catalogue for Hanko and standalone applications",
@@ -79,7 +79,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "preview"
+    "tag": "latest"
   },
   "keywords": [
     "keycloak",

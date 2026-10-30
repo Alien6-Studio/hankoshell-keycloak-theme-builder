@@ -274,7 +274,7 @@ export function Studio() {
   function importProject(value: unknown) {
     assertEditableProject(value);
     const input = value as { pages: Record<string, unknown>; media?: Asset[]; plugins?: unknown[]; destination?: typeof target; name: string };
-    if (input.plugins?.length) throw new Error('L’installation de plugins n’est pas encore raccordée à la maquette.');
+    if (input.plugins?.length) throw new Error('Ce projet nécessite des plugins non pris en charge par le moteur installé.');
     const imported: Record<string, Page> = {};
     for (const [pageKey, document] of Object.entries(input.pages)) {
       const [f, index] = pageKey.split(':');
