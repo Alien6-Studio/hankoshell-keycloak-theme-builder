@@ -45,10 +45,13 @@ export async function writeEmailTheme(project: StudioComposition, directory: str
     async function blocks(zone: string) {
       return (await Promise.all(page.blocks.filter(block => block.zone === zone).map(async block => {
         const css = style(block.style);
-        if (block.type === "image") return block.src ? `<img src="${await image(block.src)}" alt="${message("blocks." + block.id + ".alt", block.alt)}" style="display:block;max-width:100%;height:auto;border-radius:${block.style?.radius ?? page.radius}px"/>` : "";
-        if (block.type === "divider") return `<hr style="border:0;border-top:1px solid ${block.style?.color || page.accent}"/>`;
-        if (block.type === "button") return `<p><a href="${literalUrl(block.href || "#")}" style="display:inline-block;padding:10px 16px;background:${page.accent};color:${page.native.buttonColor};border-radius:${page.radius}px;${css}">${text(block)}</a></p>`;
-        return `<${block.type === "heading" ? "h1" : "p"} style="white-space:pre-wrap;text-align:${block.align};${css}">${text(block)}</${block.type === "heading" ? "h1" : "p"}>`;
+        const align = block.style?.align || block.align;
+        const frame = `width:${block.style?.width ?? 100}%;` + (align === "center" ? "margin-left:auto;margin-right:auto" : align === "right" ? "margin-left:auto;margin-right:0" : "");
+        const wrap = (content: string) => `<div data-block="${literalUrl(block.id)}" style="${frame}">${content}</div>`;
+        if (block.type === "image") return block.src ? wrap(`<img src="${await image(block.src)}" alt="${message("blocks." + block.id + ".alt", block.alt)}" style="display:block;max-width:100%;height:${block.style?.imageHeight ? block.style.imageHeight+"px" : "auto"};max-height:${block.style?.imageHeight || 240}px;object-fit:${block.style?.fit || "contain"};border-radius:${block.style?.radius ?? page.radius}px;${css}"/>`) : "";
+        if (block.type === "divider") return wrap(`<hr style="border:0;height:${block.style?.imageHeight || 1}px;background:${block.style?.color || page.accent};${css}"/>`);
+        if (block.type === "button") return wrap(`<p><a href="${literalUrl(block.href || "#")}" style="display:inline-block;padding:10px 16px;background:${page.accent};color:${page.native.buttonColor};border-radius:${page.radius}px;${css}">${text(block)}</a></p>`);
+        return wrap(`<${block.type === "heading" ? "h1" : "p"} style="white-space:pre-wrap;text-align:${block.align};${css}">${text(block)}</${block.type === "heading" ? "h1" : "p"}>`);
       }))).join("\n");
     }
     const brand = message("brand.name", page.brand.name), header = await blocks("header"), aside = await blocks("aside"), footer = await blocks("footer");

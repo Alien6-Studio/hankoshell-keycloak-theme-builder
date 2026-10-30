@@ -36,7 +36,8 @@
     "test:dashboard": "node test/dashboard-host.mjs",
     "package:preview": "npm run build:site && node scripts/package-preview.mjs",
     "screenshots:readme": "node scripts/capture-readme.mjs",
-    "test:application": "node test/application-export.mjs"
+    "test:application": "node test/application-export.mjs",
+    "test:dev": "node test/dev-server.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",

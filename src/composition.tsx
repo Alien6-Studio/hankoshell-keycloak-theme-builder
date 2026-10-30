@@ -19,8 +19,9 @@ export function CompositionTemplate(props: Readonly<TemplateProps<KcContext, I18
   function zone(name: string) {
     return <div className={"hkc-zone hkc-" + name}>{page.blocks.filter(block => block.zone === name).map(block => {
       const style = { textAlign: block.align, ...elementStyle(block.style), whiteSpace: "pre-wrap", overflowWrap: "anywhere" } as CSSProperties;
-      return <div className="hkc-block" key={block.id}>{block.type === "image" ? block.src && <img src={block.src} alt={block.alt} style={{ ...style, maxWidth: "100%", height: block.style?.imageHeight || 240, objectFit: block.style?.fit || "contain", borderRadius: block.style?.radius ?? page.radius }} />
-        : block.type === "divider" ? <hr style={{ border: 0, borderTop: `${block.style?.width || 1}px solid ${block.style?.color || page.accent}`, marginBlock: 12 }} />
+      const align = block.style?.align || block.align;
+      return <div className="hkc-block" data-block={block.id} key={block.id} style={{width:block.style?.width ? block.style.width+"%" : undefined,marginInline:align==="center" ? "auto" : align==="right" ? "auto 0" : undefined}}>{block.type === "image" ? block.src && <img src={block.src} alt={block.alt} style={{ ...style, maxWidth: "100%", height: block.style?.imageHeight, maxHeight: block.style?.imageHeight || 240, objectFit: block.style?.fit || "contain", borderRadius: block.style?.radius ?? page.radius }} />
+        : block.type === "divider" ? <hr style={{ border: 0, height: block.style?.imageHeight || 1, background: block.style?.color || page.accent, marginBlock: 12, ...elementStyle(block.style) }} />
           : block.type === "button" ? <a href={block.href || "#"} style={{ display: "inline-block", background: page.accent, color: n.buttonColor, padding: "10px 16px", borderRadius: page.radius, ...style }}>{block.text}</a>
             : block.type === "heading" ? <h2 style={{ fontSize: 36, fontWeight: 600, lineHeight: 1.15, margin: 0, ...style }}>{block.text}</h2> : <p style={{ margin: 0, fontSize: 12, lineHeight: 1.65, ...style }}>{block.text}</p>}</div>;
     })}</div>;

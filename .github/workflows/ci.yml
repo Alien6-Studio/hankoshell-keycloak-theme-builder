@@ -55,15 +55,7 @@ jobs:
       - run: npm test --prefix studio
       - run: npx --no-install playwright install --with-deps chromium firefox webkit
       - name: Check the embedded module
-        run: |
-          npm run dev --prefix studio > /tmp/theme-studio.log 2>&1 &
-          studio_pid=$!
-          trap 'kill "$studio_pid"' EXIT
-          for attempt in $(seq 1 30); do
-            curl -fsS http://127.0.0.1:7425/ > /dev/null && break
-            sleep 1
-          done
-          node studio/test/browser.mjs
+        run: npm run test:dev --prefix studio
       - run: npm run test:application --prefix studio
       - name: Check an isolated consumer of the actual package archives
         run: |
@@ -164,7 +156,7 @@ jobs:
       - name: Qualify the same JARs on this Keycloak image
         run: |
           QUALIFICATION_OUTPUT=artifacts/aurora-results.json npm run test:keycloak
-          THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/studio-results.json npm run test:keycloak
+          THEME_COMPOSITION_LAYOUT=1 THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/studio-results.json npm run test:keycloak
           THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/email-results.json npm run test:project-email
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:

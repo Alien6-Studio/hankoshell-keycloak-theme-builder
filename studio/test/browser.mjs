@@ -22,12 +22,22 @@ try{
  await page.reload();await page.getByRole('tab',{name:'Mes modèles'}).click();await page.getByRole('heading',{name:'Mon identité Minuit'}).waitFor();
  await page.getByRole('button',{name:'Retour au Studio',exact:true}).click();
  await page.screenshot({path:new URL('standalone.png',output).pathname,fullPage:true});
- await page.goto(base+'/test/host.html');await page.locator('.gallery-card').first().waitFor();
+ await page.goto(base+'/test/host.html?slow-validation');await page.locator('.gallery-card').first().waitFor();
  assert.equal(await page.locator('#outside').evaluate(node=>getComputedStyle(node).color),'rgb(23, 36, 59)');assert.equal(await page.locator('body').evaluate(node=>getComputedStyle(node).fontSize),'14px');
  assert.equal(await page.locator('.hanko-theme-studio').evaluate(node=>getComputedStyle(node).containerType),'inline-size');
  assert.equal(await page.locator('main main').count(),0);
  await page.screenshot({path:new URL('embedded-gallery.png',output).pathname,fullPage:true});
- await page.locator('.gallery-card').first().getByRole('button',{name:'Utiliser ce thème'}).click();await page.getByRole('button',{name:'Enregistrer',exact:true}).click();await page.waitForFunction(()=>window.saved&&Object.keys(window.saved.pages).length===18);
+ let releaseValidation;
+ const validationGate=new Promise(resolve=>{releaseValidation=resolve;});
+ await page.route('**/__studio/contracts/validate',async route=>{await validationGate;await route.continue();});
+ try {
+  await page.locator('.gallery-card').first().getByRole('button',{name:'Utiliser ce thème'}).click();
+  assert.equal(await page.getByRole('button',{name:'Enregistrer',exact:true}).isDisabled(),true,'A pending template must not save the previous project');
+  assert.equal(await page.getByRole('button',{name:'Publication',exact:true}).isDisabled(),true,'A pending template must not publish the previous project');
+  assert.equal(await page.evaluate(()=>window.saved),undefined);
+ } finally { releaseValidation(); }
+ await page.locator('.template-gallery').waitFor({state:'detached'});
+ await page.getByRole('button',{name:'Enregistrer',exact:true}).click();await page.waitForFunction(()=>window.saved&&Object.keys(window.saved.pages).length===18);
  await page.getByRole('combobox',{name:'Type de thème'}).click();await page.getByRole('option',{name:'Compte',exact:true}).click();await page.getByRole('navigation',{name:'Arborescence des écrans'}).getByRole('button',{name:'Sécurité',exact:true}).click();
  await page.setViewportSize({width:1000,height:1000});await page.screenshot({path:new URL('embedded-editor.png',output).pathname,fullPage:true});
  await page.goto(base+'/test/host.html?empty');await page.getByRole('combobox',{name:'Type de thème'}).waitFor();

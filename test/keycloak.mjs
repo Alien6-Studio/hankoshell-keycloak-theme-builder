@@ -81,7 +81,9 @@ try {
   if (process.env.THEME_REGISTRATION_EMAIL_LABEL) {
     const auth = new URL(`${issuer}/protocol/openid-connect/auth`);
     auth.search = new URLSearchParams({client_id:"theme-browser",redirect_uri:callback,response_type:"code",scope:"openid",ui_locales:"fr",code_challenge:createHash("sha256").update(randomUUID()+randomUUID()).digest("base64url"),code_challenge_method:"S256"}).toString();
-    await page.goto(auth.href);await page.locator('a[href*="registration"]').click();
+    await page.goto(auth.href);
+    if(process.env.THEME_COMPOSITION_LAYOUT){const divider=page.locator('.hkc-block[data-block="layout-divider"]');assert.equal(await divider.evaluate(node=>node.style.width),'50%');assert.equal(await divider.locator('hr').evaluate(node=>getComputedStyle(node).height),'3px');assert.equal(await divider.locator('hr').evaluate(node=>getComputedStyle(node).borderTopWidth),'0px');}
+    await page.locator('a[href*="registration"]').click();
     await page.locator('#kc-register-form').waitFor();assert.equal(await page.locator('.hkc-root').getAttribute('lang'),'fr');
     await page.locator('label[for="email"]').filter({hasText:process.env.THEME_REGISTRATION_EMAIL_LABEL}).waitFor();
     assert.equal(await page.locator('#kc-register-form').getAttribute('method'),'post');
@@ -123,7 +125,7 @@ try {
   await complete(verifier); await logout();
   console.log("Native self-service profile updated and persisted without administrator credentials");
   assert.deepEqual(errors, []);
-  if (process.env.QUALIFICATION_OUTPUT) await writeFile(process.env.QUALIFICATION_OUTPUT, JSON.stringify({status:'passed',image,theme:themeName,jarSha256:createHash('sha256').update(await readFile(jar)).digest('hex'),checks:[...(process.env.THEME_REGISTRATION_EMAIL_LABEL?['registration-labels']:[]),'native-OTP-enrollment-and-QR','invalid-OTP-refused','valid-OTP-login','OIDC-code-exchange','logout','recovery-codes','persisted-profile']}, null, 2)+'\n');
+  if (process.env.QUALIFICATION_OUTPUT) await writeFile(process.env.QUALIFICATION_OUTPUT, JSON.stringify({status:'passed',image,theme:themeName,jarSha256:createHash('sha256').update(await readFile(jar)).digest('hex'),checks:[...(process.env.THEME_REGISTRATION_EMAIL_LABEL?['registration-labels']:[]),...(process.env.THEME_COMPOSITION_LAYOUT?['authored-block-dimensions']:[]),'native-OTP-enrollment-and-QR','invalid-OTP-refused','valid-OTP-login','OIDC-code-exchange','logout','recovery-codes','persisted-profile']}, null, 2)+'\n');
 } finally {
   await browser?.close();
   await new Promise(resolve => callbackServer.close(resolve));

@@ -7,6 +7,7 @@ export async function projectFixture(){
  }));
  const pages=Object.fromEntries(entries);
  pages['login:0'].blocks[0].text='Identité composée dans le Studio';pages['login:0'].native.copy.action='Entrer dans mon espace';
+ for(const key of ['login:0','email:0'])pages[key].blocks.push({id:'layout-divider',type:'divider',zone:'footer',text:'',alt:'',align:'center',style:{width:50,imageHeight:3,color:'#335577'}});
  pages['login:1'].native.copy.emailLabel='Votre adresse de contact';
  pages['email:0'].blocks[0].text='Bonjour {{prénom}} — ${7*7} <script>inert</script> chez {{organisation}}';
  return{format:'hanko.theme-studio.project/v1',name:'studio-qualification',pages,media:[],destination:{mode:'standalone',url:'',realm:'',scope:'realm',client:'',theme:'studio-qualification'},publication:{status:'draft',built:false,deployed:false,attached:false}};
