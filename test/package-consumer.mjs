@@ -1,0 +1,70 @@
+import assert from 'node:assert/strict';
+import {mkdtemp, mkdir, readFile, writeFile, rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {resolve, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+import {execFileSync} from 'node:child_process';
+import {build} from 'esbuild';
+import {chromium} from 'playwright';
+import {staticServer} from '../studio/test/static-server.mjs';
+
+const root=fileURLToPath(new URL('..',import.meta.url));
+const work=await mkdtemp(join(tmpdir(),'hanko-package-consumer-'));
+let browser, server;
+const npm=(args,cwd)=>execFileSync('npm',args,{cwd,encoding:'utf8',env:{...process.env,npm_config_cache:process.env.npm_config_cache||join(work,'cache')}});
+try {
+  const archives=join(work,'archives'),app=join(work,'app');
+  await mkdir(archives);await mkdir(app);
+  const packed=[];
+  for(const directory of [root,join(root,'studio')]) {
+    const [metadata]=JSON.parse(npm(['pack','--ignore-scripts','--json','--pack-destination',archives],directory));
+    packed.push(join(archives,metadata.filename));
+  }
+  const sourceRequire=createRequire(join(root,'package.json'));
+  const versions=Object.fromEntries(['react','react-dom','@types/react','@types/react-dom','typescript'].map(name=>[name,sourceRequire(name+'/package.json').version]));
+  await writeFile(join(app,'package.json'),JSON.stringify({name:'isolated-theme-consumer',private:true,type:'module',dependencies:versions}));
+  npm(['install','--ignore-scripts','--no-audit','--no-fund',...packed],app);
+  const consumerRequire=createRequire(join(app,'package.json'));
+  const native=await import(consumerRequire.resolve('@alien6/hankoshell-keycloak-theme-builder/project'));
+  assert.equal(typeof native.buildStudioProject,'function');
+  const contracts=consumerRequire('@alien6/hankoshell-theme-studio/contracts');
+  const project=JSON.parse(await readFile(join(root,'.theme-kit/project-qualification.json'),'utf8'));
+  assert.equal(contracts.validate('project',project).valid,true);
+  await writeFile(join(app,'app.tsx'),`import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {ThemeStudio,type StudioProps} from '@alien6/hankoshell-theme-studio';
+import type {buildStudioProject} from '@alien6/hankoshell-keycloak-theme-builder/project';
+const props:StudioProps={embedded:true,initialView:'gallery'};
+export type Compiler=typeof buildStudioProject;
+createRoot(document.getElementById('root')!).render(<ThemeStudio {...props}/>);
+`);
+  await writeFile(join(app,'tsconfig.json'),JSON.stringify({compilerOptions:{strict:true,skipLibCheck:true,noEmit:true,target:'ES2022',module:'ESNext',moduleResolution:'Bundler',jsx:'react-jsx'},include:['app.tsx']}));
+  execFileSync(process.execPath,[consumerRequire.resolve('typescript/bin/tsc'),'--project',join(app,'tsconfig.json')],{cwd:app,stdio:'inherit'});
+  const site=join(work,'site');
+  await mkdir(site);
+  await build({entryPoints:[join(app,'app.tsx')],outdir:site,bundle:true,splitting:true,format:'esm',platform:'browser',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'}});
+  await writeFile(join(site,'studio.css'),await readFile(consumerRequire.resolve('@alien6/hankoshell-theme-studio/styles.css')));
+  await writeFile(join(site,'index.html'),'<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Packaged Studio</title><button id="host">Application host</button><div id="root"></div><script type="module" src="./app.js"></script></html>');
+  server=await staticServer(site);browser=await chromium.launch();
+  const view=await browser.newPage({viewport:{width:1512,height:1100}}),errors=[],external=[];
+  view.on('pageerror',error=>errors.push(error.message));
+  view.on('request',request=>{if(!request.url().startsWith(new URL(server.url).origin))external.push(request.url());});
+  await view.goto(server.url);await view.locator('.gallery-card').first().waitFor();
+  const metrics=()=>view.locator('#host').evaluate(element=>{const style=getComputedStyle(element);return {font:style.font,padding:style.padding,border:style.border,boxSizing:style.boxSizing};});
+  const before=await metrics();
+  await view.evaluate(()=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href='./studio.css';link.onload=resolve;link.onerror=reject;document.head.append(link);}));
+  assert.deepEqual(await metrics(),before,'Studio CSS preserves host controls');
+  assert.equal(await view.locator('.gallery-card').count(),3);
+  await view.locator('.gallery-card').first().getByRole('button',{name:'Utiliser ce thème',exact:true}).click();
+  await view.locator('.template-gallery').waitFor({state:'detached'});
+  const downloaded=view.waitForEvent('download');
+  await view.getByRole('button',{name:'Écrans React/Next',exact:true}).click();
+  const code=await readFile(await(await downloaded).path(),'utf8');
+  assert.match(code,/createIdentityTheme/);assert.match(code,/renderNative/);assert.match(code,/identity-subpages/);
+  assert.doesNotMatch(code,/@alien6\/hankoshell-typescript-adk/);
+  assert.deepEqual(external,[]);assert.deepEqual(errors,[]);
+  console.log('Clean archive installation passed: public types, native API, bundled validators, full gallery, scoped CSS and React source export without a sibling checkout.');
+} finally {
+  await browser?.close();await server?.close();await rm(work,{recursive:true,force:true});
+}

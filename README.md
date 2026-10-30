@@ -63,7 +63,7 @@ Install the JAR under Keycloak's `providers/`, build/restart the Keycloak image 
 
 For Node applications, import `buildStudioProject` from `@alien6/hankoshell-keycloak-theme-builder/project`. The result includes the JAR SHA-256, project SHA-256 and native theme types. The CLI also accepts gzip snapshots and `--project-sha256` to verify the exact uncompressed input bytes before building. Inputs are limited to 40 MiB; Hanko cluster builds additionally bound the compressed payload to 900,000 base64 characters.
 
-Account and administration compositions remain in project JSON. React/Next exports are SDK starters; they do not yet reproduce arbitrary Studio blocks and are not native account/admin console themes. See [Studio qualification](studio/docs/qualification-0.2.0-preview.3.md) for the verified scope and remaining release gates.
+Account, administration and welcome pages export as React/Next source with their authored blocks, images, styles, native labels and translations. React is the only required runtime package. The application supplies authenticated forms and operations through `renderNative`; no Hanko SDK installation is required. See the [integration example](studio/README.md#application-screen-export).
 
 ## Brand configuration
 

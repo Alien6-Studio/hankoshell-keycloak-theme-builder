@@ -79,6 +79,28 @@ Load this browser component without SSR in Next.js. The host owns authentication
 
 ## Export boundaries
 
-Project JSON contains the full composition. React/Next exports provide a starter using the Hanko SDK account components, the brand and basic appearance; custom blocks and form text are not reproduced yet. The SDK must also be distributed before public consumers can install that export; administration interactions in the preview use demo data. The native builder can consume the appearance configuration. The `0.2.0-preview.3` native compiler consumes guided login, registration, OTP and email compositions, including blocks, images, styles and translations. Other login flows retain native Keycloak forms inside the shared layout. In a compatible Hanko host, the publication screen saves and freezes a revision, observes operator build/installation, then requests realm or client assignment and guarded rollback. The standalone editor displays the export and CLI installation path. Its browser does not hold Keycloak administrator credentials.
+Project JSON contains the full composition. React/Next exports reproduce the authored account, administration and welcome pages: blocks, images, styles, native labels, translations and navigation. React is the only required runtime package; the host connects its authenticated forms and operations. Administration interactions inside the Studio use demo data. The `0.2.0-preview.3` native compiler consumes guided login, registration, OTP and email compositions, including blocks, images, styles and translations. Other login flows retain native Keycloak forms inside the shared layout. In a compatible Hanko host, the publication screen saves and freezes a revision, observes operator build/installation, then requests realm or client assignment and guarded rollback. The standalone editor displays the export and CLI installation path. Its browser does not hold Keycloak administrator credentials.
 
 The host implements `StudioPublicationHost`: `build(project)` must persist and freeze the source; `status(id)` returns observed build state; `attach(id,destination)` and `rollback(id)` return pending receipts until Keycloak confirms the settings. Pass historical receipts as `builds`. A realm supports login and email; a client supports login only. Native email subjects accept literal translations, with supported user variables in the body. Cluster builds require the compatible operator CRDs, API migration 036 and a reviewed compiler image. Saving a project records a draft and never implies deployment. Angular remains a future adapter. Authenticator previews use transient demo secrets that are excluded from project and template exports.
+
+## Application screen export
+
+Use **Écrans React/Next** to download a TSX module containing the project's application pages. Import it into a React application or a Next.js client component:
+
+```tsx
+'use client';
+import type {ReactNode} from 'react';
+import {ProfileScreen, type IdentityScreenContext} from './identity';
+
+export function AccountPage({renderAuthenticatedScreen}: {
+  renderAuthenticatedScreen: (context: IdentityScreenContext) => ReactNode;
+}) {
+  return <ProfileScreen locale="fr" renderNative={renderAuthenticatedScreen}/>;
+}
+```
+
+The callback receives the current screen ID, localized page, locale and `onNavigate`. It renders the application's real fields, data and actions. `IdentityInput` and `IdentityButton` are optional helpers that apply edited field labels and styles; field values and change/submit handlers belong to the host. A Hanko application can connect its ADK through this callback. Organization, resource and permission operations require the corresponding authenticated host implementation.
+
+Use `IdentityScreen` for the first exported screen, or a named component such as `ProfileScreen` for a page present in the project. `applicationScreenIds` lists the included pages. Navigation is local by default; a host router can control it with `screen` and `onNavigate`. A button targeting `#account-1` opens the exported security page. Locale falls back to the page's configured default; Arabic and Hebrew use RTL layout. The exported source contains no demo authenticator secrets or authenticated session.
+
+`npm run test:application` exercises a real Studio download in a separate React application, including authored content, host-controlled fields, navigation, Hebrew RTL and mobile layout.

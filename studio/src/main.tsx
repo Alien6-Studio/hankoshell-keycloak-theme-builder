@@ -282,10 +282,11 @@ export function Studio() {
   }
   function openPlanScreen(destination:string){setGalleryOpen(false);setTranslationsOpen(false);setFlowOpen(false);setJsonOpen(false);setTesting(false);navigateScreen(destination);}
   function openPlanView(view:StudioView){setJsonOpen(false);setGalleryOpen(false);setTranslationsOpen(false);setFlowOpen(false);setTesting(false);if(view==='catalog')setGalleryOpen(true);else if(view==='translations')openTranslations();else if(view==='contracts')setJsonOpen(true);else if(view!=='editor'){setFlow({validate:1,build:2,deploy:3,attach:4}[view]);setFlowOpen(true);}}
-  function exportApplication() {
-    const href = URL.createObjectURL(new Blob([applicationSource(sourcePage)], { type: 'text/plain;charset=utf-8' }));
+  async function exportApplication() {
+    let code:string;try{const document=projectDocument();await requireValidDocument(contractBase,'project',document);code=applicationSource(document);}catch(cause){setNotice(cause instanceof Error?cause.message:'Export indisponible.');return;}
+    const href = URL.createObjectURL(new Blob([code], { type: 'text/plain;charset=utf-8' }));
     const link = document.createElement('a'); link.href = href; link.download = `${target.theme || 'theme'}-identity-screens.tsx`; link.click(); URL.revokeObjectURL(href);
-    setNotice('Intégration SDK React/Next exportée : marque et apparence de base. Les blocs et les textes du formulaire restent à reporter dans votre application.');
+    setNotice('Écrans React/Next exportés avec leurs blocs, images, styles et traductions. Branchez vos formulaires et opérations authentifiés avec renderNative.');
   }
   function renderDropzone({ compact = false }: { compact?: boolean }) {
     return <div className={`upload-zone ${compact ? 'compact' : ''}`} data-over={dragZone === 'media'} onDragOver={e => { if (e.dataTransfer.types.includes('Files')) { e.preventDefault(); setDragZone('media'); } }} onDragLeave={() => setDragZone(null)} onDrop={e => { e.preventDefault(); void importFiles([...e.dataTransfer.files]); }}><UploadCloud size={compact ? 22 : 30} /><strong>Déposez vos images ici</strong><span>PNG, JPEG, WebP · 5 Mo par image</span><Button variant="outline" size="sm" onClick={() => chooseFiles()}>Parcourir les fichiers</Button></div>;

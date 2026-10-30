@@ -64,6 +64,11 @@ jobs:
             sleep 1
           done
           node studio/test/browser.mjs
+      - run: npm run test:application --prefix studio
+      - name: Check an isolated consumer of the actual package archives
+        run: |
+          node test/project-fixture.mjs
+          npm run test:package
       - run: npm run test:publication --prefix studio
       - run: npm audit --prefix studio --audit-level=high
       - run: node studio/scripts/package-preview.mjs
@@ -76,6 +81,8 @@ jobs:
   jar:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      keycloak-matrix: ${{ steps.compatibility.outputs.matrix }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
@@ -88,6 +95,9 @@ jobs:
           java-version: '21'
       - run: npm ci
       - run: npm run build
+      - name: Read the pinned Keycloak matrix
+        id: compatibility
+        run: node --input-type=module -e 'import fs from "node:fs"; const include=JSON.parse(fs.readFileSync("test/keycloak-matrix.json")); fs.appendFileSync(process.env.GITHUB_OUTPUT, `matrix=${JSON.stringify({include})}\n`)'
       - run: node dist/cli.js build examples/aurora/theme.json --renderer examples/aurora/BrandPage.tsx --out artifacts
       - name: Package the precompiled installer
         run: |
@@ -106,14 +116,12 @@ jobs:
           docker build -t theme-installer-test artifacts/image
           docker run --rm --network none --tmpfs /output:uid=10001,gid=10001,mode=0700 -e THEME_SLUG=aurora -e THEME_JAR_NAME=aurora.jar --entrypoint /bin/sh theme-installer-test -ec '/bin/sh /build-theme.sh; cmp /theme/theme.jar /output/aurora.jar'
           docker run --rm --network none --read-only --tmpfs /output:uid=10001,gid=10001,mode=0700 --tmpfs /theme:uid=10001,gid=10001,mode=0700 -e THEME_SLUG=aurora -e THEME_JAR_NAME=aurora.jar --entrypoint /bin/sh theme-installer-test -ec 'printf tampered > /theme/theme.jar; printf previous > /output/aurora.jar; if /bin/sh /build-theme.sh; then exit 1; fi; test "$(cat /output/aurora.jar)" = previous'
-      - run: npx --no-install playwright install --with-deps chromium
-      - run: npm run test:keycloak
-      - name: Qualify Studio login and email composition
+      - name: Build the Studio composition candidate once
         run: |
           node test/project-fixture.mjs
           node dist/cli.js build-project .theme-kit/project-qualification.json --out .theme-kit/project-jar
-          THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=.theme-kit/project-jar/studio-qualification-theme.jar npm run test:keycloak
-          npm run test:project-email
+          mkdir -p artifacts/native-input
+          cp artifacts/aurora-theme.jar .theme-kit/project-jar/studio-qualification-theme.jar artifacts/native-input/
       - name: Check authentication templates
         run: |
           jar tf artifacts/aurora-theme.jar > /tmp/theme-files
@@ -128,3 +136,37 @@ jobs:
           path: |
             artifacts/*.jar
             artifacts/*.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: native-input
+          path: artifacts/native-input/*
+  native:
+    needs: jar
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.jar.outputs.keycloak-matrix) }}
+    env:
+      KEYCLOAK_IMAGE: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: native-input
+          path: artifacts
+      - name: Qualify the same JARs on this Keycloak image
+        run: |
+          QUALIFICATION_OUTPUT=artifacts/aurora-results.json npm run test:keycloak
+          THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/studio-results.json npm run test:keycloak
+          THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/email-results.json npm run test:project-email
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: native-results-${{ matrix.version }}
+          path: artifacts/*-results.json

@@ -1,13 +1,15 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { execFileSync } from "node:child_process";
-import { mkdtemp, writeFile, rm, chmod } from "node:fs/promises";
+import { mkdtemp, readFile, writeFile, rm, chmod } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import { randomUUID, createHash, createHmac } from "node:crypto";
 import { chromium } from "playwright";
 
 const jar = resolve(process.env.THEME_JAR ?? "artifacts/aurora-theme.jar");
+const matrix = JSON.parse(await readFile(new URL('./keycloak-matrix.json', import.meta.url), 'utf8'));
+const image = process.env.KEYCLOAK_IMAGE || matrix.at(-1).image;
 const themeName = process.env.THEME_NAME || "aurora";
 assert.match(themeName, /^[a-z0-9][a-z0-9._-]{0,63}$/);
 const work = await mkdtemp(join(tmpdir(), "theme-keycloak-"));
@@ -40,7 +42,7 @@ try {
       { username: "profile-user", enabled: true, email: "profile@example.test", firstName: "Alex", lastName: "Profile", credentials: [{ type: "password", value: password, temporary: false }] },
     ],
   }));
-  docker("create", "--name", name, "-p", "127.0.0.1::8080", process.env.KEYCLOAK_IMAGE ?? "quay.io/keycloak/keycloak:26.7.3", "start-dev", "--import-realm", "--features=recovery-codes");
+  docker("create", "--name", name, "-p", "127.0.0.1::8080", image, "start-dev", "--import-realm", "--features=recovery-codes");
   docker("cp", jar, `${name}:/opt/keycloak/providers/aurora-theme.jar`);
   docker("cp", `${work}/.`, `${name}:/opt/keycloak/data/import`);
   docker("start", name);
@@ -121,6 +123,7 @@ try {
   await complete(verifier); await logout();
   console.log("Native self-service profile updated and persisted without administrator credentials");
   assert.deepEqual(errors, []);
+  if (process.env.QUALIFICATION_OUTPUT) await writeFile(process.env.QUALIFICATION_OUTPUT, JSON.stringify({status:'passed',image,theme:themeName,jarSha256:createHash('sha256').update(await readFile(jar)).digest('hex'),checks:[...(process.env.THEME_REGISTRATION_EMAIL_LABEL?['registration-labels']:[]),'native-OTP-enrollment-and-QR','invalid-OTP-refused','valid-OTP-login','OIDC-code-exchange','logout','recovery-codes','persisted-profile']}, null, 2)+'\n');
 } finally {
   await browser?.close();
   await new Promise(resolve => callbackServer.close(resolve));
