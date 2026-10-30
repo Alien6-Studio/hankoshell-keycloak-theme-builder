@@ -16,6 +16,19 @@ const require = createRequire(import.meta.url);
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ownPackage = JSON.parse(await readFile(join(packageRoot, "package.json"), "utf8")) as { name: string; version: string };
 
+// Preload the lazy native views together so optimization cannot replace React mid-preview.
+const previewDependencies = [
+  "react", "react-dom", "react-dom/client", "react/jsx-runtime",
+  "keycloakify/login",
+  "keycloakify/login/KcContext",
+  "keycloakify/login/DefaultPage",
+  "keycloakify/login/UserProfileFormFields",
+  "keycloakify/lib/kcSanitize",
+  "keycloakify/lib/kcSanitize/index.js",
+  "keycloakify/login/pages/LoginPassword",
+  ...["en", "fr", "es", "de", "it", "pt-BR", "ar"].map(locale => "keycloakify/login/i18n/messages_defaultSet/" + locale),
+];
+
 function run(binary: string, args: string[], cwd: string, env = process.env, signal?: AbortSignal): Promise<void> {
   signal?.throwIfAborted();
   return new Promise((accept, reject) => {
@@ -109,7 +122,7 @@ async function compile(command: "build" | "dev", input: ThemeConfig, options: Bu
     await writeFile(join(source, "main.tsx"), `import {createRoot} from 'react-dom/client';${rendererImport}import KcPage from './login/KcPage';const root=createRoot(document.getElementById('root')!);if(import.meta.env.DEV&&!window.kcContext){import(${sourceLiteral(previewImport)}).then(({ThemeWorkbench})=>root.render(<ThemeWorkbench config={config} css={css} renderer={KeycloakPage}/>));}else{root.render(<KcPage kcContext={window.kcContext}/>);}import config from './theme-config';${cssImport}\n`);
     const documentTitle = command === "dev" ? "Theme preview" : config.headline || config.name;
     await writeFile(join(work, "index.html"), `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>${htmlText(documentTitle)}</title><style>html,body{margin:0;min-height:100%}</style></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>`);
-    await writeFile(join(work, "vite.config.ts"), `import{defineConfig}from'vite';import react from'@vitejs/plugin-react';import{keycloakify}from'keycloakify/vite-plugin';export default defineConfig({cacheDir:${sourceLiteral(join(work,'.vite'))},resolve:{dedupe:['react','react-dom']},optimizeDeps:{include:['keycloakify/login/DefaultPage','keycloakify/login/UserProfileFormFields',...['en','fr','es','de','it','pt-BR','ar'].map(locale=>'keycloakify/login/i18n/messages_defaultSet/'+locale)]},build:{assetsInlineLimit:131072},server:{fs:{allow:${sourceLiteral([work, packageRoot, modules, ...(assets ? [assets] : []), ...(adapter ? [dirname(adapter)] : []), ...(renderer ? [dirname(renderer)] : [])])}}},plugins:[react(),keycloakify({themeName:${sourceLiteral(config.name)},accountThemeImplementation:'none',keycloakVersionTargets:{'22-to-25':false,'all-other-versions':${sourceLiteral(jar)}}})]});\n`);
+    await writeFile(join(work, "vite.config.ts"), `import{defineConfig}from'vite';import react from'@vitejs/plugin-react';import{keycloakify}from'keycloakify/vite-plugin';export default defineConfig({cacheDir:${sourceLiteral(join(work,'.vite'))},resolve:{dedupe:['react','react-dom']},optimizeDeps:{include:${sourceLiteral(previewDependencies)}},build:{assetsInlineLimit:131072},server:{fs:{allow:${sourceLiteral([work, packageRoot, modules, ...(assets ? [assets] : []), ...(adapter ? [dirname(adapter)] : []), ...(renderer ? [dirname(renderer)] : [])])}}},plugins:[react(),keycloakify({themeName:${sourceLiteral(config.name)},accountThemeImplementation:'none',keycloakVersionTargets:{'22-to-25':false,'all-other-versions':${sourceLiteral(jar)}}})]});\n`);
     const env = { ...process.env, XDG_CACHE_HOME: process.env.XDG_CACHE_HOME ?? join(homedir(), ".cache"), PATH: `${join(work, "bin")}${sep === "/" ? ":" : ";"}${process.env.PATH ?? ""}` };
     if (command === "dev") {
       const port = String(options.port ?? 5173); if (!/^\d{1,5}$/.test(port) || Number(port) < 1 || Number(port) > 65535) throw new Error("Invalid preview port");
