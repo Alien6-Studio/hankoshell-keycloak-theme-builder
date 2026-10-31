@@ -1,0 +1,9 @@
+/* Shared by the public website and standalone editor. */
+.appearance-switch{display:inline-flex;align-items:center;flex:none;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--bg-subtle);color:var(--fg-secondary);vertical-align:middle}
+.appearance-switch button{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;transition:background-color .15s,color .15s,box-shadow .15s}
+.appearance-switch button:hover{background:var(--bg-hover);color:var(--fg)}
+.appearance-switch button[aria-pressed=true]{background:var(--primary-action);color:#fff;box-shadow:0 1px 3px #0002}
+.appearance-switch button:focus-visible{outline:2px solid var(--primary-action);outline-offset:3px}
+.appearance-switch svg{display:block;width:16px;height:16px;stroke-width:1.75;pointer-events:none}
+@media(max-width:380px){.appearance-switch button{width:28px;height:28px}.appearance-switch svg{width:15px;height:15px}}
+@media(prefers-reduced-motion:reduce){.appearance-switch button{transition:none}}

@@ -11,7 +11,8 @@
   --fg-secondary:  #BDCAD1;
   --fg-muted:      #ABBCC7;
   /* HankoShell brand rose; semantic states stay on dedicated tokens. */
-  --primary:       oklch(0.74 0.16 12);
+  --primary:       #CC3355;
+  --primary-text:  var(--fg);
   --primary-action: #CC3355;
   --primary-dim:   oklch(0.52 0.19 12);
   --ring-glow:     oklch(0.64 0.20 12 / 0.18);
@@ -58,14 +59,15 @@
   --bg:            #FAFAF8;
   --bg-surface:    #FFFFFF;
   --bg-card:       #FFFFFF;
-  --bg-subtle:     #F4F2EE;
+  --bg-subtle:     #F0EDE8;
   --bg-hover:      #F0EDE8;
   --border:        #DDD8D0;
   --border-strong: #B8B0A8;
   --fg:            #111820;
   --fg-secondary:  #435B6A;
   --fg-muted:      #587080;
-  --primary:       #991A3A;
+  --primary:       #CC3355;
+  --primary-text:  #CC3355;
   --primary-action: #CC3355;
   --primary-dim:   #991A3A;
   --ring-glow:     oklch(0.52 0.20 12 / 0.14);
@@ -120,7 +122,7 @@
   cursor: pointer;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  transition: opacity 0.15s, background-color 0.15s, box-shadow 0.18s ease,
+  transition: background-color 0.15s, box-shadow 0.18s ease,
               transform 0.18s var(--ease-out);
   white-space: nowrap;
   text-decoration: none;
