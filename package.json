@@ -1,6 +1,6 @@
 {
   "name": "@alien6-studio/hankoshell-keycloak-theme-builder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Open-source Keycloak theme builder with a visual editor, portable exports and React components",
   "type": "module",
   "license": "Apache-2.0",

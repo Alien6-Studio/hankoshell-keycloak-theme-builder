@@ -35,7 +35,7 @@ try {
 import {createRoot} from 'react-dom/client';
 import {ThemeStudio,type StudioProps} from '@alien6-studio/hankoshell-theme-studio';
 import type {buildStudioProject} from '@alien6-studio/hankoshell-keycloak-theme-builder/project';
-const props:StudioProps={embedded:true,initialView:'gallery'};
+const props:StudioProps={embedded:true,initialView:'gallery',interfaceLocale:'en',initialLocale:'fr'};
 export type Compiler=typeof buildStudioProject;
 createRoot(document.getElementById('root')!).render(<ThemeStudio {...props}/>);
 `);
@@ -59,7 +59,7 @@ createRoot(document.getElementById('root')!).render(<ThemeStudio {...props}/>);
   await view.locator('.gallery-card').first().getByRole('button',{name:'Use this theme',exact:true}).click();
   await view.locator('.template-gallery').waitFor({state:'detached'});
   const downloaded=view.waitForEvent('download');
-  await view.getByRole('button',{name:'Écrans React/Next',exact:true}).click();
+  await view.getByRole('button',{name:'React/Next screens',exact:true}).click();
   const code=await readFile(await(await downloaded).path(),'utf8');
   assert.match(code,/createIdentityTheme/);assert.match(code,/renderNative/);assert.match(code,/identity-subpages/);
   assert.doesNotMatch(code,/@alien6\/hankoshell-typescript-adk/);

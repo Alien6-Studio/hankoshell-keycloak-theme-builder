@@ -1,5 +1,5 @@
 /* Shared by the public website and standalone editor. */
-.appearance-switch{display:inline-flex;align-items:center;flex:none;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--bg-subtle);color:var(--fg-secondary);vertical-align:middle}
+.appearance-switch{margin:0;min-width:0;display:inline-flex;align-items:center;flex:none;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--bg-subtle);color:var(--fg-secondary);vertical-align:middle}
 .appearance-switch button{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;transition:background-color .15s,color .15s,box-shadow .15s}
 .appearance-switch button:hover{background:var(--bg-hover);color:var(--fg)}
 .appearance-switch button[aria-pressed=true]{background:var(--primary-action);color:#fff;box-shadow:0 1px 3px #0002}

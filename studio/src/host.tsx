@@ -26,6 +26,7 @@ export interface StudioProps {
   initialProject?:StudioProject;
   initialBrand?:{name?:string;accent?:string;background?:string;foreground?:string;font?:string};
   initialLocale?:string;
+  interfaceLocale?:string;
   colorScheme?:'light'|'dark'|'system';
   contractsBase?:string;
   onSave?:(project:StudioProject)=>Promise<void>;

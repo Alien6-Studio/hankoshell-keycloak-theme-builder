@@ -17,7 +17,7 @@ export interface StudioPublicationHost {
 }
 export interface StudioProps {
   embedded?:boolean;initialView?:'editor'|'gallery';initialGallery?:{collection?:string;theme?:string;page?:string};context?:{kind:'organization'|'cluster';id:string;label:string;realm?:string};initialProject?:StudioProject;
-  initialBrand?:{name?:string;accent?:string;background?:string;foreground?:string;font?:string};initialLocale?:string;colorScheme?:'light'|'dark'|'system';contractsBase?:string;
+  initialBrand?:{name?:string;accent?:string;background?:string;foreground?:string;font?:string};initialLocale?:string;interfaceLocale?:string;colorScheme?:'light'|'dark'|'system';contractsBase?:string;
   onSave?:(project:StudioProject)=>Promise<void>;templates?:{id:string;name:string;document?:StudioProject}[];
   onLoadTemplate?:(id:string)=>Promise<StudioProject>;onSaveTemplate?:(name:string,project:StudioProject)=>Promise<void>;publication?:StudioPublicationHost;
 }

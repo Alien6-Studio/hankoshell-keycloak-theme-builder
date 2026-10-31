@@ -109,3 +109,9 @@ The callback receives the current screen ID, localized page, locale and `onNavig
 Use `IdentityScreen` for the first exported screen, or a named component such as `ProfileScreen` for a page present in the project. `applicationScreenIds` lists the included pages. Navigation is local by default; a host router can control it with `screen` and `onNavigate`. A button targeting `#account-1` opens the exported security page. Locale falls back to the page's configured default; Arabic and Hebrew use RTL layout. The exported source contains no demo authenticator secrets or authenticated session.
 
 `npm run test:application` exercises a real Studio download in a separate React application, including authored content, host-controlled fields, navigation, Hebrew RTL and mobile layout.
+
+### Interface language
+
+The Studio interface supports English and French independently of the eight languages available in theme content. In the standalone demo, use the English/Français control; the choice is saved in this browser. Links can select it with `?uiLocale=fr&locale=en`: a French interface editing English content.
+
+Embedded hosts can pass `interfaceLocale="fr"` alongside `initialLocale="en"`. Updating `interfaceLocale` changes the editor labels without changing the project, content locale, unsaved changes or undo history. If omitted, the interface uses a supported `initialLocale`, then English. The standalone interface uses an explicit `uiLocale`, a saved preference, the browser languages, then English.

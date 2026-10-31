@@ -1,6 +1,6 @@
 {
   "name": "@alien6-studio/hankoshell-theme-studio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "license": "Apache-2.0",
   "description": "Open-source visual theme studio for any Keycloak deployment, standalone or embedded in React",
@@ -36,6 +36,7 @@
     "screenshots:readme": "node scripts/capture-readme.mjs",
     "test:application": "node test/application-export.mjs",
     "test:dev": "node test/dev-server.mjs",
+    "test:interface": "node test/interface-browser.mjs",
     "package:release": "npm run build:site && node scripts/package-release.mjs",
     "test:coherence": "node test/catalog-coherence.mjs",
     "test:continuity": "node test/catalog-continuity.mjs"
