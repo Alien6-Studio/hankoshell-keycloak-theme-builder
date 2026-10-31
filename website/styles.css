@@ -43,3 +43,5 @@ h1,h2,h3,.brand-name{font-family:var(--display);font-weight:700}em{font-style:no
 h1 em,.workflow-intro h2 em,.languages-section h2 em,.closing h2 em{color:var(--primary-action)}
 .package-action,.experience-screens figcaption span:last-child,.step-number,.format-tag,.language-list small{color:var(--primary-text)}
 .header-open:hover{background:var(--primary-action);border-color:var(--primary-action);color:#fff}
+.site-header{background:var(--bg)}
+.hero:before{display:none}
