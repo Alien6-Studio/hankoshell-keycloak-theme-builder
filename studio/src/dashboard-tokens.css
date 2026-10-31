@@ -65,7 +65,7 @@
   --fg:            #111820;
   --fg-secondary:  #435B6A;
   --fg-muted:      #587080;
-  --primary:       #CC3355;
+  --primary:       #991A3A;
   --primary-action: #CC3355;
   --primary-dim:   #991A3A;
   --ring-glow:     oklch(0.52 0.20 12 / 0.14);
@@ -132,7 +132,7 @@
   color: #fff;
   border-color: var(--primary);
 }
-.hk-btn--primary:hover { opacity: 0.92; box-shadow: var(--shadow-glow); }
+.hk-btn--primary:hover { background: var(--primary-dim); opacity: 1; box-shadow: var(--shadow-glow); }
 
 .hk-btn--secondary {
   background: var(--secondary);

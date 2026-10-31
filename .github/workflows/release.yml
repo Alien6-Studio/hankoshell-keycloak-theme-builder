@@ -61,6 +61,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
+          npm install --global npm@12.2.0 --ignore-scripts
           case "$RELEASE_TAG" in
             *-*) dist_tag=preview ;;
             *) dist_tag=latest ;;
