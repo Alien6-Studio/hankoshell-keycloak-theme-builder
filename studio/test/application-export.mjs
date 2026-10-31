@@ -21,9 +21,9 @@ const project={format:'hanko.theme-studio.project/v1',name:'export-test',pages:{
 const server=await staticServer(resolve(root,'site'));let browser,application;
 try{
  browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1512,height:1100}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
- await page.goto(server.url+'?locale=fr');await page.getByRole('button',{name:'Back to Studio',exact:true}).click();
- await page.getByRole('button',{name:'JSON',exact:true}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('tab',{name:'Projet',exact:true}).click();await dialog.getByRole('textbox',{name:'Document JSON'}).fill(JSON.stringify(project));await dialog.getByRole('button',{name:'Importer le projet',exact:true}).click();await dialog.waitFor({state:'detached'});
- const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Écrans React/Next',exact:true}).click();const code=await readFile(await(await downloaded).path(),'utf8');
+ await page.goto(server.url+'?uiLocale=en&locale=fr');await page.getByRole('button',{name:'Back to Studio',exact:true}).click();
+ await page.getByRole('button',{name:'JSON',exact:true}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('tab',{name:"Project",exact:true}).click();await dialog.getByRole('textbox',{name:"JSON document"}).fill(JSON.stringify(project));await dialog.getByRole('button',{name:"Import project",exact:true}).click();await dialog.waitFor({state:'detached'});
+ const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:"React/Next screens",exact:true}).click();const code=await readFile(await(await downloaded).path(),'utf8');
  assert.ok(code.includes(welcomeImage),'Catalogue artwork is embedded in the downloaded React source');
  assert.doesNotMatch(code,/@alien6\/hankoshell-typescript-adk/);assert.match(code,/Mon identité \\u003cscript/);await writeFile(resolve(output,'identity.tsx'),code);
  const host=`import React,{useState}from'react';import{createRoot}from'react-dom/client';import{IdentityScreen,IdentityInput,IdentityButton,ProfileScreen}from'./identity';

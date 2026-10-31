@@ -502,3 +502,8 @@ button svg { flex-shrink:0; }
 /* Main chrome uses the same base surface as the public site. */
 .studio-header,.flow-strip,.editor-toolbar,.subpage-nav,.screen-navigation,.studio-footer,.studio-demo-banner{background:var(--bg)}
 .device-switch,.upload-zone,.workflow-note,.inspector-destinations,.translation-language-notice,.translation-badge,.translation-comparison textarea[readonly],.gallery-badges>span,.publication-receipt{--fg-muted:var(--fg-secondary)}
+
+.hanko-theme-studio .interface-switch,.standalone-studio .interface-switch{display:inline-flex;flex:none;align-items:center;gap:2px;min-width:0;margin:0;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--bg-subtle);color:var(--fg-secondary)}
+.hanko-theme-studio .interface-switch button,.standalone-studio .interface-switch button{min-width:32px;height:32px;padding:0 8px;border:0;border-radius:999px;background:transparent;color:inherit;font-weight:600;font-size:11px;line-height:1.5;font-family:inherit;cursor:pointer}
+.hanko-theme-studio .interface-switch button[aria-pressed=true],.standalone-studio .interface-switch button[aria-pressed=true]{background:var(--primary-action);color:#fff}
+.hanko-theme-studio .interface-switch button:focus-visible,.standalone-studio .interface-switch button:focus-visible{outline:2px solid var(--primary-action);outline-offset:3px}

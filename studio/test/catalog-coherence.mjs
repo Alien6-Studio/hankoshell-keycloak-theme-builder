@@ -16,7 +16,7 @@ async function snapshot(frame){await frame.evaluate(node=>Promise.all(node.getAn
   slots:[...node.querySelectorAll('[data-hanko-slot]')].filter(el=>el.dataset.hankoSlot!=='body').map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return {slot:el.dataset.hankoSlot,text:el.textContent.trim().replace(/\s+/g,' '),background:s.backgroundColor,font:s.fontFamily,rect:[r.x-root.x,r.y-root.y,r.width,r.height].map(value=>Math.round(value))};}),
   images:[...node.querySelectorAll('img')].map(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return{alt:el.alt,fit:s.objectFit,rect:[r.x-root.x,r.y-root.y,r.width,r.height].map(value=>Math.round(value))};})};
  });}
-async function exported(page){const waiting=page.waitForEvent('download');await page.getByRole('button',{name:'Exporter le projet',exact:true}).click();return JSON.parse(await readFile(await(await waiting).path(),'utf8'));}
+async function exported(page){const waiting=page.waitForEvent('download');await page.getByRole('button',{name:"Export project",exact:true}).click();return JSON.parse(await readFile(await(await waiting).path(),'utf8'));}
 try{
  const page=await browser.newPage({viewport:{width:2000,height:1400}}),errors=[];
  page.on('dialog',dialog=>dialog.accept());
@@ -69,7 +69,7 @@ try{
   await dialog.locator('.kind-profile').waitFor();
   await preview.screenshot({path:new URL(theme.id+'-account.png',out).pathname,animations:'disabled'});
   const otherFamilies=new Map();
-  for(const [key,label]of [['email:0','Courriels'],['admin:0','Administration'],['welcome:0','Accueil']]){
+  for(const [key,label]of [['email:0','Emails'],['admin:0','Administration'],['welcome:0','Welcome']]){
    await dialog.getByRole('navigation',{name:'Template screens'}).getByRole('button').nth(theme.templates.findIndex(template=>template.editorPage===key)).click();
    await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))));
    otherFamilies.set(label,await snapshot(preview));
@@ -79,16 +79,16 @@ try{
   const before=await snapshot(preview);
   await dialog.getByRole('button',{name:'Use this theme',exact:true}).click();
   await page.locator('.template-gallery').waitFor({state:'detached'});
-  await page.getByRole('button',{name:'Tester le parcours',exact:true}).click();
+  await page.getByRole('button',{name:"Test the journey",exact:true}).click();
   const canvas=page.locator('.canvas-area .theme-page');await canvas.locator('.kind-security').waitFor();
   const after=await snapshot(canvas);
   assert.deepEqual(after,before,theme.name+': exploration and editor have identical text, colors, fonts and slot geometry');
-  await page.getByRole('combobox',{name:'Type de thème',exact:true}).click();await page.getByRole('option',{name:'Connexion',exact:true}).click();
+  await page.getByRole('combobox',{name:"Theme type",exact:true}).click();await page.getByRole('option',{name:"Sign-in",exact:true}).click();
   await canvas.locator('.kind-login').waitFor();
   await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))));
   assert.deepEqual(await snapshot(canvas),loginBefore,theme.name+': login and photographic framing also stay identical after applying the theme');
   for(const [label,expected]of otherFamilies){
-   await page.getByRole('combobox',{name:'Type de thème',exact:true}).click();await page.getByRole('option',{name:label,exact:true}).click();
+   await page.getByRole('combobox',{name:"Theme type",exact:true}).click();await page.getByRole('option',{name:label,exact:true}).click();
    await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))));
    assert.deepEqual(await snapshot(canvas),expected,theme.name+'/'+label+': the other families also keep the exact preview layout and copy');
   }

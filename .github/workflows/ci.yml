@@ -54,6 +54,7 @@ jobs:
       - run: npm run build:site --prefix studio
       - run: npm test --prefix studio
       - run: npx --no-install playwright install --with-deps chromium firefox webkit
+      - run: npm run test:interface --prefix studio
       - name: Check the embedded module
         run: npm run test:dev --prefix studio
       - run: npm run test:application --prefix studio

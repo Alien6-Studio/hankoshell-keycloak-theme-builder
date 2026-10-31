@@ -6,11 +6,11 @@ export type TranslationState = 'source' | 'shared' | 'empty' | 'missing' | 'pref
 export type TranslationEntry = { key: string; label: string; source: string };
 export type TranslationBundle = { format: 'hanko.theme-studio.translations/v1'; name: string; locale: Locale; pages: Record<string,{sourceLocale:Locale;sources:Record<string,string>;messages:Record<string,string>}> };
 export function translationMaxLength(key: string) { return key === 'subject' ? 120 : key === 'brand.name' ? 128 : key.endsWith('.alt') ? 160 : 800; }
-export function pageName(key: string) {
+export function pageName(key: string,ui:(value:string)=>string=value=>value) {
   const [family,index] = key.split(':');
-  return `${families[family as Family].label} / ${families[family as Family].pages[Number(index)]}`;
+  return `${ui(families[family as Family].label)} / ${ui(families[family as Family].pages[Number(index)])}`;
 }
-export function translationEntries(page: Page, pageKey: string): TranslationEntry[] {
+export function translationEntries(page: Page, pageKey: string,ui:(value:string)=>string=value=>value): TranslationEntry[] {
   const [family,index] = pageKey.split(':');
   const values = textValues(page);
   const fields: {key:string;label:string}[] = [
@@ -20,7 +20,7 @@ export function translationEntries(page: Page, pageKey: string): TranslationEntr
     ...screenParts(family as Family,index).filter(part => !part.endsWith('Example')).map(part => ({key:'native.'+part,label:nativePartNames[part]})),
     ...page.blocks.flatMap((block,index) => block.type === 'divider' ? [] : [{key:`blocks.${block.id}.${block.type === 'image' ? 'alt' : 'text'}`,label:`${blockNames[block.type]} ${index+1} · ${block.type === 'image' ? 'Texte alternatif' : block.zone === 'header' ? 'En-tête' : block.zone === 'footer' ? 'Pied de page' : 'Zone latérale'}`}]),
   ];
-  return fields.map(field => ({...field,source:values[field.key] ?? ''}));
+  return fields.map(field => ({...field,label:field.label.split(/( · | \/ | \d+ · )/).map(part=>ui(part)).join(''),source:values[field.key] ?? ''}));
 }
 export function variableDifference(source: string, translation: string) {
   const tokens = (value: string) => value.match(/\{\{[^{}]+\}\}|\{[0-9]+\}/g) || [];
