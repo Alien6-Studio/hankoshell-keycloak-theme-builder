@@ -1,12 +1,13 @@
 @import 'tailwindcss' source(none);
 @import './dashboard-tokens.css';
+@import './brand/fonts.css';
 @source './';
 
 
-:root { --ease-out:cubic-bezier(.16,1,.3,1); font-family:Inter,ui-sans-serif,system-ui,sans-serif; font-synthesis:none; }
+:root { --ease-out:cubic-bezier(.16,1,.3,1); font-family:'HankoShell Sans',Inter,ui-sans-serif,system-ui,sans-serif; font-synthesis:none; }
 * { box-sizing:border-box; }
 body { margin:0; font-size:14px; line-height:1.5; }
-.hanko-theme-studio { background:var(--bg); color:var(--fg); font-family:Inter,ui-sans-serif,system-ui,sans-serif; font-size:14px; line-height:1.5; font-synthesis:none; }
+.hanko-theme-studio { background:var(--bg); color:var(--fg); font-family:'HankoShell Sans',Inter,ui-sans-serif,system-ui,sans-serif; font-size:14px; line-height:1.5; font-synthesis:none; }
 .hanko-theme-studio[data-embedded=false] { min-height:100svh; }
 button,input,textarea { font:inherit; }
 button { cursor:pointer; }
@@ -487,4 +488,9 @@ button svg { flex-shrink:0; }
 @container hanko-studio (max-width:700px){.gallery-comparison-controls{gap:18px}.gallery-collections{gap:3px}.gallery-collections button{font-size:10px;padding:7px 10px}.gallery-card-title{align-items:start}.gallery-card-title>span{font-size:8px;max-width:130px;text-align:end}.gallery-preview-dialog .template-preview-canvas{padding:16px 10px}.gallery-preview-heading{gap:12px;padding:16px}.gallery-preview-devices{margin-left:auto}.gallery-preview-navigation{padding:10px 14px}.gallery-art-direction{padding:16px}}
 
 /* Standalone demo chrome; theme previews keep their own authored colours. */
-.standalone-studio{background:var(--bg);color:var(--fg);min-height:100svh}.studio-demo-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:9px 24px;border-bottom:1px solid var(--border);background:var(--bg-subtle);font:11px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}.studio-demo-banner a{color:var(--primary);text-decoration:none;white-space:nowrap}.studio-demo-banner a:hover{text-decoration:underline}.studio-demo-banner p{display:flex;gap:12px;margin:0;color:var(--fg-muted)}.studio-demo-banner strong{color:var(--fg);font-weight:600}@media(max-width:760px){.studio-demo-banner{padding:10px 16px;flex-wrap:wrap;gap:8px 14px}.studio-demo-banner p{order:3;flex-basis:100%;flex-wrap:wrap;gap:4px 8px}}
+.standalone-studio{background:var(--bg);color:var(--fg);min-height:100svh}.studio-demo-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:9px 24px;border-bottom:1px solid var(--border);background:var(--bg-subtle);font:11px/1.5 'HankoShell Sans',Inter,ui-sans-serif,system-ui,sans-serif}.studio-demo-banner a{color:var(--primary);text-decoration:none;white-space:nowrap}.studio-demo-banner a:hover{text-decoration:underline}.studio-demo-banner p{display:flex;gap:12px;margin:0;color:var(--fg-muted)}.studio-demo-banner strong{color:var(--fg);font-weight:600}@media(max-width:760px){.studio-demo-banner{padding:10px 16px;flex-wrap:wrap;gap:8px 14px}.studio-demo-banner p{order:3;flex-basis:100%;flex-wrap:wrap;gap:4px 8px}}
+
+.studio-demo-banner{flex-wrap:wrap}.studio-package-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px}.studio-package-links a:focus-visible,.studio-demo-banner>a:focus-visible{outline:2px solid var(--primary);outline-offset:4px}@media(max-width:760px){.studio-package-links{gap:8px 14px}}
+
+/* HankoShell identity applies to editor chrome, while authored theme frames own their fonts. */
+.studio-brand .brand-mark{background:none;border-radius:0;width:30px;height:30px;object-fit:contain}.studio-brand strong{font-family:'HankoShell Display',sans-serif;font-size:14px;font-weight:700}.gallery-heading h1,.publication-title h1{font-family:'HankoShell Display',sans-serif;font-weight:700;letter-spacing:-.04em}.gallery-heading h1{font-size:clamp(24px,3.5vw,42px)}

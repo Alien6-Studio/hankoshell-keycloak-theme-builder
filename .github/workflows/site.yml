@@ -30,7 +30,6 @@ jobs:
       - name: Build the public site and standalone editor
         env:
           PUBLIC_SITE_URL: https://studio.hanko.sh/
-          NPM_AVAILABLE: ${{ vars.NPM_PUBLISH_ENABLED }}
         run: npm run website:build
       - run: npx --no-install playwright install --with-deps chromium
       - run: npm run website:test

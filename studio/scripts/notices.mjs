@@ -8,7 +8,8 @@ export async function writeNotices(root,metafile){
   notices.push({name:pkg.name,version:pkg.version,text:license||`License declared by package: ${pkg.license||'see package repository'}. ${pkg.homepage||''}`});
  }
  notices.push({name:'Catalogue font licences',version:'OFL-1.1',text:await readFile(createRequire(resolve(root,'package.json')).resolve('@alien6/hankoshell-theme-catalog/font-notices.txt'),'utf8')});
- notices.sort((a,b)=>a.name.localeCompare(b.name));const text='Third-party software notices — Hanko Theme Studio\n\n'+notices.map(item=>`${item.name} ${item.version}\n${'='.repeat(72)}\n${item.text.trim()}\n`).join('\n').replace(/\r\n?/g,'\n').replace(/[ \t]+$/gm,'');
+ notices.push({name:'HankoShell interface fonts: Inter, Unbounded, JetBrains Mono',version:'OFL-1.1',text:await readFile(resolve(root,'src/brand/OFL.txt'),'utf8')});
+ notices.sort((a,b)=>a.name.localeCompare(b.name));const text='Third-party software notices — HankoShell Studio\n\n'+notices.map(item=>`${item.name} ${item.version}\n${'='.repeat(72)}\n${item.text.trim()}\n`).join('\n').replace(/\r\n?/g,'\n').replace(/[ \t]+$/gm,'');
  for(const name of ['dist/THIRD_PARTY_NOTICES.txt','public/THIRD_PARTY_NOTICES.txt']){const target=resolve(root,name);await mkdir(dirname(target),{recursive:true});await writeFile(target,text);}
  await writeFile(resolve(root,'public/LICENSE.txt'),await readFile(resolve(root,'LICENSE')));
 }

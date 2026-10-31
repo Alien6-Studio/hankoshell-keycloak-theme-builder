@@ -42,25 +42,29 @@
   </section>
 
   <section class="workflow section-wrap" id="workflow" aria-labelledby="workflow-title">
-    <div class="workflow-intro"><p class="eyebrow">03 / FROM IDEA TO IDENTITY</p><h2 id="workflow-title">Make it yours.<br><em>Then make it live.</em></h2><p>Keycloakify powers native compilation. Hanko Studio adds a visual canvas, complete design directions and a connected journey across your application.</p><a class="button button-primary" href="./app/?locale=en">Start creating <span aria-hidden="true">↗</span></a></div>
+    <div class="workflow-intro"><p class="eyebrow">03 / FROM IDEA TO IDENTITY</p><h2 id="workflow-title">Make it yours.<br><em>Then make it live.</em></h2><p>Keycloakify powers native compilation. HankoShell Studio adds a visual canvas, complete design directions and a connected journey across your application.</p><a class="button button-primary" href="./app/?locale=en">Start creating <span aria-hidden="true">↗</span></a></div>
     <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3>Choose a direction.</h3><p>Explore complete themes. Compare sign-in, account and security screens before choosing your starting point.</p></div></li><li><span class="step-number">02</span><div><h3>Find your own expression.</h3><p>Edit blocks, imagery, colours, typography and content. Keep your brand or start fresh. Preview desktop, mobile and translated pages.</p></div></li><li><span class="step-number">03</span><div><h3>Take your work with you.</h3><p>Export your project as portable JSON. Compile native sign-in and email themes locally with the CLI, or bring application screens into React and Next.js.</p></div></li></ol>
   </section>
 
   <section class="developers section-wrap" id="developers" aria-labelledby="developers-title">
     <div class="section-heading"><div><p class="eyebrow">04 / BUILT FOR YOUR WORKFLOW</p><h2 id="developers-title">Create visually.<br>Ship on your terms.</h2></div><p>Use the standalone editor, embed it in React, or build through the CLI. Your source stays portable and your deployment stays yours.</p></div>
-    <div class="developer-layout"><div class="terminal"><div class="terminal-heading"><span><i></i><i></i><i></i></span><span>YOUR TERMINAL</span><button type="button" id="copy-command" aria-label="Copy installation and build commands">Copy <span aria-hidden="true">↗</span></button></div><div class="terminal-body"><p class="code-comment"># Download the CLI archive from the release</p><pre><code id="install-command">%%INSTALL_COMMAND%%
+    <div class="developer-layout"><div class="terminal"><div class="terminal-heading"><span><i></i><i></i><i></i></span><span>YOUR TERMINAL</span><button type="button" id="copy-command" aria-label="Copy installation and build commands">Copy <span aria-hidden="true">↗</span></button></div><div class="terminal-body"><p class="code-comment"># Install the CLI from npm</p><pre><code id="install-command">%%INSTALL_COMMAND%%
 
 # Export your project from the Studio, then compile
 npx hanko-theme build-project identity.studio.json \
-  --name identity --out dist_keycloak</code></pre><div class="terminal-result"><span class="status-dot"></span><span>Native Keycloak theme, ready to install.</span></div></div><div class="terminal-footer"><span>Node.js 22.12+ · Java 21 · Maven</span><a href="%%CLI_DOWNLOAD%%">Get the CLI <span aria-hidden="true">↗</span></a></div></div>
+  --name identity --out dist_keycloak</code></pre><div class="terminal-result"><span class="status-dot"></span><span>Native Keycloak theme, ready to install.</span></div></div><div class="terminal-footer"><span>Node.js 22.12+ · Java 21 · Maven</span><a href="%%NPM_BUILDER%%" target="_blank" rel="noopener noreferrer">CLI on npm <span aria-hidden="true">↗</span></a></div></div>
     <div class="export-options"><div><span class="format-tag">.JAR</span><div><h3>Native Keycloak</h3><p>Sign-in, registration, verification and email compositions compiled through Keycloakify.</p></div></div><div><span class="format-tag">.TSX</span><div><h3>React / Next.js</h3><p>Account, administration and welcome screens. Connect your application's authenticated forms, data and actions.</p></div></div><div><span class="format-tag">.JSON</span><div><h3>Your whole project</h3><p>Keep editable pages, embedded media and translations together. Back up, share and carry on creating.</p></div></div></div></div>
+    <nav class="package-links" aria-label="npm packages">
+      <a href="%%NPM_BUILDER%%" target="_blank" rel="noopener noreferrer"><span class="package-label">CLI &amp; Node API</span><strong>@alien6-studio/<wbr>hankoshell-keycloak-theme-builder</strong><span class="package-action">View on npm <span aria-hidden="true">↗</span></span></a>
+      <a href="%%NPM_STUDIO%%" target="_blank" rel="noopener noreferrer"><span class="package-label">React Studio</span><strong>@alien6-studio/<wbr>hankoshell-theme-studio</strong><span class="package-action">View on npm <span aria-hidden="true">↗</span></span></a>
+    </nav>
   </section>
 
   <section class="languages-section section-wrap" aria-labelledby="languages-title"><p class="eyebrow">DESIGNED TO GO FURTHER</p><h2 id="languages-title">Your identity speaks<br><em>more than one language.</em></h2><div class="language-list"><span>English</span><span>French</span><span>Spanish</span><span>German</span><span>Italian</span><span>Portuguese</span><span>Arabic <small>RTL</small></span><span>Hebrew <small>RTL</small></span></div><p>Eight content languages. One consistent visual identity.</p></section>
 
   <section class="faq section-wrap" id="questions" aria-labelledby="faq-title"><div><p class="eyebrow">A FEW GOOD QUESTIONS</p><h2 id="faq-title">Before you<br>make it yours.</h2></div><div class="faq-list">%%FAQ%%</div></section>
 
-  <section class="closing section-wrap"><p class="eyebrow">YOUR NEXT FIRST IMPRESSION</p><h2>Make the entrance<br><em>feel like you.</em></h2><a class="button button-primary button-large" href="./app/?locale=en">Open Hanko Studio <span aria-hidden="true">↗</span></a><p>16 themes. A whole world of your own.</p></section>
+  <section class="closing section-wrap"><p class="eyebrow">YOUR NEXT FIRST IMPRESSION</p><h2>Make the entrance<br><em>feel like you.</em></h2><a class="button button-primary button-large" href="./app/?locale=en">Open HankoShell Studio <span aria-hidden="true">↗</span></a><p>16 themes. A whole world of your own.</p></section>
 </main>
 %%FOOTER%%
 <script src="./app.js" defer></script>

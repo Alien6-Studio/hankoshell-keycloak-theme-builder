@@ -12,7 +12,7 @@
   --fg-muted:      oklch(0.68 0.010 215);
   /* HankoShell brand rose; semantic states stay on dedicated tokens. */
   --primary:       oklch(0.74 0.16 12);
-  --primary-action: oklch(0.54 0.20 12);
+  --primary-action: #CC3355;
   --primary-dim:   oklch(0.52 0.19 12);
   --ring-glow:     oklch(0.64 0.20 12 / 0.18);
   --brand:         var(--primary);
@@ -66,7 +66,7 @@
   --fg-secondary:  oklch(0.40 0.010 215);
   --fg-muted:      oklch(0.52 0.009 215);
   --primary:       oklch(0.52 0.20 12);
-  --primary-action: var(--primary);
+  --primary-action: #CC3355;
   --primary-dim:   oklch(0.42 0.19 12);
   --ring-glow:     oklch(0.52 0.20 12 / 0.14);
   --brand:         var(--primary);
