@@ -1,6 +1,6 @@
-# Hanko Theme Builder and Studio
+# HankoShell Theme Builder and Studio
 
-[Open Hanko Studio](https://studio.hanko.sh/) to explore 16 complete Keycloak design directions, edit their pages and export your project. The public site and browser editor share the HankoShell dark palette and red accent. The [React Studio module](studio/README.md) can also be embedded in your application or the Hanko Dashboard.
+[Open Hanko Studio](https://studio.hanko.sh/) to explore 16 complete Keycloak design directions, edit their pages and export your project. The public site and editor share HankoShell typography and red accents, with light, dark and system appearance. The online demo and the self-hosted editor work with any Keycloak project; no HankoShell platform or services subscription is required. The [React Studio module](studio/README.md) can also be embedded in your application or the Hanko Dashboard.
 
 Build native Keycloak themes from React and brand configuration. Preview them locally, compile a JAR through the CLI or Node API, and publish appearance changes without rebuilding. Use it independently or embed it in your platform; no Hanko services or credentials are required.
 
@@ -44,7 +44,7 @@ Install the CLI and native API from npm:
 npm install @alien6-studio/hankoshell-keycloak-theme-builder
 ```
 
-The [v0.1.0 release](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/releases/tag/v0.1.0) also provides independently installable package archives, the standalone Studio website, an example JAR, SHA-256 checksums and GitHub build attestations. Verify downloaded assets with `gh attestation verify <file> --repo Alien6-Studio/hankoshell-keycloak-theme-builder`.
+The [latest release](https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/releases/latest) also provides independently installable package archives, the standalone Studio website, an example JAR, SHA-256 checksums and GitHub build attestations. Verify downloaded assets with `gh attestation verify <file> --repo Alien6-Studio/hankoshell-keycloak-theme-builder`.
 
 ## Public website
 

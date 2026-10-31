@@ -97,15 +97,17 @@ try{
     }
    await context.close();
    if(name==='chromium'){
-    const audit=await browser.newContext({bypassCSP:true,viewport:{width:1512,height:1100}}),view=await audit.newPage();await view.goto(server.url);await view.locator('.gallery-card').first().waitFor();
+    for(const scheme of ['light','dark']){
+    const audit=await browser.newContext({bypassCSP:true,viewport:{width:1512,height:1100}}),view=await audit.newPage();await view.goto(server.url+'?scheme='+scheme);await view.locator('.gallery-card').first().waitFor();
     for(const state of ['gallery','editor','styles','translations','publication']){
      if(state==='editor'){await view.locator('.gallery-card').first().getByRole('button',{name:'Use this theme'}).click();await view.locator('.template-gallery').waitFor({state:'detached'});}
      if(state==='styles'){await view.getByRole('tab',{name:'Styles',exact:true}).click();await view.getByRole('heading',{name:'Styles de l’écran',exact:true}).waitFor();}
      if(state==='translations'){await view.getByRole('button',{name:'Traductions',exact:true}).click();await view.locator('.translation-workspace').waitFor();}
      if(state==='publication'){await view.getByRole('button',{name:'Retour au Studio',exact:true}).click();await view.getByRole('button',{name:'3 Construire',exact:true}).click();await view.locator('.publication-command').waitFor();}
-     const result=await new AxeBuilder({page:view}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();report.accessibility.push({state,violations:result.violations.map(item=>({id:item.id,impact:item.impact,description:item.description,nodes:item.nodes.map(node=>({target:node.target,summary:node.failureSummary}))}))});
+     const result=await new AxeBuilder({page:view}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();report.accessibility.push({scheme,state,violations:result.violations.map(item=>({id:item.id,impact:item.impact,description:item.description,nodes:item.nodes.map(node=>({target:node.target,summary:node.failureSummary}))}))});
     }
     await audit.close();
+    }
    }
   }finally{await browser.close();}
  }

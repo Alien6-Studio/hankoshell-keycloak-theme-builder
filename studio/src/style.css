@@ -494,3 +494,7 @@ button svg { flex-shrink:0; }
 
 /* HankoShell identity applies to editor chrome, while authored theme frames own their fonts. */
 .studio-brand .brand-mark{background:none;border-radius:0;width:30px;height:30px;object-fit:contain}.studio-brand strong{font-family:'HankoShell Display',sans-serif;font-size:14px;font-weight:700}.gallery-heading h1,.publication-title h1{font-family:'HankoShell Display',sans-serif;font-weight:700;letter-spacing:-.04em}.gallery-heading h1{font-size:clamp(24px,3.5vw,42px)}
+
+.studio-appearance{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--fg-secondary)}.studio-appearance select{padding:6px 24px 6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg-surface);color:var(--fg);font:inherit}.studio-appearance select:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+
+.studio-brand strong{font-family:'HankoShell Display',sans-serif;font-size:13px;line-height:1.5}
