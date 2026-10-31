@@ -1,0 +1,164 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm audit --audit-level=high
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: npm run test:project-browser
+  studio:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            studio/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix studio
+      - run: npm run typecheck --prefix studio
+      - run: npm run build:site --prefix studio
+      - run: npm test --prefix studio
+      - run: npx --no-install playwright install --with-deps chromium firefox webkit
+      - name: Check the embedded module
+        run: npm run test:dev --prefix studio
+      - run: npm run test:application --prefix studio
+      - name: Check an isolated consumer of the actual package archives
+        run: |
+          node test/project-fixture.mjs
+          npm run test:package
+      - run: npm run test:publication --prefix studio
+      - run: npm audit --prefix studio --audit-level=high
+      - run: node studio/scripts/package-release.mjs
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: theme-studio
+          path: |
+            studio/artifacts/release/*
+            studio/artifacts/qualification/results.json
+  jar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      keycloak-matrix: ${{ steps.compatibility.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci
+      - run: npm run build
+      - name: Read the pinned Keycloak matrix
+        id: compatibility
+        run: node --input-type=module -e 'import fs from "node:fs"; const include=JSON.parse(fs.readFileSync("test/keycloak-matrix.json")); fs.appendFileSync(process.env.GITHUB_OUTPUT, `matrix=${JSON.stringify({include})}\n`)'
+      - run: node dist/cli.js build examples/aurora/theme.json --out artifacts
+      - name: Package the precompiled installer
+        run: |
+          node --input-type=module <<'JS'
+          import {readFile, writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          import {prepareThemeArtifact} from './dist/artifact.js';
+          const bytes = await readFile('artifacts/aurora-theme.jar');
+          const {version} = JSON.parse(await readFile('package.json'));
+          const manifest = await prepareThemeArtifact({theme:'aurora', path:'artifacts/aurora-theme.jar', bytes:bytes.length, sha256:createHash('sha256').update(bytes).digest('hex')}, {
+            outputDir:'artifacts/image', version,
+            installerBaseImage:'alpine:3.24.1@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b'
+          });
+          await writeFile('artifacts/aurora-theme.json', JSON.stringify(manifest, null, 2));
+          JS
+          docker build -t theme-installer-test artifacts/image
+          docker run --rm --network none --tmpfs /output:uid=10001,gid=10001,mode=0700 -e THEME_SLUG=aurora -e THEME_JAR_NAME=aurora.jar --entrypoint /bin/sh theme-installer-test -ec '/bin/sh /build-theme.sh; cmp /theme/theme.jar /output/aurora.jar'
+          docker run --rm --network none --read-only --tmpfs /output:uid=10001,gid=10001,mode=0700 --tmpfs /theme:uid=10001,gid=10001,mode=0700 -e THEME_SLUG=aurora -e THEME_JAR_NAME=aurora.jar --entrypoint /bin/sh theme-installer-test -ec 'printf tampered > /theme/theme.jar; printf previous > /output/aurora.jar; if /bin/sh /build-theme.sh; then exit 1; fi; test "$(cat /output/aurora.jar)" = previous'
+      - name: Build the Studio composition candidate once
+        run: |
+          node test/project-fixture.mjs
+          node dist/cli.js build-project .theme-kit/project-qualification.json --out .theme-kit/project-jar
+          mkdir -p artifacts/native-input
+          cp artifacts/aurora-theme.jar .theme-kit/project-jar/studio-qualification-theme.jar artifacts/native-input/
+      - name: Check authentication templates
+        run: |
+          jar tf artifacts/aurora-theme.jar > /tmp/theme-files
+          unzip -p artifacts/aurora-theme.jar theme/aurora/login/login.ftl > /tmp/native-login.ftl
+          grep -q "<title>Aurora</title>" /tmp/native-login.ftl
+          for page in login-config-totp login-otp login-update-profile login-recovery-authn-code-config login-recovery-authn-code-input logout-confirm frontchannel-logout; do
+            grep -q "theme/aurora/login/$page.ftl" /tmp/theme-files
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: example-theme
+          path: |
+            artifacts/*.jar
+            artifacts/*.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: native-input
+          path: artifacts/native-input/*
+  native:
+    needs: jar
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.jar.outputs.keycloak-matrix) }}
+    env:
+      KEYCLOAK_IMAGE: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps chromium
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: native-input
+          path: artifacts
+      - name: Qualify the same JARs on this Keycloak image
+        run: |
+          QUALIFICATION_OUTPUT=artifacts/aurora-results.json npm run test:keycloak
+          THEME_COMPOSITION_LAYOUT=1 THEME_REGISTRATION_EMAIL_LABEL='Votre adresse de contact' THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/studio-results.json npm run test:keycloak
+          THEME_NAME=studio-qualification THEME_JAR=artifacts/studio-qualification-theme.jar QUALIFICATION_OUTPUT=artifacts/email-results.json npm run test:project-email
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: native-results-${{ matrix.version }}
+          path: artifacts/*-results.json

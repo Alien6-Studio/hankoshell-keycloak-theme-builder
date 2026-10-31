@@ -1,0 +1,14 @@
+import {createRoot} from 'react-dom/client';
+import {ThemeStudio} from './index';
+import {TemplatePreview,themePages} from './template-gallery';
+import {catalogue} from './catalog-data';
+import {resolveLocale} from './i18n';
+import './style.css';
+const parameters=new URLSearchParams(location.search);
+const preview=parameters.get('preview');
+const locale=resolveLocale(parameters.get('locale')||undefined,'en');
+const initialView=parameters.get('view')==='editor'?'editor':'gallery';
+const requestedScreen=parameters.get('screen'),screen=catalogue.themes[0].templates.some(template=>template.editorPage===requestedScreen)?requestedScreen!:requestedScreen==='account'?'account:0':requestedScreen==='security'?'account:1':undefined;
+const colorScheme=parameters.get('scheme')==='system'?'system':'dark';
+const initialGallery={collection:parameters.get('collection')||undefined,theme:parameters.get('direction')||undefined,page:screen};
+createRoot(document.getElementById('root')!).render(preview&&catalogue.themes.some(theme=>theme.id===preview)?<div className="hanko-theme-studio" lang={locale} data-theme="light"><TemplatePreview pages={themePages(preview)} initial={screen} locale={locale}/></div>:<div className="standalone-studio" data-theme={colorScheme==='system'?undefined:'dark'}><div className="studio-demo-banner"><a href="../">← Hanko Studio</a><p><strong>Browser demo</strong><span>Edit and export here. Compile Keycloak themes locally with the CLI.</span></p><a href="https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder#compile-a-studio-project" target="_blank" rel="noopener noreferrer">Build locally ↗</a></div><ThemeStudio colorScheme={colorScheme} initialView={initialView} initialGallery={initialGallery} initialLocale={locale}/></div>);

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+/artifacts/
+*.tgz
+.theme-kit/
+coverage/
+.DS_Store
+
+# Precompiled validators and standalone publication artifacts.
+studio/src/generated/*.js
+studio/site/
+studio/artifacts/
+
+# Reviewed canonical catalogue package used for reproducible standalone builds.
+!vendor/
+!vendor/alien6-hankoshell-theme-catalog-*.tgz
+!vendor/theme-catalog-source.json

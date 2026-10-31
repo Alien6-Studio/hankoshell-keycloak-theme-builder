@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+%%HEAD%%
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+%%HEADER%%
+<main id="main">
+  <section class="hero section-wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot"></span> A visual studio built on Keycloakify</p>
+      <h1 id="hero-title">Keycloakify,<br><em>supercharged.</em></h1>
+      <p class="hero-description">Give every interaction your identity. Start with a considered design, make it yours, and take the whole experience from first sign-in to account settings.</p>
+      <div class="hero-actions"><a class="button button-primary" href="./app/?locale=en">Open the Studio <span aria-hidden="true">↗</span></a><a class="text-link" href="#collection">Find your theme <span aria-hidden="true">↓</span></a></div>
+      <p class="hero-footnote">Open source. Free to use. Build locally with the CLI.</p>
+    </div>
+    <div class="hero-stage" aria-label="Explore real theme previews">
+      <div class="stage-topline"><span class="stage-label"><i></i> THE LIVE COLLECTION</span><span class="stage-count">01 / 16</span></div>
+      <div class="stage-screen"><img id="hero-preview" src="./assets/themes/zeste-login.webp" width="1120" height="840" alt="Zest Keycloak sign-in theme preview" fetchpriority="high"></div>
+      <div class="stage-screen-tabs" role="group" aria-label="Preview screen"><button type="button" data-screen="login" aria-pressed="true">Sign-in</button><button type="button" data-screen="account" aria-pressed="false">Account</button><button type="button" data-screen="security" aria-pressed="false">Security</button></div>
+      <div class="stage-bottom"><div><span class="eyebrow">CURRENT DIRECTION</span><strong id="hero-theme-name">Zest</strong></div><a id="hero-open" href="./app/?direction=zeste&amp;locale=en">Make it yours <span aria-hidden="true">↗</span></a></div>
+      <div class="stage-theme-tabs" role="group" aria-label="Choose a preview theme">%%HERO_THEMES%%</div>
+    </div>
+  </section>
+
+  <div class="facts section-wrap" aria-label="Inside the Studio">
+    <div><strong>16</strong><span>distinct design directions</span></div><div><strong>18</strong><span>editable screens per theme</span></div><div><strong>8</strong><span>content languages, including RTL</span></div><div class="fact-license"><strong>100<span>%</span></strong><span>open source · Apache 2.0</span></div>
+  </div>
+
+  <section class="collection section-wrap" id="collection" aria-labelledby="collection-title">
+    <div class="section-heading"><div><p class="eyebrow">01 / THE COLLECTION</p><h2 id="collection-title">One identity.<br>Sixteen ways in.</h2></div><p>Quiet and considered. Bold and electric. Find a direction that feels like you, then make it part of your product.</p></div>
+    <div class="collection-toolbar"><div class="collection-filters" role="group" aria-label="Filter themes">%%FILTERS%%</div><p id="theme-count" class="theme-count" role="status" aria-live="polite">16 themes</p></div>
+    <div class="theme-grid">%%THEMES%%</div>
+    <p class="collection-note">Actual Studio screens. The same compositions, typography and imagery you will edit and export.</p>
+  </section>
+
+  <section class="experience section-wrap" id="experience" aria-labelledby="experience-title">
+    <div class="section-heading"><div><p class="eyebrow">02 / THE WHOLE EXPERIENCE</p><h2 id="experience-title">Keep the feeling.<br>Everywhere.</h2></div><p>A memorable welcome is a beginning. Carry the same identity through profile, security, administration and email.</p></div>
+    <div class="experience-screens"><figure class="experience-main"><img src="./assets/themes/maison-account.webp" width="1120" height="840" alt="Haven account profile screen with editorial typography and warm architectural photography" loading="lazy"><figcaption><span>Haven / Account</span><span>01</span></figcaption></figure><figure class="experience-secondary"><img src="./assets/themes/maison-security.webp" width="1120" height="840" alt="Haven security screen continuing the same cream, terracotta and photographic identity" loading="lazy"><figcaption><span>Haven / Security</span><span>02</span></figcaption></figure></div>
+    <div class="experience-caption"><p><span class="small-rule"></span> One design language, across 18 screens.</p><a class="text-link" href="./app/?direction=maison&amp;screen=account:0&amp;locale=en">Explore the whole theme <span aria-hidden="true">↗</span></a></div>
+  </section>
+
+  <section class="workflow section-wrap" id="workflow" aria-labelledby="workflow-title">
+    <div class="workflow-intro"><p class="eyebrow">03 / FROM IDEA TO IDENTITY</p><h2 id="workflow-title">Make it yours.<br><em>Then make it live.</em></h2><p>Keycloakify powers native compilation. Hanko Studio adds a visual canvas, complete design directions and a connected journey across your application.</p><a class="button button-primary" href="./app/?locale=en">Start creating <span aria-hidden="true">↗</span></a></div>
+    <ol class="workflow-steps"><li><span class="step-number">01</span><div><h3>Choose a direction.</h3><p>Explore complete themes. Compare sign-in, account and security screens before choosing your starting point.</p></div></li><li><span class="step-number">02</span><div><h3>Find your own expression.</h3><p>Edit blocks, imagery, colours, typography and content. Keep your brand or start fresh. Preview desktop, mobile and translated pages.</p></div></li><li><span class="step-number">03</span><div><h3>Take your work with you.</h3><p>Export your project as portable JSON. Compile native sign-in and email themes locally with the CLI, or bring application screens into React and Next.js.</p></div></li></ol>
+  </section>
+
+  <section class="developers section-wrap" id="developers" aria-labelledby="developers-title">
+    <div class="section-heading"><div><p class="eyebrow">04 / BUILT FOR YOUR WORKFLOW</p><h2 id="developers-title">Create visually.<br>Ship on your terms.</h2></div><p>Use the standalone editor, embed it in React, or build through the CLI. Your source stays portable and your deployment stays yours.</p></div>
+    <div class="developer-layout"><div class="terminal"><div class="terminal-heading"><span><i></i><i></i><i></i></span><span>YOUR TERMINAL</span><button type="button" id="copy-command" aria-label="Copy installation and build commands">Copy <span aria-hidden="true">↗</span></button></div><div class="terminal-body"><p class="code-comment"># Download the CLI archive from the release</p><pre><code id="install-command">%%INSTALL_COMMAND%%
+
+# Export your project from the Studio, then compile
+npx hanko-theme build-project identity.studio.json \
+  --name identity --out dist_keycloak</code></pre><div class="terminal-result"><span class="status-dot"></span><span>Native Keycloak theme, ready to install.</span></div></div><div class="terminal-footer"><span>Node.js 22.12+ · Java 21 · Maven</span><a href="%%CLI_DOWNLOAD%%">Get the CLI <span aria-hidden="true">↗</span></a></div></div>
+    <div class="export-options"><div><span class="format-tag">.JAR</span><div><h3>Native Keycloak</h3><p>Sign-in, registration, verification and email compositions compiled through Keycloakify.</p></div></div><div><span class="format-tag">.TSX</span><div><h3>React / Next.js</h3><p>Account, administration and welcome screens. Connect your application's authenticated forms, data and actions.</p></div></div><div><span class="format-tag">.JSON</span><div><h3>Your whole project</h3><p>Keep editable pages, embedded media and translations together. Back up, share and carry on creating.</p></div></div></div></div>
+  </section>
+
+  <section class="languages-section section-wrap" aria-labelledby="languages-title"><p class="eyebrow">DESIGNED TO GO FURTHER</p><h2 id="languages-title">Your identity speaks<br><em>more than one language.</em></h2><div class="language-list"><span>English</span><span>French</span><span>Spanish</span><span>German</span><span>Italian</span><span>Portuguese</span><span>Arabic <small>RTL</small></span><span>Hebrew <small>RTL</small></span></div><p>Eight content languages. One consistent visual identity.</p></section>
+
+  <section class="faq section-wrap" id="questions" aria-labelledby="faq-title"><div><p class="eyebrow">A FEW GOOD QUESTIONS</p><h2 id="faq-title">Before you<br>make it yours.</h2></div><div class="faq-list">%%FAQ%%</div></section>
+
+  <section class="closing section-wrap"><p class="eyebrow">YOUR NEXT FIRST IMPRESSION</p><h2>Make the entrance<br><em>feel like you.</em></h2><a class="button button-primary button-large" href="./app/?locale=en">Open Hanko Studio <span aria-hidden="true">↗</span></a><p>16 themes. A whole world of your own.</p></section>
+</main>
+%%FOOTER%%
+<script src="./app.js" defer></script>
+</body>
+</html>

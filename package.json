@@ -1,0 +1,117 @@
+{
+  "name": "@alien6-studio/hankoshell-keycloak-theme-builder",
+  "version": "0.1.0",
+  "description": "Standalone React theme builder for Keycloak, with live appearance and reusable account screens",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder.git"
+  },
+  "homepage": "https://studio.hanko.sh/",
+  "bugs": {
+    "url": "https://github.com/Alien6-Studio/hankoshell-keycloak-theme-builder/issues"
+  },
+  "bin": {
+    "hanko-theme": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "studio/docs/screenshots"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "default": "./dist/react.js"
+    },
+    "./keycloak": {
+      "types": "./dist/keycloak.d.ts",
+      "import": "./dist/keycloak.js",
+      "default": "./dist/keycloak.js"
+    },
+    "./package.json": "./package.json",
+    "./builder": {
+      "types": "./dist/builder.d.ts",
+      "import": "./dist/builder.js",
+      "default": "./dist/builder.js"
+    },
+    "./experience": {
+      "types": "./dist/experience.d.ts",
+      "import": "./dist/experience.js",
+      "default": "./dist/experience.js"
+    },
+    "./experience/react": {
+      "types": "./dist/experience-react.d.ts",
+      "import": "./dist/experience-react.js",
+      "default": "./dist/experience-react.js"
+    },
+    "./artifact": {
+      "types": "./dist/artifact.d.ts",
+      "import": "./dist/artifact.js",
+      "default": "./dist/artifact.js"
+    },
+    "./project": {
+      "types": "./dist/project-builder.d.ts",
+      "import": "./dist/project-builder.js",
+      "default": "./dist/project-builder.js"
+    }
+  },
+  "scripts": {
+    "build": "node --input-type=module -e \"import {rmSync} from 'node:fs'; rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.json && node scripts/copy-studio-contracts.mjs",
+    "check": "npm run build && node --test test/*.test.mjs && npm pack --dry-run",
+    "test:browser": "node test/browser.mjs",
+    "test:keycloak": "node test/keycloak.mjs",
+    "dev": "node dist/cli.js dev examples/aurora/theme.json",
+    "prepare": "npm run build",
+    "test:project-browser": "node test/project-browser.mjs",
+    "test:project-email": "node test/project-email.mjs",
+    "test:package": "node test/package-consumer.mjs",
+    "catalog:update": "node scripts/update-theme-catalog.mjs",
+    "website:build": "npm run build:site --prefix studio && node website/build.mjs",
+    "website:capture": "node website/capture.mjs",
+    "website:test": "node website/test.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "ajv": "8.20.0",
+    "keycloakify": "11.16.4",
+    "vite": "8.3.5"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1 || ^19.0.0",
+    "react-dom": "^18.3.1 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "playwright": "^1.64.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^7.0.2",
+    "esbuild": "0.28.2",
+    "@alien6/hankoshell-theme-catalog": "file:vendor/alien6-hankoshell-theme-catalog-0.1.0-c7020f3569a4.tgz"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "keycloak",
+    "keycloakify",
+    "theme",
+    "react",
+    "iam",
+    "branding"
+  ]
+}

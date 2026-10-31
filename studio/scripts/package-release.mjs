@@ -1,0 +1,18 @@
+import {readFile,writeFile,mkdir,rm} from 'node:fs/promises';import {resolve,dirname} from 'node:path';import {fileURLToPath} from 'node:url';import {spawnSync} from 'node:child_process';import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';import assert from 'node:assert/strict';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),out=resolve(root,'artifacts/release');await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
+const pkg=JSON.parse(await readFile(resolve(root,'package.json'),'utf8'));
+const catalogue=JSON.parse(await readFile(resolve(root,'../vendor/theme-catalog-source.json'),'utf8'));
+const {archive,archiveSha256,...catalogueSource}=catalogue;
+assert.deepEqual(JSON.parse(await readFile(createRequire(import.meta.url).resolve('@alien6/hankoshell-theme-catalog/source.json'),'utf8')),catalogueSource,'The installed catalogue must match the pinned source.');
+assert.equal(createHash('sha256').update(await readFile(resolve(root,'../vendor',archive))).digest('hex'),archiveSha256,'The catalogue archive must match its pinned SHA-256.');
+const packed=spawnSync('npm',['pack','--json','--pack-destination',out],{cwd:root,encoding:'utf8',env:{...process.env,npm_config_cache:process.env.THEME_STUDIO_NPM_CACHE||resolve(root,'../.theme-kit/npm-cache')}});if(packed.status!==0)throw Error(packed.stderr);
+const npmArchive=JSON.parse(packed.stdout)[0].filename;const zipName=`hanko-theme-studio-${pkg.version}-site.zip`;
+const script=`from pathlib import Path\nimport zipfile\nroot=Path(${JSON.stringify(resolve(root,'site'))})\nwith zipfile.ZipFile(${JSON.stringify(resolve(out,zipName))},'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:\n for file in sorted(root.rglob('*')):\n  if file.is_file():\n   info=zipfile.ZipInfo(file.relative_to(root).as_posix(),date_time=(1980,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o644<<16;archive.writestr(info,file.read_bytes())\n`;
+const zipped=spawnSync('python3',['-c',script],{encoding:'utf8'});if(zipped.status!==0)throw Error(zipped.stderr);
+const artifacts=[];for(const name of [npmArchive,zipName]){const bytes=await readFile(resolve(out,name));artifacts.push({file:name,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
+const revision=spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim();const changes=spawnSync('git',['status','--porcelain','--','.'],{cwd:root,encoding:'utf8'}).stdout.trim();
+const manifest={product:'Hanko Theme Studio',version:pkg.version,source:{repository:'Alien6-Studio/hankoshell-keycloak-theme-builder',directory:'studio',baseRevision:revision,uncommittedChanges:!!changes},capabilities:['static-authoring','project-json','guided-blocks','templates','content-i18n','dashboard-embedding','native-login-composition','native-email-composition','application-react-composition','host-publication-contract'],limitations:['Cluster publication requires a separately qualified host API, operator and approved compiler image.','Exported application screens require host-provided authenticated forms, data and operations through renderNative.','Studio UI language is French.','Browser history and deep links for editor states are not connected.'],artifacts};
+manifest.catalogue=catalogue;
+await writeFile(resolve(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');await writeFile(resolve(out,'SHA256SUMS'),artifacts.map(item=>`${item.sha256}  ${item.file}`).join('\n')+'\n');
+console.log(JSON.stringify({version:pkg.version,artifacts:artifacts.map(item=>({file:item.file,bytes:item.bytes})),directory:out}));

@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:theme:v1",
+  "title": "Theme configuration v1",
+  "description": "Schema for the existing ThemeConfig input. Additional semantic and payload bounds are enforced by parseTheme.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+    },
+    "headline": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "subline": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "logoUrl": {
+      "type": "string",
+      "maxLength": 524288,
+      "pattern": "^(?:$|https://[^\\s\\\\]+|/(?:[^/\\s\\\\][^\\s\\\\]*)?|data:image/(?:svg\\+xml|png|jpeg|webp);base64,[A-Za-z0-9+/=]+)$"
+    },
+    "fontFamily": {
+      "type": "string",
+      "maxLength": 256,
+      "pattern": "^[\\w ,'\".-]+$"
+    },
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dark": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "background": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "foreground": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "primary": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "primaryForeground": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "card": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "muted": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "input": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            }
+          }
+        },
+        "light": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "background": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "foreground": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "primary": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "primaryForeground": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "card": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "muted": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "border": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            },
+            "input": {
+              "type": "string",
+              "maxLength": 256,
+              "pattern": "^(?:#(?:[\\da-fA-F]{3}|[\\da-fA-F]{4}|[\\da-fA-F]{6}|[\\da-fA-F]{8})|transparent|white|black|(?:rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|color-mix)\\([\\da-zA-Z .,%()+/-]+\\))$"
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cardRadius": {
+          "type": "string",
+          "maxLength": 24,
+          "pattern": "^(?:0|\\d+(?:\\.\\d+)?(?:px|rem))$"
+        },
+        "controlRadius": {
+          "type": "string",
+          "maxLength": 24,
+          "pattern": "^(?:0|\\d+(?:\\.\\d+)?(?:px|rem))$"
+        },
+        "contentWidth": {
+          "type": "string",
+          "maxLength": 24,
+          "pattern": "^(?:0|\\d+(?:\\.\\d+)?(?:px|rem))$"
+        }
+      }
+    },
+    "socialPosition": {
+      "type": "string",
+      "enum": [
+        "before",
+        "after"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^/(?:[^/\\s\\\\][^\\s\\\\]*)?$"
+        },
+        "refreshMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 3600000
+        }
+      },
+      "required": [
+        "endpoint"
+      ]
+    },
+    "modules": {
+      "type": "object",
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "maxProperties": 64,
+        "additionalProperties": true
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "maxLength": 2048
+    }
+  },
+  "required": [
+    "version",
+    "name"
+  ]
+}

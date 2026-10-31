@@ -1,0 +1,472 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:catalog:v1",
+  "title": "Theme catalogue v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "hanko.theme-catalog/v1"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "released"
+      ]
+    },
+    "themes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "tags": {
+            "type": "array",
+            "maxItems": 12,
+            "items": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "style": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,63}$"
+              },
+              "name": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "background": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "surface": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "foreground": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "muted": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 48
+              },
+              "layout": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "font": {
+                "type": "string",
+                "enum": [
+                  "system-ui, sans-serif",
+                  "Georgia, serif",
+                  "Arial, sans-serif",
+                  "Verdana, sans-serif",
+                  "monospace",
+                  "\"Hanko Sans\", sans-serif",
+                  "\"Hanko Editorial\", Georgia, serif",
+                  "Impact, sans-serif"
+                ]
+              },
+              "density": {
+                "type": "string",
+                "enum": [
+                  "comfortable",
+                  "compact"
+                ]
+              },
+              "composition": {
+                "type": "string",
+                "enum": [
+                  "card",
+                  "workspace",
+                  "developer",
+                  "split",
+                  "console",
+                  "editorial",
+                  "minimal",
+                  "spotlight",
+                  "evidence",
+                  "precision",
+                  "maison",
+                  "signal",
+                  "civique",
+                  "edition",
+                  "rituel",
+                  "terminal",
+                  "comptoir",
+                  "mouvement",
+                  "folio",
+                  "patrimoine",
+                  "zeste",
+                  "parade",
+                  "bloom",
+                  "rivage"
+                ]
+              },
+              "fieldStyle": {
+                "type": "string",
+                "enum": [
+                  "outline",
+                  "underline",
+                  "filled"
+                ]
+              },
+              "actionSize": {
+                "type": "string",
+                "enum": [
+                  "full",
+                  "compact"
+                ]
+              },
+              "headingFont": {
+                "type": "string",
+                "enum": [
+                  "system-ui, sans-serif",
+                  "Georgia, serif",
+                  "Arial, sans-serif",
+                  "Verdana, sans-serif",
+                  "monospace",
+                  "\"Hanko Sans\", sans-serif",
+                  "\"Hanko Editorial\", Georgia, serif",
+                  "Impact, sans-serif"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "description",
+              "accent",
+              "background",
+              "surface",
+              "foreground",
+              "muted",
+              "radius",
+              "layout",
+              "font",
+              "density"
+            ]
+          },
+          "themePath": {
+            "type": "string",
+            "pattern": "^themes/[a-z][a-z0-9-]*/theme\\.json$"
+          },
+          "templates": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "surface",
+                "editorPage",
+                "path"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "surface": {
+                  "enum": [
+                    "keycloak-login",
+                    "keycloak-account",
+                    "keycloak-admin",
+                    "keycloak-email",
+                    "keycloak-welcome",
+                    "application"
+                  ]
+                },
+                "editorPage": {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^themes/[a-z][a-z0-9-]*/pages/[a-z][a-z0-9-]*\\.json$"
+                },
+                "name": {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                "targets": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "enum": [
+                      "project-json",
+                      "native-appearance",
+                      "react-next",
+                      "native-composition"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "locales": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "fr",
+                "en",
+                "es",
+                "de",
+                "it",
+                "pt-BR",
+                "ar",
+                "he"
+              ]
+            }
+          },
+          "complete": {
+            "type": "boolean"
+          },
+          "preview": {
+            "type": "string",
+            "maxLength": 7340032,
+            "pattern": "^data:image/png;base64,"
+          },
+          "assets": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "source",
+                "license",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^themes/[a-z][a-z0-9-]*/assets/[a-z0-9.-]+$"
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^themes/[a-z][a-z0-9-]*/assets/[a-z0-9.-]+$"
+                },
+                "license": {
+                  "const": "Apache-2.0"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          },
+          "baseTheme": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "design": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "number",
+              "family",
+              "title",
+              "audience",
+              "details",
+              "sources",
+              "introduced"
+            ],
+            "properties": {
+              "number": {
+                "type": "string",
+                "pattern": "^[0-9]{2}$"
+              },
+              "family": {
+                "enum": [
+                  "essential",
+                  "product",
+                  "editorial",
+                  "expressive",
+                  "warm",
+                  "vibrant"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 512
+              },
+              "audience": {
+                "type": "string",
+                "maxLength": 512
+              },
+              "details": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "maxLength": 512
+                }
+              },
+              "sources": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "label",
+                    "url"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "maxLength": 512
+                    },
+                    "url": {
+                      "type": "string",
+                      "maxLength": 2048,
+                      "pattern": "^https://"
+                    }
+                  }
+                }
+              },
+              "introduced": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "name",
+          "description",
+          "license",
+          "style"
+        ]
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "maxLength": 2048
+    },
+    "locales": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "fr",
+          "en",
+          "es",
+          "de",
+          "it",
+          "pt-BR",
+          "ar",
+          "he"
+        ]
+      }
+    },
+    "translationsPath": {
+      "const": "translations.json"
+    },
+    "sections": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "description",
+          "blocks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "blocks": {
+            "type": "array",
+            "maxItems": 12,
+            "items": {
+              "$ref": "urn:hanko:studio:page:v1#/properties/blocks/items/oneOf/0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "format",
+    "version",
+    "status",
+    "themes"
+  ]
+}

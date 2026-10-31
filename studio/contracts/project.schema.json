@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:project:v1",
+  "title": "Theme Studio project draft v1",
+  "description": "Draft exchange format for the review studio. Publication flags are descriptive and never establish deployment state or authorization.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "hanko.theme-studio.project/v1"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+    },
+    "pages": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 64,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?:(?:login|email|account|admin|welcome):[0-9]+|application:[a-z][a-z0-9._-]{0,63})$"
+      },
+      "additionalProperties": {
+        "$ref": "urn:hanko:studio:page:v1"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "src": {
+            "type": "string",
+            "maxLength": 7340032,
+            "pattern": "^data:image/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5242880
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "src",
+          "size"
+        ]
+      },
+      "maxItems": 128
+    },
+    "theme": {
+      "$ref": "urn:hanko:studio:theme:v1"
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-zA-Z0-9.-]+)?$"
+          }
+        },
+        "required": [
+          "id",
+          "version"
+        ]
+      },
+      "maxItems": 32
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "keycloak-jar",
+          "react",
+          "next",
+          "angular"
+        ]
+      }
+    },
+    "destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "hanko",
+            "standalone"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^(?:$|https://[^\\s\\\\]+)$"
+        },
+        "realm": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "realm",
+            "client"
+          ]
+        },
+        "client": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "theme": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+        }
+      },
+      "required": [
+        "mode",
+        "url",
+        "realm",
+        "scope",
+        "client",
+        "theme"
+      ]
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "draft"
+        },
+        "built": {
+          "const": false
+        },
+        "deployed": {
+          "const": false
+        },
+        "attached": {
+          "const": false
+        }
+      },
+      "required": [
+        "status",
+        "built",
+        "deployed",
+        "attached"
+      ]
+    },
+    "$schema": {
+      "type": "string",
+      "maxLength": 2048
+    }
+  },
+  "required": [
+    "format",
+    "name",
+    "pages"
+  ]
+}

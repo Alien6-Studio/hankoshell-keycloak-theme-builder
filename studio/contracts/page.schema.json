@@ -1,0 +1,2541 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:hanko:studio:page:v1",
+  "title": "Studio page draft v1",
+  "description": "Declarative page document. The editor merges missing presentation fields with defaults. Application bindings reference host-owned controllers; renderer support is checked separately. No scripts or credentials.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "blocks": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "heading",
+                  "text",
+                  "image",
+                  "divider",
+                  "button"
+                ]
+              },
+              "zone": {
+                "type": "string",
+                "enum": [
+                  "header",
+                  "aside",
+                  "footer"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 800
+              },
+              "alt": {
+                "type": "string",
+                "maxLength": 160
+              },
+              "src": {
+                "type": "string",
+                "maxLength": 7340032,
+                "pattern": "^data:image/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$"
+              },
+              "href": {
+                "type": "string",
+                "maxLength": 2048,
+                "pattern": "^(?:$|https://[^\\s\\\\]+|mailto:[^\\s\\\\]+|#[a-zA-Z][\\w.-]*)$"
+              },
+              "align": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "style": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "fontSize": {
+                    "type": "number",
+                    "minimum": 9,
+                    "maximum": 96
+                  },
+                  "fontWeight": {
+                    "type": "integer",
+                    "enum": [
+                      400,
+                      500,
+                      600,
+                      700
+                    ]
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "margin": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "radius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 20,
+                    "maximum": 100
+                  },
+                  "imageHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 600
+                  },
+                  "fit": {
+                    "type": "string",
+                    "enum": [
+                      "contain",
+                      "cover"
+                    ]
+                  },
+                  "align": {
+                    "type": "string",
+                    "enum": [
+                      "left",
+                      "center",
+                      "right"
+                    ]
+                  },
+                  "lineHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2.5
+                  }
+                }
+              }
+            },
+            "required": [
+              "type",
+              "zone"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "zone",
+              "props"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "type": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9._-]{0,63}/[a-z][a-z0-9._-]{0,63}$"
+              },
+              "zone": {
+                "enum": [
+                  "header",
+                  "aside",
+                  "footer"
+                ]
+              },
+              "props": {
+                "type": "object",
+                "maxProperties": 64
+              },
+              "style": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "fontSize": {
+                    "type": "number",
+                    "minimum": 9,
+                    "maximum": 96
+                  },
+                  "fontWeight": {
+                    "type": "integer",
+                    "enum": [
+                      400,
+                      500,
+                      600,
+                      700
+                    ]
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "margin": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "radius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 64
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 20,
+                    "maximum": 100
+                  },
+                  "imageHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 600
+                  },
+                  "fit": {
+                    "type": "string",
+                    "enum": [
+                      "contain",
+                      "cover"
+                    ]
+                  },
+                  "align": {
+                    "type": "string",
+                    "enum": [
+                      "left",
+                      "center",
+                      "right"
+                    ]
+                  },
+                  "lineHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2.5
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 40
+    },
+    "preset": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "layout": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "radius": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 48
+    },
+    "accent": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "mark": {
+          "type": "string",
+          "maxLength": 4
+        },
+        "logo": {
+          "type": "string",
+          "maxLength": 7340032,
+          "pattern": "^data:image/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$"
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "size": {
+          "type": "number",
+          "minimum": 16,
+          "maximum": 120
+        },
+        "fontSize": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 64
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        }
+      }
+    },
+    "appearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "muted": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "font": {
+          "type": "string",
+          "enum": [
+            "system-ui, sans-serif",
+            "Georgia, serif",
+            "Arial, sans-serif",
+            "Verdana, sans-serif",
+            "monospace",
+            "\"Hanko Sans\", sans-serif",
+            "\"Hanko Editorial\", Georgia, serif",
+            "Impact, sans-serif"
+          ]
+        },
+        "density": {
+          "type": "string",
+          "enum": [
+            "comfortable",
+            "compact"
+          ]
+        },
+        "padding": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 80
+        },
+        "gap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 80
+        },
+        "contentWidth": {
+          "type": "number",
+          "minimum": 320,
+          "maximum": 1600
+        },
+        "backgroundImage": {
+          "type": "string",
+          "maxLength": 7340032,
+          "pattern": "^data:image/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$"
+        },
+        "backgroundFit": {
+          "type": "string",
+          "enum": [
+            "cover",
+            "contain"
+          ]
+        },
+        "composition": {
+          "type": "string",
+          "enum": [
+            "card",
+            "workspace",
+            "developer",
+            "split",
+            "console",
+            "editorial",
+            "minimal",
+            "spotlight",
+            "evidence",
+            "precision",
+            "maison",
+            "signal",
+            "civique",
+            "edition",
+            "rituel",
+            "terminal",
+            "comptoir",
+            "mouvement",
+            "folio",
+            "patrimoine",
+            "zeste",
+            "parade",
+            "bloom",
+            "rivage"
+          ]
+        },
+        "headingFont": {
+          "type": "string",
+          "enum": [
+            "system-ui, sans-serif",
+            "Georgia, serif",
+            "Arial, sans-serif",
+            "Verdana, sans-serif",
+            "monospace",
+            "\"Hanko Sans\", sans-serif",
+            "\"Hanko Editorial\", Georgia, serif",
+            "Impact, sans-serif"
+          ]
+        }
+      }
+    },
+    "native": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "copy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "action": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "usernameLabel": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "usernameExample": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "passwordLabel": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "passwordExample": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "otpLabel": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "otpExample": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row0": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row1": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row2": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "nameLabel": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "nameExample": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "emailLabel": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "emailExample": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row0Action": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row1Action": {
+              "type": "string",
+              "maxLength": 800
+            },
+            "row2Action": {
+              "type": "string",
+              "maxLength": 800
+            }
+          }
+        },
+        "styles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "description": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "action": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "usernameLabel": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "usernameExample": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "passwordLabel": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "passwordExample": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "otpLabel": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "otpExample": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row0": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row1": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row2": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "nameLabel": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "nameExample": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "emailLabel": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "emailExample": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row0Action": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row1Action": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            },
+            "row2Action": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "background": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                  "type": "number",
+                  "minimum": 9,
+                  "maximum": 96
+                },
+                "fontWeight": {
+                  "type": "integer",
+                  "enum": [
+                    400,
+                    500,
+                    600,
+                    700
+                  ]
+                },
+                "padding": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "margin": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 80
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 64
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 100
+                },
+                "imageHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 600
+                },
+                "fit": {
+                  "type": "string",
+                  "enum": [
+                    "contain",
+                    "cover"
+                  ]
+                },
+                "align": {
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "center",
+                    "right"
+                  ]
+                },
+                "lineHeight": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 2.5
+                }
+              }
+            }
+          }
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "inputBackground": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "inputBorder": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "padding": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 48
+        },
+        "gap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 40
+        },
+        "buttonBackground": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "buttonColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "fieldStyle": {
+          "type": "string",
+          "enum": [
+            "outline",
+            "underline",
+            "filled"
+          ]
+        },
+        "actionSize": {
+          "type": "string",
+          "enum": [
+            "full",
+            "compact"
+          ]
+        }
+      }
+    },
+    "application": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "module": {
+          "type": "string",
+          "enum": [
+            "profile",
+            "organizations",
+            "members",
+            "resources",
+            "permissions",
+            "security"
+          ]
+        },
+        "controllerRef": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^/(?:[^/\\s\\\\?#][^\\s\\\\?#]*)?$"
+        },
+        "requiredCapabilities": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+          }
+        }
+      },
+      "required": [
+        "module",
+        "controllerRef"
+      ]
+    },
+    "$schema": {
+      "type": "string",
+      "maxLength": 2048
+    },
+    "i18n": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultLocale",
+        "supportedLocales",
+        "messages"
+      ],
+      "properties": {
+        "defaultLocale": {
+          "type": "string",
+          "enum": [
+            "fr",
+            "en",
+            "es",
+            "de",
+            "it",
+            "pt-BR",
+            "ar",
+            "he"
+          ]
+        },
+        "supportedLocales": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "fr",
+              "en",
+              "es",
+              "de",
+              "it",
+              "pt-BR",
+              "ar",
+              "he"
+            ]
+          }
+        },
+        "messages": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fr": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "en": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "es": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "de": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "it": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "pt-BR": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "ar": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            },
+            "he": {
+              "type": "object",
+              "maxProperties": 200,
+              "propertyNames": {
+                "pattern": "^(?:subject|brand\\.(?:name|alt)|native\\.(?:title|description|action|usernameLabel|usernameExample|passwordLabel|passwordExample|otpLabel|otpExample|row0|row1|row2|nameLabel|nameExample|emailLabel|emailExample|row0Action|row1Action|row2Action)|blocks\\.[^\\r\\n]{1,128}\\.(?:text|alt))$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "maxLength": 800
+              }
+            }
+          }
+        },
+        "automatic": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fr": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "en": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "es": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "de": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "it": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "pt-BR": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "ar": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            },
+            "he": {
+              "type": "array",
+              "uniqueItems": true,
+              "maxItems": 200,
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "blocks"
+  ],
+  "$defs": {
+    "elementStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "fontSize": {
+          "type": "number",
+          "minimum": 9,
+          "maximum": 96
+        },
+        "fontWeight": {
+          "type": "integer",
+          "enum": [
+            400,
+            500,
+            600,
+            700
+          ]
+        },
+        "padding": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 80
+        },
+        "margin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 80
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "width": {
+          "type": "number",
+          "minimum": 20,
+          "maximum": 100
+        },
+        "imageHeight": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 600
+        },
+        "fit": {
+          "type": "string",
+          "enum": [
+            "contain",
+            "cover"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "lineHeight": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 2.5
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "heading",
+            "text",
+            "image",
+            "divider",
+            "button"
+          ]
+        },
+        "zone": {
+          "type": "string",
+          "enum": [
+            "header",
+            "aside",
+            "footer"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 800
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "src": {
+          "type": "string",
+          "maxLength": 7340032,
+          "pattern": "^data:image/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$"
+        },
+        "href": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^(?:$|https://[^\\s\\\\]+|mailto:[^\\s\\\\]+|#[a-zA-Z][\\w.-]*)$"
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "background": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "fontSize": {
+              "type": "number",
+              "minimum": 9,
+              "maximum": 96
+            },
+            "fontWeight": {
+              "type": "integer",
+              "enum": [
+                400,
+                500,
+                600,
+                700
+              ]
+            },
+            "padding": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 80
+            },
+            "margin": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 80
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "width": {
+              "type": "number",
+              "minimum": 20,
+              "maximum": 100
+            },
+            "imageHeight": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "fit": {
+              "type": "string",
+              "enum": [
+                "contain",
+                "cover"
+              ]
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2.5
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "zone"
+      ]
+    },
+    "pluginBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "zone",
+        "props"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._-]{0,63}/[a-z][a-z0-9._-]{0,63}$"
+        },
+        "zone": {
+          "enum": [
+            "header",
+            "aside",
+            "footer"
+          ]
+        },
+        "props": {
+          "type": "object",
+          "maxProperties": 64
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "color": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "background": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "fontSize": {
+              "type": "number",
+              "minimum": 9,
+              "maximum": 96
+            },
+            "fontWeight": {
+              "type": "integer",
+              "enum": [
+                400,
+                500,
+                600,
+                700
+              ]
+            },
+            "padding": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 80
+            },
+            "margin": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 80
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "width": {
+              "type": "number",
+              "minimum": 20,
+              "maximum": 100
+            },
+            "imageHeight": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "fit": {
+              "type": "string",
+              "enum": [
+                "contain",
+                "cover"
+              ]
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            "lineHeight": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2.5
+            }
+          }
+        }
+      }
+    }
+  }
+}

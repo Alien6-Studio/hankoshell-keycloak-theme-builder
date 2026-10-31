@@ -1,0 +1,395 @@
+{
+  "catalogueContentSha256": "b00045e098dbea681af12ffb961598514b0b37f3caf5d2b8cabcb389a25af6d6",
+  "locale": "en",
+  "screens": [
+    "login",
+    "account",
+    "security"
+  ],
+  "images": [
+    {
+      "file": "evidence-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "6ee1713ac55ca01e1423fc40d61735d2a117229328d6d1f104f26a364b78279b"
+    },
+    {
+      "file": "evidence-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "d2819510bbb7083de2eb48f39eb6db3cbb712359527a02dbbb22fadf075c2112"
+    },
+    {
+      "file": "evidence-account.webp",
+      "width": 1072,
+      "height": 756,
+      "sha256": "4a5d98257d1e4252b4c7446073a0690e097107794856af5a7d374e310929d560"
+    },
+    {
+      "file": "evidence-security.webp",
+      "width": 1072,
+      "height": 879,
+      "sha256": "8f4e4d3532e9d0fc53c2a0cc21acd1414dad1a803733e6b4f2a101c4403a9074"
+    },
+    {
+      "file": "precision-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "1da45c6257445c19092eabea22129a16696a716374527e68bdae593c9cffe3b4"
+    },
+    {
+      "file": "precision-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "7733a227215a53f9365e79b3cded6f757df1e1247bff4fc01b8fafaba915304f"
+    },
+    {
+      "file": "precision-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "88e6d0d26016ac5516338ae6fdc9b85470c7875eaa3fdb543a3404bb3212c639"
+    },
+    {
+      "file": "precision-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "992d8e24e8c6d524e97e44c14636a1aebe3acb269f7dbabe024e5cddb910b1c1"
+    },
+    {
+      "file": "maison-login.webp",
+      "width": 1072,
+      "height": 843,
+      "sha256": "5bca8ae4be53517fa8ca54a153a9e51602c19a64371ca98fae72185bdd02d88d"
+    },
+    {
+      "file": "maison-thumb.webp",
+      "width": 560,
+      "height": 441,
+      "sha256": "35ee7916bd7fd65b8599a8e6ba5ea283c12cabf836b0cb4f4aec05d4eefc29c9"
+    },
+    {
+      "file": "maison-account.webp",
+      "width": 1072,
+      "height": 779,
+      "sha256": "1e589fe015019a7ad4e8d1213ae27e6feccb75099e1281b41341920c967757b5"
+    },
+    {
+      "file": "maison-security.webp",
+      "width": 1072,
+      "height": 879,
+      "sha256": "c0e419668a7991d8bc7afc8d863c36a030e74d47fbdbdabe85b0310e83d98f38"
+    },
+    {
+      "file": "signal-login.webp",
+      "width": 1072,
+      "height": 888,
+      "sha256": "11bfa6eb855988b8779569b88deba6d2aff955d8177a936096e56a21f313e13f"
+    },
+    {
+      "file": "signal-thumb.webp",
+      "width": 560,
+      "height": 464,
+      "sha256": "b2689a0888c17766c3369dd97c72b7344c07ebb3f9a4993de4ff5dfffcae5604"
+    },
+    {
+      "file": "signal-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "c6d38c4ca90d355d10410836c85e3a6e633329a30c117f86a6fc447050a57492"
+    },
+    {
+      "file": "signal-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "5b49bc19445b38647cc5641e1cf60d36229220e88e9bfae48298781e88957505"
+    },
+    {
+      "file": "civique-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "82b8be12416eda565b7b59387c21c5ec7d3592e79bf927a8d09021f2916fd27b"
+    },
+    {
+      "file": "civique-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "0c2d7c8cfb89fb32aa079fbc3ca5cbdcb7972033ad923f4cebc86b9ef7f06564"
+    },
+    {
+      "file": "civique-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "58fb42b24fe99d0f504952c60213e37e0eb0c662268501d008a20eab098e65d1"
+    },
+    {
+      "file": "civique-security.webp",
+      "width": 1072,
+      "height": 823,
+      "sha256": "98a632c4002281ccb03b5d07738a9f446295a8fc80bf570c33d08798ceee897d"
+    },
+    {
+      "file": "edition-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "24e5358c852ced9f249a489e869188fc9329e8e94103c1b26ab345929d2e773e"
+    },
+    {
+      "file": "edition-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "563872a6ddba2e22a48a99afea45fb7cd5ad015efbce6fc0f38b095269af4d26"
+    },
+    {
+      "file": "edition-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "6d778430404965b803a9e3ccd3451fda844c966dba246513eb59ab804811d607"
+    },
+    {
+      "file": "edition-security.webp",
+      "width": 1072,
+      "height": 915,
+      "sha256": "6e1130e8473f85ee7d74be24c7fb473ac8f5aef72eb699656434a4093c66c18e"
+    },
+    {
+      "file": "rituel-login.webp",
+      "width": 1072,
+      "height": 830,
+      "sha256": "86d0ea0393864b0bba5d31c0506f90bb8da7bdebe421489dd13bb3ef97b68b35"
+    },
+    {
+      "file": "rituel-thumb.webp",
+      "width": 560,
+      "height": 434,
+      "sha256": "606e7d5d1f77376ad94986c55eb32545704a2809c35df043a5eccaab7b4caa78"
+    },
+    {
+      "file": "rituel-account.webp",
+      "width": 1072,
+      "height": 775,
+      "sha256": "666bfafa7d2f97c6e9fe863156530552ece7a7fec8aebc4504c67a21a140663e"
+    },
+    {
+      "file": "rituel-security.webp",
+      "width": 1072,
+      "height": 874,
+      "sha256": "7c23f3a81703e99da92582c0622f1afe96f8e9485da3c00b7fa42ebb37fcf2dd"
+    },
+    {
+      "file": "terminal-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "9abf666b37eb5835a82f51ee4d35fc6322b8c3a74d41eeaa731a44c16d1cd22f"
+    },
+    {
+      "file": "terminal-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "0d629c5f7493f798a31adcc491e682c0aef28d59c39b2798215bd6a10ca2c66c"
+    },
+    {
+      "file": "terminal-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "4e8d1abdd28877a54460a8f605938bf722ab511650a22222ec3e9b1df80bd6aa"
+    },
+    {
+      "file": "terminal-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "c486d2acbbd94cc58e01700719de307d7bc7681770bfd16aacb0207ff6a44d04"
+    },
+    {
+      "file": "comptoir-login.webp",
+      "width": 1072,
+      "height": 841,
+      "sha256": "7ef9739f95ee098e1dd5bb22085842e11ff4e89533209eaa4f0a289eb43fd762"
+    },
+    {
+      "file": "comptoir-thumb.webp",
+      "width": 560,
+      "height": 439,
+      "sha256": "3352d19e2518ef5592d2ce414e4c0776a6a219bd85bee652e17a1246cf91f6ee"
+    },
+    {
+      "file": "comptoir-account.webp",
+      "width": 1072,
+      "height": 780,
+      "sha256": "f74963a9151a107bd692f0904cc46af52db9824ee6f3c4b2692468ba1ad65b67"
+    },
+    {
+      "file": "comptoir-security.webp",
+      "width": 1072,
+      "height": 879,
+      "sha256": "990705d65410cb3f3c5e9d6cc50b3e521204888657e5eb7c05c020580e793d2c"
+    },
+    {
+      "file": "mouvement-login.webp",
+      "width": 1072,
+      "height": 918,
+      "sha256": "e3e9bbfd8416644e17109340976dc4322e2fe703f3c67adcb6b0d302399d8d9d"
+    },
+    {
+      "file": "mouvement-thumb.webp",
+      "width": 560,
+      "height": 480,
+      "sha256": "c874250fbdb494169651e4c6bab4008efc6ff460917232a55d4c652d94acafa3"
+    },
+    {
+      "file": "mouvement-account.webp",
+      "width": 1072,
+      "height": 784,
+      "sha256": "feac910d2bb1931f56c0c1eb0139280d78d60cd917ecbb9bae97ea8f04a0142d"
+    },
+    {
+      "file": "mouvement-security.webp",
+      "width": 1072,
+      "height": 839,
+      "sha256": "fded54765215f0c3978ff285a8ae8a2b7e0fb8c5d4dd39f0cad31ecb1054f9c6"
+    },
+    {
+      "file": "folio-login.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "42760aca6cd1aebeff156c982810c56f3a0133186dd347dcc390354d59dbdce5"
+    },
+    {
+      "file": "folio-thumb.webp",
+      "width": 560,
+      "height": 387,
+      "sha256": "b5201eb60347d71e1c93e840000331273dc0d6079e82e70f7f3a88fa00e6b725"
+    },
+    {
+      "file": "folio-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "577828865e6c6527b73097d02dfeea5dbbe6a69534b780fae2b102e251aca16c"
+    },
+    {
+      "file": "folio-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "9be208a57792f4ea36bed0ac268c3de43ea65d98a68c3890d28b5562dff083c2"
+    },
+    {
+      "file": "patrimoine-login.webp",
+      "width": 1072,
+      "height": 812,
+      "sha256": "a59399ecfaa5b95d6f192f6446b0f93c1c0b6ce6cd1e5ed819d5ffb212fd5755"
+    },
+    {
+      "file": "patrimoine-thumb.webp",
+      "width": 560,
+      "height": 424,
+      "sha256": "270b3bb298c4fc413da6f0160a1f7899a05abc3962a797532607cc199f7e955e"
+    },
+    {
+      "file": "patrimoine-account.webp",
+      "width": 1072,
+      "height": 740,
+      "sha256": "52e9d590e2eaa1de85b50484a2336aa01fbed01db0b8981d9ebcc435ca4cdf6f"
+    },
+    {
+      "file": "patrimoine-security.webp",
+      "width": 1072,
+      "height": 851,
+      "sha256": "e68ce6dbe59110039699ba0cd4be618dc8d639bb577ae827e8c4497562ea72fb"
+    },
+    {
+      "file": "zeste-login.webp",
+      "width": 1072,
+      "height": 812,
+      "sha256": "58504fae5b63fe3f2128b608ff9dd931828b2c28e09377c786d1b4e16d507c49"
+    },
+    {
+      "file": "zeste-thumb.webp",
+      "width": 560,
+      "height": 424,
+      "sha256": "2798ac915930fb42fca41e3fc38b59750cc41d044cadded95516a7ccdef1a2e2"
+    },
+    {
+      "file": "zeste-account.webp",
+      "width": 1072,
+      "height": 820,
+      "sha256": "34059d08d0bff70fd3fd86b7c3142fb5226b555f8764ff8449a08e5afc20d755"
+    },
+    {
+      "file": "zeste-security.webp",
+      "width": 1072,
+      "height": 880,
+      "sha256": "1eebf817cf4e7000479f79d67bd17f0eeabfd115affd5fefa8950fca002055db"
+    },
+    {
+      "file": "parade-login.webp",
+      "width": 1072,
+      "height": 812,
+      "sha256": "812a2a601ddcf97e3202bcb5e4db9178399ec5a38a03a819ca840a23661b1ba3"
+    },
+    {
+      "file": "parade-thumb.webp",
+      "width": 560,
+      "height": 424,
+      "sha256": "0aab8182a9174bf9606e7c6a7df0b23a47db030d775f1889e068f80f92e9c313"
+    },
+    {
+      "file": "parade-account.webp",
+      "width": 1072,
+      "height": 757,
+      "sha256": "4b5512b7463b2ad6999cb5d9caf5e5daee46bd76cf13d1fb181caa993d3538c2"
+    },
+    {
+      "file": "parade-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "4deb14f17a78291128071316f30d4c9cd798deef94c7a9bf55aefc6f3b1fa492"
+    },
+    {
+      "file": "bloom-login.webp",
+      "width": 1072,
+      "height": 802,
+      "sha256": "ee83f14723a176e2ec83a89b14d5ba96791d30cc4ac44edd1e166e1008201d5b"
+    },
+    {
+      "file": "bloom-thumb.webp",
+      "width": 560,
+      "height": 419,
+      "sha256": "da3abc48d3bb5791b2af7474adb6ab463c7d8ce029a54c5f2dcc61392381236e"
+    },
+    {
+      "file": "bloom-account.webp",
+      "width": 1072,
+      "height": 807,
+      "sha256": "13736cfb84f7f20efe7fcc81ef6658bc7bc60c50236529cda8ef741193f67ae9"
+    },
+    {
+      "file": "bloom-security.webp",
+      "width": 1072,
+      "height": 901,
+      "sha256": "017c37e2752deea6945b045eec81f910dcad3e6d55639e70ebb88cbe9515fde7"
+    },
+    {
+      "file": "rivage-login.webp",
+      "width": 1072,
+      "height": 757,
+      "sha256": "235c7211f526a720bb50997e840c830990c681a5c9aabb904fbbddc2b7565321"
+    },
+    {
+      "file": "rivage-thumb.webp",
+      "width": 560,
+      "height": 396,
+      "sha256": "696f0b9efcfaa74f08dcbe49dc12b37dafa60eda8143f22015653fa581e1b6de"
+    },
+    {
+      "file": "rivage-account.webp",
+      "width": 1072,
+      "height": 806,
+      "sha256": "1510161e97b0b3135bd71b1bf740480c0e02b959817a8160449cceb5953368f3"
+    },
+    {
+      "file": "rivage-security.webp",
+      "width": 1072,
+      "height": 822,
+      "sha256": "f406042c642235046ef452472cb56e944b8e0c121d9640cc3d80696c8a1c59a6"
+    }
+  ]
+}

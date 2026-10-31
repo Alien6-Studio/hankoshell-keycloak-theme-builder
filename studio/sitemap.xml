@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<studio-sitemap xmlns="urn:hanko:theme-studio:navigation:v1" version="1" purpose="application-navigation">
+  <!-- UI states and preview transitions; this is not a search-engine URL sitemap. -->
+  <workspace id="studio" label="Theme Studio">
+    <view id="editor" label="Composer" status="available">
+      <panel label="Blocs" />
+      <panel label="Styles" />
+      <panel label="Médias" />
+      <panel label="Calques" />
+    </view>
+    <view id="catalog" label="Galerie de modèles" status="available">
+      <panel label="Thèmes complets" />
+      <panel label="Pages" />
+      <panel label="Sections réutilisables" />
+      <panel label="Mes modèles" />
+    </view>
+    <view id="translations" label="Traductions" status="available">
+      <panel label="Langues" />
+      <panel label="Textes" />
+      <panel label="Import et export" />
+    </view>
+    <view id="contracts" label="Contrats JSON" status="available">
+      <panel label="Page" />
+      <panel label="Projet" />
+      <panel label="Plugin déclaratif" />
+      <panel label="Catalogue" />
+    </view>
+    <view id="validate" label="Vérifier le projet" status="available">
+    </view>
+    <view id="build" label="Construire" status="host-required">
+    </view>
+    <view id="deploy" label="Déployer" status="host-required">
+    </view>
+    <view id="attach" label="Affecter" status="host-required">
+    </view>
+  </workspace>
+  <theme-screens>
+    <family id="login" label="Connexion">
+      <screen id="login:0" label="Connexion">
+        <editor-state family="login" page="0" />
+        <transition mode="preview" field="action" target="account:0" label="Se connecter" />
+      </screen>
+      <screen id="login:1" label="Inscription">
+        <editor-state family="login" page="1" />
+        <transition mode="preview" field="action" target="account:0" label="Créer mon compte" />
+      </screen>
+      <screen id="login:2" label="Code OTP">
+        <editor-state family="login" page="2" />
+        <transition mode="preview" field="action" target="account:0" label="Vérifier" />
+      </screen>
+    </family>
+    <family id="email" label="Courriels">
+      <screen id="email:0" label="Vérification de l’adresse">
+        <editor-state family="email" page="0" />
+        <transition mode="preview" field="action" target="login:0" label="Confirmer mon adresse" />
+      </screen>
+      <screen id="email:1" label="Mot de passe oublié">
+        <editor-state family="email" page="1" />
+        <transition mode="preview" field="action" target="login:0" label="Réinitialiser mon mot de passe" />
+      </screen>
+      <screen id="email:2" label="Actions requises">
+        <editor-state family="email" page="2" />
+        <transition mode="preview" field="action" target="login:0" label="Vérifier" />
+      </screen>
+    </family>
+    <family id="account" label="Compte">
+      <screen id="account:0" label="Profil">
+        <editor-state family="account" page="0" />
+        <local-action field="action" label="Enregistrer les modifications" result="Les informations du profil sont mises à jour dans cet aperçu." />
+      </screen>
+      <screen id="account:1" label="Sécurité">
+        <editor-state family="account" page="1" />
+        <transition mode="preview" field="row0Action" target="account:2" label="Modifier le mot de passe" />
+        <transition mode="preview" field="row1Action" target="account:3" label="Configurer le MFA" />
+        <transition mode="preview" field="row2Action" target="account:4" label="Gérer les sessions" />
+        <screen id="account:2" label="Mot de passe" parent="account:1">
+          <editor-state family="account" page="2" />
+          <local-action field="action" label="Enregistrer le mot de passe" result="Le changement de mot de passe est confirmé dans cet aperçu." />
+        </screen>
+        <screen id="account:3" label="Authentification à deux facteurs" parent="account:1">
+          <editor-state family="account" page="3" />
+          <local-action field="action" label="Activer la double authentification" result="La double authentification est marquée comme active dans cet aperçu." />
+        </screen>
+        <screen id="account:4" label="Sessions" parent="account:1">
+          <editor-state family="account" page="4" />
+          <local-action field="row1Action" label="Terminer cette session" result="Une confirmation permet de terminer la session dans cet aperçu." />
+          <local-action field="row2Action" label="Terminer cette session" result="Une confirmation permet de terminer la session dans cet aperçu." />
+        </screen>
+      </screen>
+    </family>
+    <family id="admin" label="Administration">
+      <screen id="admin:0" label="Console">
+        <editor-state family="admin" page="0" />
+        <transition mode="preview" field="row0" target="admin:1" label="Utilisateurs" />
+        <transition mode="preview" field="row1" target="admin:3" label="Clients et applications" />
+        <transition mode="preview" field="row2" target="admin:5" label="Rôles et permissions" />
+        <screen id="admin:1" label="Utilisateurs" parent="admin:0">
+          <editor-state family="admin" page="1" />
+          <transition mode="preview" field="action" target="admin:2" label="Ouvrir la fiche" />
+          <screen id="admin:2" label="Fiche utilisateur" parent="admin:1">
+            <editor-state family="admin" page="2" />
+            <local-action field="action" label="Enregistrer l’utilisateur" result="La fiche utilisateur est mise à jour dans cet aperçu." />
+            <transition mode="preview" field="row0Action" target="admin:5" label="Voir les rôles et permissions" />
+          </screen>
+        </screen>
+        <screen id="admin:3" label="Clients et applications" parent="admin:0">
+          <editor-state family="admin" page="3" />
+          <transition mode="preview" field="action" target="admin:4" label="Configurer l’application" />
+          <screen id="admin:4" label="Configuration du client" parent="admin:3">
+            <editor-state family="admin" page="4" />
+            <local-action field="action" label="Enregistrer l’application" result="La configuration de l’application est mise à jour dans cet aperçu." />
+          </screen>
+        </screen>
+        <screen id="admin:5" label="Rôles et permissions" parent="admin:0">
+          <editor-state family="admin" page="5" />
+          <local-action field="row0Action" label="Voir les permissions" result="Les permissions du rôle sont affichées sur cet écran." />
+          <local-action field="row1Action" label="Voir les permissions" result="Les permissions du rôle sont affichées sur cet écran." />
+          <local-action field="row2Action" label="Voir les permissions" result="Les permissions du rôle sont affichées sur cet écran." />
+        </screen>
+      </screen>
+    </family>
+    <family id="welcome" label="Accueil">
+      <screen id="welcome:0" label="Page d’accueil">
+        <editor-state family="welcome" page="0" />
+        <transition mode="preview" field="action" target="login:0" label="Se connecter" />
+      </screen>
+    </family>
+  </theme-screens>
+  <navigation-contract addressability="in-memory" browser-history="not-yet-connected" />
+  <hosts>
+    <host kind="standalone" route="/" />
+    <host kind="organization" route-template="/[locale]/clusters/[clusterId]/backends/[backendId]/organizations/[realm]/theme" />
+    <host kind="cluster" route-template="/[locale]/platform/themes/studio" />
+  </hosts>
+</studio-sitemap>

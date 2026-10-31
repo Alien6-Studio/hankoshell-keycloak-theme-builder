@@ -1,0 +1,53 @@
+{
+  "format": "hanko.studio.plugin/v1",
+  "id": "alien6.notice",
+  "version": "0.1.0",
+  "studioApi": "1",
+  "blocks": [
+    {
+      "type": "alien6.notice/banner",
+      "label": "Bandeau d’information",
+      "surfaces": [
+        "keycloak-login",
+        "application"
+      ],
+      "propsSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "tone": {
+            "type": "string",
+            "enum": [
+              "info",
+              "success"
+            ]
+          }
+        }
+      },
+      "renderers": [
+        "keycloak",
+        "react",
+        "next"
+      ],
+      "inspector": [
+        {
+          "property": "text",
+          "label": "Message",
+          "control": "textarea"
+        },
+        {
+          "property": "tone",
+          "label": "Apparence",
+          "control": "select"
+        }
+      ]
+    }
+  ]
+}

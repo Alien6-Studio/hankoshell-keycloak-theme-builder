@@ -1,0 +1,55 @@
+import {catalogue,pageTemplates} from '@alien6/hankoshell-theme-catalog';
+const authoredPage=(theme,name)=>structuredClone(pageTemplates['themes/'+theme+'/pages/'+name+'.json']);
+import assert from 'node:assert/strict';import {mkdir,readFile,writeFile} from 'node:fs/promises';import {resolve,dirname} from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import {build} from 'esbuild';import {staticServer} from './static-server.mjs';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),require=createRequire(resolve(root,'../package.json')),{chromium}=require('playwright');
+const output=resolve(root,'artifacts/application-export');await mkdir(output,{recursive:true});
+const profile=authoredPage('maison','account-profile'),security=authoredPage('maison','account-security'),admin=authoredPage('maison','admin-users');
+const profileHeading=profile.blocks.find(block=>block.zone==='header'&&block.type==='heading');
+profileHeading.text='Mon identité <script>inerte</script>';profile.native.copy.emailLabel='Adresse de contact privée';profile.native.copy.action='Sauvegarder mon compte';profile.native.styles.emailLabel={color:'#115533',fontWeight:700};profile.native.styles.action={radius:18};
+profile.blocks.push({id:'security-link',type:'button',zone:'footer',text:'Ouvrir la sécurité',alt:'',align:'left',href:'#account-1'});
+profile.blocks.push({id:'sized-divider',type:'divider',zone:'footer',text:'',alt:'',align:'center',style:{width:50,imageHeight:3,color:'#335577'}});
+profileHeading.style={...profileHeading.style,width:70,align:'center'};
+profile.i18n.messages.he['blocks.'+profileHeading.id+'.text']='הזהות שלי';profile.i18n.messages.he['native.emailLabel']='כתובת הדואר שלי';
+const password=authoredPage('maison','account-password');
+for(const page of [profile,security,password,admin])page.appearance.composition='maison';
+const catalog=catalogue,theme=catalog.themes.find(theme=>theme.id==='zeste');
+const templates=pageTemplates;
+const materializer=await build({entryPoints:[resolve(root,'src/catalog-theme.ts')],bundle:true,write:false,format:'esm',platform:'node'});
+const {materializeThemePages}=await import('data:text/javascript;base64,'+Buffer.from(materializer.outputFiles[0].text).toString('base64'));
+const welcome=materializeThemePages(theme,templates)['welcome:0'],welcomeImage=welcome.blocks.find(block=>block.type==='image').src;
+const project={format:'hanko.theme-studio.project/v1',name:'export-test',pages:{'account:0':profile,'account:1':security,'account:2':password,'admin:1':admin,'welcome:0':welcome},media:[],destination:{mode:'standalone',url:'',realm:'',scope:'realm',client:'',theme:'export-test'},publication:{status:'draft',built:false,deployed:false,attached:false}};
+const server=await staticServer(resolve(root,'site'));let browser,application;
+try{
+ browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1512,height:1100}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.goto(server.url+'?locale=fr');await page.getByRole('button',{name:'Back to Studio',exact:true}).click();
+ await page.getByRole('button',{name:'JSON',exact:true}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('tab',{name:'Projet',exact:true}).click();await dialog.getByRole('textbox',{name:'Document JSON'}).fill(JSON.stringify(project));await dialog.getByRole('button',{name:'Importer le projet',exact:true}).click();await dialog.waitFor({state:'detached'});
+ const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Écrans React/Next',exact:true}).click();const code=await readFile(await(await downloaded).path(),'utf8');
+ assert.ok(code.includes(welcomeImage),'Catalogue artwork is embedded in the downloaded React source');
+ assert.doesNotMatch(code,/@alien6\/hankoshell-typescript-adk/);assert.match(code,/Mon identité \\u003cscript/);await writeFile(resolve(output,'identity.tsx'),code);
+ const host=`import React,{useState}from'react';import{createRoot}from'react-dom/client';import{IdentityScreen,IdentityInput,IdentityButton,ProfileScreen}from'./identity';
+ function Fields({context}){const[value,setValue]=useState('contact@example.test'),[saved,setSaved]=useState(false);return <form onSubmit={event=>{event.preventDefault();setSaved(true);}}><IdentityInput context={context} part="email" value={value} onChange={event=>setValue(event.target.value)}/><IdentityButton context={context} type="submit"/>{saved&&<p role="status">Enregistré : {value}</p>}</form>;}
+ function App(){const[locale,setLocale]=useState('fr'),[controlled,setControlled]=useState(false),[screen,setScreen]=useState('account:0');const renderNative=context=><Fields key={context.screen} context={context}/>;return <><label>Langue <select aria-label="Langue" value={locale} onChange={e=>setLocale(e.target.value)}><option>fr</option><option>he</option><option>HE-il</option></select></label><button id="welcome" onClick={()=>{setControlled(true);setScreen('welcome:0');}}>Voir l’accueil</button><button id="controlled" onClick={()=>setControlled(!controlled)}>Changer de navigation</button>{controlled?<IdentityScreen locale={locale} screen={screen} onNavigate={setScreen} renderNative={renderNative}/>:<ProfileScreen locale={locale} renderNative={renderNative}/>}</>;}
+ createRoot(document.getElementById('root')).render(<App/>);`;
+ await build({stdin:{contents:host,loader:'tsx',resolveDir:output},bundle:true,format:'esm',platform:'browser',outfile:resolve(output,'app.js'),jsx:'automatic',alias:{react:resolve(root,'node_modules/react'),'react-dom':resolve(root,'node_modules/react-dom')},define:{'process.env.NODE_ENV':'"production"'}});
+ await writeFile(resolve(output,'index.html'),'<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Export qualification</title><div id="root"></div><script type="module" src="./app.js"></script></html>');
+ application=await staticServer(output);await page.goto(application.url);await page.getByRole('heading',{name:'Mon identité <script>inerte</script>',exact:true}).waitFor();
+ assert.equal(await page.locator('.hanko-identity-composition script').count(),0,'Authored HTML remains text');
+ const email=page.getByLabel('Adresse de contact privée',{exact:true});await email.fill('updated@example.test');await page.getByRole('button',{name:'Sauvegarder mon compte',exact:true}).click();await page.getByRole('status').filter({hasText:'Enregistré : updated@example.test'}).waitFor();
+ assert.equal(await page.locator('label').filter({hasText:'Adresse de contact privée'}).evaluate(element=>getComputedStyle(element).color),'rgb(17, 85, 51)');
+ assert.equal(await page.getByRole('button',{name:'Sauvegarder mon compte',exact:true}).evaluate(element=>getComputedStyle(element).borderRadius),'18px');
+ assert.equal(await page.locator('[data-block="sized-divider"]').evaluate(element=>element.style.width),'50%');
+ assert.equal(await page.locator('[data-block="sized-divider"] hr').evaluate(element=>getComputedStyle(element).height),'3px');
+ assert.equal(await page.locator('[data-block="sized-divider"] hr').evaluate(element=>getComputedStyle(element).borderTopWidth),'0px');
+ assert.equal(await page.locator('[data-block='+JSON.stringify(profileHeading.id)+']').evaluate(element=>element.style.width),'70%');
+ await page.getByRole('button',{name:'Ouvrir la sécurité',exact:true}).click();await page.locator('.hanko-identity-composition[data-screen="account:1"]').waitFor();
+ const navigation=page.getByRole('navigation',{name:'Navigation de l’application',exact:true});assert.equal(await navigation.getByRole('button').count(),2,'Only primary screens belong to the top navigation');
+ await page.getByRole('navigation',{name:'Sous-pages',exact:true}).getByRole('button',{name:'Mot de passe',exact:true}).click();await page.locator('.hanko-identity-composition[data-screen="account:2"]').waitFor();assert.equal(await navigation.getByRole('button',{name:'Sécurité',exact:true}).getAttribute('aria-current'),'location');
+ await navigation.getByRole('button',{name:'Profil',exact:true}).click();await page.locator('.hanko-identity-composition[data-screen="account:0"]').waitFor();
+ await page.locator('#controlled').click();await page.getByRole('button',{name:'Ouvrir la sécurité',exact:true}).click();await page.locator('.hanko-identity-composition[data-screen="account:1"]').waitFor();await navigation.getByRole('button',{name:'Profil',exact:true}).click();
+ await page.getByLabel('Langue',{exact:true}).selectOption('he');await page.locator('.hanko-identity-composition[lang=he][dir=rtl]').waitFor();await page.getByRole('heading',{name:'הזהות שלי',exact:true}).waitFor();await page.getByLabel('כתובת הדואר שלי',{exact:true}).waitFor();
+ await page.getByLabel('Langue',{exact:true}).selectOption('HE-il');await page.locator('.hanko-identity-composition[lang=he][dir=rtl]').waitFor();await page.getByRole('heading',{name:'הזהות שלי',exact:true}).waitFor();
+ await page.locator('#welcome').click();await page.locator('[data-hanko-family=welcome] img').waitFor();assert.equal(await page.locator('[data-hanko-family=welcome] img').getAttribute('src'),welcomeImage);
+ await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.deepEqual(errors,[]);
+ await writeFile(resolve(output,'results.json'),JSON.stringify({status:'passed',screens:Object.keys(project.pages),coverage:['actual-Studio-download','React-only-installation','authored-blocks-and-dimensions','native-copy-and-styles','host-controlled-form','hierarchical-navigation','named-screen-and-controlled-navigation','Hebrew-RTL-and-regional-locale','mobile-layout','inert-HTML','portable-catalogue-artwork']},null,2)+'\n');
+ console.log('Downloaded React export passed in a separate application: actual composition, host forms, translated labels/styles, navigation, Hebrew RTL and mobile layout.');
+}finally{await browser?.close();await application?.close();await server.close();}
