@@ -1,10 +1,10 @@
-# Hanko Theme Studio
+# HankoShell Theme Studio
 
 Visual editor shared by the standalone builder and the Hanko Dashboard. React module, shadcn/Radix controls, scoped styles, guided blocks, media uploads, editable translations and interactive account/administration previews.
 
 The gallery includes **16 complete themes**: 18 screens each, eight content languages including Arabic and Hebrew RTL, eight photographic directions and four reusable sections. The gallery, exploration dialog and editor use the same catalogue documents and rendering frame. Previews start in English and preserve the selected language when opened in the editor. Apply a whole theme or one page while choosing whether to retain your brand and existing content. Save personal templates in the host library; standalone projects and templates use IndexedDB in the current browser. Export JSON for backup and sharing. The gallery and its theme descriptions use English. Editing controls are currently French; theme content supports all eight languages. Projects show their unsaved state, and a document close/reload prompts when changes remain. Browser history and deep links for editor states are not connected yet.
 
-Try the [public Studio](https://studio.hanko.sh/app/?locale=en). It opens in the HankoShell dark palette with red accents. The browser demo supports editing and exports; native compilation requires the local CLI. It has no build service or connection to your Keycloak server. Embedded hosts can choose light, dark or system colours with `colorScheme`.
+Try the [public Studio](https://studio.hanko.sh/app/?locale=en). It starts in the light HankoShell appearance with red accents. Choose light, dark or system appearance; your choice is retained between the public site and demo. The Studio is an Apache-2.0 tool for any Keycloak project, with no HankoShell subscription required. The browser demo supports editing and exports; native compilation requires the local CLI. It has no build service or connection to your Keycloak server. Embedded hosts can choose light, dark or system colours with `colorScheme`.
 
 ## Gallery and live editor
 

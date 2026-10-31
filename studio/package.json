@@ -1,9 +1,9 @@
 {
   "name": "@alien6-studio/hankoshell-theme-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "license": "Apache-2.0",
-  "description": "Visual identity theme studio and reusable theme catalogue for Hanko and standalone applications",
+  "description": "Open-source visual theme studio for any Keycloak deployment, standalone or embedded in React",
   "files": [
     "dist",
     "LICENSE",

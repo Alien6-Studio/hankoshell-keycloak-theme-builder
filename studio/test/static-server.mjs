@@ -14,7 +14,7 @@ export async function staticServer(directory){
    handle=await open(file,constants.O_RDONLY|(constants.O_NOFOLLOW||0));
    if(!(await handle.stat()).isFile())throw Error('Not found');
    const bytes=await handle.readFile();
-   const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png'};
+   const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.woff2':'font/woff2'};
    response.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff'});response.end(bytes);
   }catch{response.writeHead(404);response.end('Not found');}
   finally{await handle?.close();}
